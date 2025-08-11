@@ -67,7 +67,7 @@ export default function Navbar() {
                   variant="outline"
                   size="sm"
                   onClick={handleLogout}
-                  className="text-white border-white hover:bg-white hover:text-primary transition-colors duration-300"
+                  className="text-white border-white bg-transparent hover:bg-white hover:text-primary transition-colors duration-300"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
                   Logout
