@@ -32,14 +32,14 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-primary via-primary to-purple-900 overflow-hidden">
+      <section className="relative pt-32 pb-24 bg-gradient-to-br from-primary via-primary to-purple-900 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent opacity-10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 opacity-10 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-inherit">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
               <div className="space-y-6 animate-fade-in-up">
@@ -60,7 +60,7 @@ export default function HomePage() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold transition-colors duration-300"
+                  className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold transition-colors duration-300"
                 >
                   Watch Demo
                   <Play className="ml-2 w-5 h-5" />

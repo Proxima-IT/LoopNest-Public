@@ -3,14 +3,14 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User as UserIcon, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { isLoggedIn, getCurrentUser, logout } from '@/utils/auth';
+import { isLoggedIn, getCurrentUser, logout, User } from '@/utils/auth';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function Navbar() {
             {userLoggedIn ? (
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2 text-white">
-                  <User className="w-5 h-5" />
+                  <UserIcon className="w-5 h-5" />
                   <span className="text-sm font-medium">{currentUser?.name}</span>
                 </div>
                 <Button
@@ -79,7 +79,7 @@ export default function Navbar() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-white border-white hover:bg-white hover:text-primary transition-colors duration-300"
+                    className=" border-white hover:bg-white bg-transparent text-white hover:text-primary transition-colors duration-300"
                   >
                     Login
                   </Button>

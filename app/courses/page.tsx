@@ -40,7 +40,7 @@ export default function CoursesPage() {
     <div className="min-h-screen bg-white">
       <Navbar />
       
-      <div className="pt-20">
+      <div className="pt-12">
         {/* Header Section */}
         <section className="py-16 bg-gradient-to-r from-primary to-purple-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
