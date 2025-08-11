@@ -201,7 +201,7 @@ export default function HomePage() {
           />
 
           <div className="max-w-4xl mx-auto">
-            <div className="relative min-h-[300px]">
+            <div className="relative min-h-[450px] md:min-h-[300px]">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}

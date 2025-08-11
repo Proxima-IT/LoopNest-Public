@@ -65,14 +65,14 @@ export default function SignupPage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      <div className="flex items-center justify-center min-h-screen pt-20 pb-12">
+      <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Join Loop Nest</h1>
             <p className="text-gray-600">Start your learning journey today</p>
           </div>
 
-          <Card className="shadow-lg">
+          <Card className="shadow-lg ">
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>
             </CardHeader>
