@@ -32,7 +32,7 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 bg-gradient-to-br from-primary via-primary to-purple-900 overflow-hidden">
+      <section className=" relative pt-32 pb-24 bg-gradient-to-br from-primary via-primary to-purple-900 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent opacity-10 rounded-full blur-3xl animate-pulse"></div>
@@ -112,7 +112,7 @@ export default function HomePage() {
 
       {/* Upcoming Courses */}
       {upcomingCourses.length > 0 && (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-[#010019ef]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionTitle
               title="Upcoming Courses"
@@ -134,7 +134,7 @@ export default function HomePage() {
       )}
 
       {/* Ongoing Courses */}
-      <section className="py-20">
+      <section className="py-20 bg-[#010019e7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Popular Courses"
@@ -164,7 +164,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Loop Nest */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#010019ef]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Why Choose Loop Nest?"
@@ -174,10 +174,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyLoopNest.map((item, index) => (
-              <Card key={index} className={`text-center hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200}`}>
+              <Card key={index} className={`text-center bg-[#11102794] border-gray-700 hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200}`}>
                 <CardContent className="p-8">
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h3 className="text-xl font-semibold text-gray-300 mb-3">
                     {item.title}
                   </h3>
                   <p className="text-gray-600">
@@ -191,7 +191,7 @@ export default function HomePage() {
       </section>
 
       {/* Student Reviews */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-[#010019e7] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="What Our Students Say"
