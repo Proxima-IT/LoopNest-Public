@@ -12,6 +12,16 @@ import Footer from '@/components/Footer';
 import CourseCard from '@/components/CourseCard';
 import SectionTitle from '@/components/SectionTitle';
 import { courses, testimonials, blogPosts, whyLoopNest } from '@/utils/data';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay";
+import { isArrayBufferView } from 'node:util/types';
+
 
 export default function HomePage() {
   const [visibleTestimonial, setVisibleTestimonial] = useState(0);
@@ -191,7 +201,7 @@ export default function HomePage() {
       </section>
 
       {/* Student Reviews */}
-      <section className="py-20 bg-[#010019e7] text-white">
+      <section className="py-20  bg-gradient-to-l from-primary via-primary to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="What Our Students Say"
@@ -202,7 +212,65 @@ export default function HomePage() {
 
           <div className="max-w-4xl mx-auto">
             <div className="relative min-h-[450px] md:min-h-[300px]">
-              {testimonials.map((testimonial, index) => (
+           
+
+<Carousel
+  opts={{
+    align: "start",
+    loop: true
+  }}
+  plugins={[
+    Autoplay({
+      delay: 3000,
+      // stopOnInteraction: false
+    })
+  ]}
+  className="w-full max-w-6xl" // big enough for 3 items
+>
+  <CarouselContent>
+    {testimonials.map((testimonial, index) => (
+      <CarouselItem key={testimonial.id || index} className="md:basis-1/2 lg:basis-1/2 ">
+        <div className="p-2">
+          <Card className="bg-white/10 backdrop-blur border-white/20 text-white border animate-border">
+            <CardContent className="p-8 text-center">
+               <div className="flex items-center justify-center space-x-4 mb-4">
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  width={60}
+                  height={60}
+                  className="h-[80px] w-[80px] rounded-full bg-slate-50"
+                />
+              
+              </div>
+
+
+              <p className="text-sm md:text-sm leading-relaxed mb-8 italic">
+                &ldquo;{testimonial.content}&rdquo;
+              </p>
+
+              
+              <div className="flex justify-center mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+               <div className="text-center">
+                  <div className="font-semibold text-lg">{testimonial.name}</div>
+                  <div className="text-accent">{testimonial.role}</div>
+                </div>
+            </CardContent>
+          </Card>
+        </div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+
+             
+              {/* {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
                   className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -237,7 +305,7 @@ export default function HomePage() {
                     </CardContent>
                   </Card>
                 </div>
-              ))}
+              ))} */}
             </div>
 
             <div className="flex justify-center space-x-2 mt-8">
