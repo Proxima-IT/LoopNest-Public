@@ -6,11 +6,22 @@ import { useRouter } from 'next/navigation';
 import { Menu, X, User as UserIcon, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { isLoggedIn, getCurrentUser, logout, User } from '@/utils/auth';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+    const [position, setPosition] = useState<string>("bottom")
   const router = useRouter();
 
   useEffect(() => {
@@ -50,9 +61,24 @@ export default function Navbar() {
             <Link href="/blog" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               Blog
             </Link>
-            <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            {/* <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               Contact
-            </Link>
+            </Link> */}
+
+              <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" className='bg-transparent text-white'>More </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+          <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
           </div>
 
           {/* Auth Buttons */}

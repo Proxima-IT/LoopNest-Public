@@ -291,5 +291,19 @@ export const whyLoopNest = [
     icon: '🤝',
     title: 'Community & Networking',
     description: 'Join a vibrant community of learners and professionals. Network, collaborate, and grow together.'
-  }
+  },
+  {
+    icon: '🚀',
+    title: 'Job Placement Support',
+    description: 'Get dedicated career support, interview preparation, and job placement assistance after course completion.'
+  },{
+    icon: '🚀',
+    title: 'Job Placement Support',
+    description: 'Get dedicated career support, interview preparation, and job placement assistance after course completion.'
+  },
+  {
+    icon: '🚀',
+    title: 'Job Placement Support',
+    description: 'Get dedicated career support, interview preparation, and job placement assistance after course completion.'
+  },
 ];

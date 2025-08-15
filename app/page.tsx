@@ -188,7 +188,7 @@ export default function HomePage() {
               key={index}
               className=" p-6 hover:bg-slate-800/70 transition-colors duration-300"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-center gap-4">
                 <div className="text-3xl flex-shrink-0">{item.icon}</div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2 leading-tight">{item.title}</h3>
@@ -199,21 +199,6 @@ export default function HomePage() {
           ))}
         </div>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyLoopNest.map((item, index) => (
-              <Card key={index} className={`text-center bg-[#11102794] border-gray-700 hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200}`}>
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-300 mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div> */}
         </div>
       </section>
 
