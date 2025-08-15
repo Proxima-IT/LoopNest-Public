@@ -222,6 +222,22 @@ export const testimonials: Testimonial[] = [
     image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=200',
     content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
     rating: 5
+  },
+  {
+    id: '4',
+    name: 'Arif Hassan',
+    role: 'Mobile App Developer',
+       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200',
+    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
+    rating: 5
+  },
+  {
+    id: '5',
+    name: 'Arif Hassan',
+    role: 'Mobile App Developer',
+    image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=200',
+    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
+    rating: 5
   }
 ];
 

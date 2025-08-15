@@ -210,7 +210,7 @@ export default function HomePage() {
             className="text-white [&>h2]:text-white [&>p]:text-gray-300"
           />
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="relative min-h-[450px] md:min-h-[300px]">
            
 
@@ -225,13 +225,13 @@ export default function HomePage() {
       // stopOnInteraction: false
     })
   ]}
-  className="w-full max-w-6xl" // big enough for 3 items
+  className="w-full max-w-7xl" 
 >
   <CarouselContent>
     {testimonials.map((testimonial, index) => (
-      <CarouselItem key={testimonial.id || index} className="md:basis-1/2 lg:basis-1/2 ">
-        <div className="p-2">
-          <Card className="bg-white/10 backdrop-blur border-white/20 text-white border animate-border">
+      <CarouselItem key={testimonial.id || index} className="md:basis-1/2 lg:basis-1/3 ">
+        <div className="  [background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
+          <Card className="bg-white/10 backdrop-blur border-white/20 p-2 text-white">
             <CardContent className="p-8 text-center">
                <div className="flex items-center justify-center space-x-4 mb-4">
                 <Image
@@ -245,7 +245,7 @@ export default function HomePage() {
               </div>
 
 
-              <p className="text-sm md:text-sm leading-relaxed mb-8 italic">
+              <p className="text-xs leading-relaxed mb-8 italic text-gray-200 font-normal">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
 
@@ -324,7 +324,7 @@ export default function HomePage() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-20">
+      <section className="py-20 bg-[#010019ef]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Latest from Our Blog"

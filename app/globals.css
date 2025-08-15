@@ -89,3 +89,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a1a1a1;
 }
+
+
+@property --border-angle {
+    inherits: false;
+    initial-value: 0deg;
+    syntax: '<angle>';
+}
