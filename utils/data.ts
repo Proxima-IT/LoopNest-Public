@@ -17,7 +17,9 @@ export interface Course {
   instructor: {
     name: string;
     bio: string;
+    role: string;
     image: string;
+    intro: string;
   };
   features: string[];
   modules: {
@@ -65,8 +67,10 @@ export const courses: Course[] = [
     originalPrice: 20000,
     instructor: {
       name: 'Sarah Johnson',
+      role: "Full stack developer",
       bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
-      image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      intro:'Senior SQA Engineer-I at Digital Payments Limited | Former Software QA Engineer Wunderman Thompson Studios | Former Software Quality Assurance Engineer at Aplectrum Solutions Ltd | Former SQA Engineer at ReliSource '
     },
     features: [
       'Live interactive sessions',
@@ -117,8 +121,10 @@ export const courses: Course[] = [
     originalPrice: 16000,
     instructor: {
       name: 'Michael Chen',
+      role: "full stack developer",
       bio: 'Mobile Development Expert and React Native core contributor',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
+     intro:'Senior SQA Engineer-I at Digital Payments Limited | Former Software QA Engineer Wunderman Thompson Studios | Former Software Quality Assurance Engineer at Aplectrum Solutions Ltd | Former SQA Engineer at ReliSource '
     },
     features: [
       'Pre-recorded HD videos',
@@ -164,8 +170,10 @@ export const courses: Course[] = [
     originalPrice: 24000,
     instructor: {
       name: 'Dr. Priya Sharma',
+      role: "Full stack developer",
       bio: 'Data Scientist and ML Engineer with PhD in Computer Science',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400',
+        intro:'Senior SQA Engineer-I at Digital Payments Limited | Former Software QA Engineer Wunderman Thompson Studios | Former Software Quality Assurance Engineer at Aplectrum Solutions Ltd | Former SQA Engineer at ReliSource '
     },
     features: [
       'Live coding sessions',

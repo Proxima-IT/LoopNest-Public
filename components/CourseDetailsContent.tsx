@@ -45,10 +45,10 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
   };
 
   return (
-    <div className="pt-20 bg-[#010019e7] ">
+    <div className="pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
-        <div className="flex items-center space-x-2 text-sm text-gray-300 mb-6">
+        <div className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
           <button onClick={() => router.push('/')} className="hover:text-accent transition-colors">
             Home
           </button>
@@ -147,7 +147,7 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
                         Apply
                       </Button>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Try &quot;welcome10&quot; for 10% off</p>
+                    <p className="text-xs text-gray-500 mt-1">Try &quot;welcome10&quot for 10% off</p>
                   </div>
 
                   <Button 
@@ -192,30 +192,30 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
           <div className="lg:col-span-2 space-y-8">
             {/* Course Header */}
             <div>
-              <div className="flex items-center space-x-3 mb-4 ">
-                <Badge variant="outline" className='text-white'>{course.batchName}</Badge>
+              <div className="flex items-center space-x-3 mb-4">
+                <Badge variant="outline">{course.batchName}</Badge>
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 text-accent fill-current" />
                   ))}
-                  <span className="text-sm text-gray-300 ml-2">(4.9) • 2,847 reviews</span>
+                  <span className="text-sm text-gray-600 ml-2">(4.9) • 2,847 reviews</span>
                 </div>
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                 {course.title}
               </h1>
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed">
                 {course.description}
               </p>
             </div>
 
             {/* About the Course */}
-            <Card className='bg-transparent text-gray-300'>
+            <Card>
               <CardHeader>
                 <CardTitle>About This Course</CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
-                <p className="text-gray-400 leading-relaxed mb-4">
+                <p className="text-gray-700 leading-relaxed mb-4">
                   This comprehensive course is specifically designed for students and professionals in Bangladesh 
                   who want to master modern web development technologies. Our curriculum covers everything from 
                   the basics to advanced concepts, ensuring you&apos;re job-ready by the end of the program.
@@ -225,6 +225,22 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
                   you&apos;ll gain practical experience that employers value. Our focus on the Bangladeshi tech 
                   market ensures you learn the most relevant skills for local opportunities.
                 </p>
+              </CardContent>
+            </Card>
+ {/* Course Features */}
+            <Card>
+              <CardHeader>
+                <CardTitle>What You&apos;ll Get</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {course.features.map((feature, index) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
 
@@ -281,7 +297,7 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
             </Card>
 
             {/* Instructor */}
-            <Card>
+            {/* <Card>
               <CardHeader>
                 <CardTitle>Your Instructor</CardTitle>
               </CardHeader>
@@ -304,22 +320,65 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            {/* Course Features */}
-            <Card>
-              <CardHeader>
-                <CardTitle>What You&apos;ll Get</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {course.features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+
+<Card
+              className="bg-white shadow-lg border-[1px] hover:border-gray-300 transition-shadow duration-300 rounded-2xl overflow-hidden"
+            >
+              <CardContent className="p-6">
+                <div className="flex items-start space-x-3 bg-slate-200  mb-4">
+                   {/* Profile Image */}
+                  <div className="">
+                    <Image
+                    src={course.instructor.image}
+                    alt={course.instructor.name}
+                    width={120}
+                    height={80}
+                    className="rounded-xl w-44 h-32"
+                  />
+                  </div>
+
+                  <div className=" pr-4">
+                    {/* Role Badge */}
+                    <Badge
+                      variant={course?.instructor?.role === "LEAD INSTRUCTOR" ? "default" : "secondary"}
+                      className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
+                        course?.instructor?.role === "LEAD INSTRUCTOR"
+                          ? "bg-purple-100 text-purple-700 border-purple-300"
+                          : "bg-green-100 text-green-700 border-green-300"
+                      }`}
+                    >
+                      {course?.instructor?.role}
+                    </Badge>
+
+                    {/* Name */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight"> {course.instructor.name}</h3>
+
+                    {/* Title */}
+                    <p className="text-sm font-medium text-gray-700 mb-2 leading-relaxed">ieoqruksaa dfjasalk</p>
+
+                    {/* Details */}
+                    <p className="text-xs text-gray-600 leading-relaxed">{course.instructor?.intro}</p>
+                  </div>
+
+                 
+                </div>
+
+                {/* Company Logos */}
+                {/* <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100">
+                  {instructor.companies.map((company, index) => (
+                    <div key={index} className="flex items-center">
+                      <Image
+                        src={company.logo || "/placeholder.svg"}
+                        alt={company.name}
+                        width={80}
+                        height={24}
+                        className="h-6 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
                     </div>
                   ))}
-                </div>
+                </div> */}
               </CardContent>
             </Card>
 
