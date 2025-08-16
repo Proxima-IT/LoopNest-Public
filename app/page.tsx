@@ -77,20 +77,7 @@ export default function HomePage() {
                 </Button>
               </div>
 
-              <div className="flex items-center space-x-8 text-white animate-fade-in-up animate-delay-600">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">10K+</div>
-                  <div className="text-sm text-gray-300">Students</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">50+</div>
-                  <div className="text-sm text-gray-300">Courses</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">95%</div>
-                  <div className="text-sm text-gray-300">Job Success</div>
-                </div>
-              </div>
+            
             </div>
 
             <div className="relative animate-fade-in-right">
@@ -147,7 +134,7 @@ export default function HomePage() {
       <section className="py-20 bg-[#010019e7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="Popular Courses"
+            title="Previous Courses"
             subtitle="Join thousands of students already learning with us"
             centered
           />
@@ -233,7 +220,7 @@ export default function HomePage() {
     {testimonials.map((testimonial, index) => (
       <CarouselItem key={testimonial.id || index} className="md:basis-1/2 lg:basis-1/3 ">
         <div className="  [background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
-          <Card className="bg-white/10 backdrop-blur border-white/20 p-2 text-white">
+          <Card className="bg-[#171D31] backdrop-blur border-white/20 p-2 text-white">
             <CardContent className="p-8 text-center">
                <div className="flex items-center justify-center space-x-4 mb-4">
                 <Image
@@ -336,7 +323,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <Card key={post.id} className={`group hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200}`}>
+              <Card key={post.id} className={`group hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200} bg-white/70`}>
                 <div className="relative overflow-hidden">
                   <Image
                     src={post.image}

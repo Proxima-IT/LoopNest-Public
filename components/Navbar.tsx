@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Menu, X, User as UserIcon, LogOut } from 'lucide-react';
+import { Menu, X, User as UserIcon, LogOut, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { isLoggedIn, getCurrentUser, logout, User } from '@/utils/auth';
 import {
@@ -67,15 +67,15 @@ export default function Navbar() {
 
               <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className='bg-transparent text-white'>More </Button>
+        <Button  className="text-white hover:text-accent transition-colors duration-300 font-medium">More <ChevronDown /> </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+      <DropdownMenuContent className="w-56 bg-primary text-white">
+        <DropdownMenuLabel>Explore</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="career">Career</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="hire-talent">Hire Talent</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="blogs">Blogs</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

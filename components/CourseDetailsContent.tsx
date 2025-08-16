@@ -45,10 +45,10 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 bg-[#010019e7] ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
-        <div className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
+        <div className="flex items-center space-x-2 text-sm text-gray-300 mb-6">
           <button onClick={() => router.push('/')} className="hover:text-accent transition-colors">
             Home
           </button>
@@ -147,7 +147,7 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
                         Apply
                       </Button>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Try "welcome10" for 10% off</p>
+                    <p className="text-xs text-gray-500 mt-1">Try &quot;welcome10&quot; for 10% off</p>
                   </div>
 
                   <Button 
@@ -192,30 +192,30 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
           <div className="lg:col-span-2 space-y-8">
             {/* Course Header */}
             <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <Badge variant="outline">{course.batchName}</Badge>
+              <div className="flex items-center space-x-3 mb-4 ">
+                <Badge variant="outline" className='text-white'>{course.batchName}</Badge>
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 text-accent fill-current" />
                   ))}
-                  <span className="text-sm text-gray-600 ml-2">(4.9) • 2,847 reviews</span>
+                  <span className="text-sm text-gray-300 ml-2">(4.9) • 2,847 reviews</span>
                 </div>
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                 {course.title}
               </h1>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-300 leading-relaxed">
                 {course.description}
               </p>
             </div>
 
             {/* About the Course */}
-            <Card>
+            <Card className='bg-transparent text-gray-300'>
               <CardHeader>
                 <CardTitle>About This Course</CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <p className="text-gray-400 leading-relaxed mb-4">
                   This comprehensive course is specifically designed for students and professionals in Bangladesh 
                   who want to master modern web development technologies. Our curriculum covers everything from 
                   the basics to advanced concepts, ensuring you&apos;re job-ready by the end of the program.
