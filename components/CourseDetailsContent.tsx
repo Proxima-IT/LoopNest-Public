@@ -12,6 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { isLoggedIn } from '@/utils/auth';
 import type { Course } from '@/utils/data';
+import SectionTitle from './SectionTitle';
 
 interface CourseDetailsContentProps {
   course: Course;
@@ -297,90 +298,54 @@ export default function CourseDetailsContent({ course }: CourseDetailsContentPro
             </Card>
 
             {/* Instructor */}
-            {/* <Card>
-              <CardHeader>
-                <CardTitle>Your Instructor</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-start space-x-4">
-                  <Image
-                    src={course.instructor.image}
-                    alt={course.instructor.name}
-                    width={80}
-                    height={80}
-                    className="rounded-full"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {course.instructor.name}
-                    </h3>
-                    <p className="text-gray-600">
-                      {course.instructor.bio}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card> */}
-
-
-<Card
-              className="bg-white shadow-lg border-[1px] hover:border-gray-300 transition-shadow duration-300 rounded-2xl overflow-hidden"
-            >
-              <CardContent className="p-6">
-                <div className="flex items-start space-x-3 bg-slate-200  mb-4">
-                   {/* Profile Image */}
-                  <div className="">
-                    <Image
-                    src={course.instructor.image}
-                    alt={course.instructor.name}
-                    width={120}
-                    height={80}
-                    className="rounded-xl w-44 h-32"
-                  />
-                  </div>
-
-                  <div className=" pr-4">
-                    {/* Role Badge */}
-                    <Badge
-                      variant={course?.instructor?.role === "LEAD INSTRUCTOR" ? "default" : "secondary"}
-                      className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
-                        course?.instructor?.role === "LEAD INSTRUCTOR"
-                          ? "bg-purple-100 text-purple-700 border-purple-300"
-                          : "bg-green-100 text-green-700 border-green-300"
-                      }`}
-                    >
-                      {course?.instructor?.role}
-                    </Badge>
-
-                    {/* Name */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight"> {course.instructor.name}</h3>
-
-                    {/* Title */}
-                    <p className="text-sm font-medium text-gray-700 mb-2 leading-relaxed">ieoqruksaa dfjasalk</p>
-
-                    {/* Details */}
-                    <p className="text-xs text-gray-600 leading-relaxed">{course.instructor?.intro}</p>
-                  </div>
-
-                 
-                </div>
-
-                {/* Company Logos */}
-                {/* <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100">
-                  {instructor.companies.map((company, index) => (
-                    <div key={index} className="flex items-center">
-                      <Image
-                        src={company.logo || "/placeholder.svg"}
-                        alt={company.name}
-                        width={80}
-                        height={24}
-                        className="h-6 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+             <SectionTitle
+                        title="Instructor"
+                        subtitle=" "
+                        centered
                       />
-                    </div>
-                  ))}
-                </div> */}
-              </CardContent>
-            </Card>
+<Card className=" overflow-hidden">
+  <CardContent className="p-6 grid grid-cols-2 gap-8">
+    {course?.instructors?.map((instructor, index) => (
+      <div key={index} className="flex items-start space-x-3 bg-slate-200 mb-4 p-4 shadow-lg border-[1px] hover:border-gray-300 transition-shadow duration-300 rounded-lg">
+        {/* Profile Image */}
+        <div>
+          <Image
+            src={instructor.image}
+            alt={instructor.name}
+            width={80}
+            height={80}
+            className="rounded-xl w-32 h-32"
+          />
+        </div>
+
+        <div className="pr-4 flex-1">
+          {/* Role Badge */}
+          <Badge
+            variant={instructor.role === "LEAD INSTRUCTOR" ? "default" : "secondary"}
+            className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
+              instructor.role === "LEAD INSTRUCTOR"
+                ? "bg-purple-100 text-purple-700 border-purple-300"
+                : "bg-green-100 text-green-700 border-green-300"
+            }`}
+          >
+            {instructor.role}
+          </Badge>
+
+          {/* Name */}
+          <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
+            {instructor.name}
+          </h3>
+
+          {/* Bio */}
+          <p className="text-sm  text-gray-700">
+            {instructor.bio}
+          </p>
+
+        </div>
+      </div>
+    ))}
+  </CardContent>
+</Card>
 
             {/* Course Content */}
             <Card>

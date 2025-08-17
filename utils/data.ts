@@ -14,13 +14,12 @@ export interface Course {
   assignmentCount: number;
   price: number;
   originalPrice?: number;
-  instructor: {
+  instructors: {
     name: string;
     bio: string;
     role: string;
     image: string;
-    intro: string;
-  };
+  }[];
   features: string[];
   modules: {
     title: string;
@@ -30,6 +29,7 @@ export interface Course {
   projects: string[];
   isUpcoming?: boolean;
 }
+
 
 export interface Testimonial {
   id: string;
@@ -65,13 +65,26 @@ export const courses: Course[] = [
     assignmentCount: 24,
     price: 15000,
     originalPrice: 20000,
-    instructor: {
-      name: 'Sarah Johnson',
-      role: "Full stack developer",
-      bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
-      image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
-      intro:'Senior SQA Engineer-I at Digital Payments Limited | Former Software QA Engineer Wunderman Thompson Studios | Former Software Quality Assurance Engineer at Aplectrum Solutions Ltd | Former SQA Engineer at ReliSource '
-    },
+    instructors: [
+      {
+        name: 'Sarah Johnson',
+        role: "LEAD INSTRUCTOR",
+        bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
+        image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'David Miller',
+        role: "Backend Engineer",
+        bio: 'Specialist in Node.js, databases, and scalable systems',
+        image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'Emily Davis',
+        role: "Frontend Architect",
+        bio: 'React and UI/UX expert with 6+ years of teaching experience',
+        image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+      }
+    ],
     features: [
       'Live interactive sessions',
       '24/7 doubt support',
@@ -119,13 +132,26 @@ export const courses: Course[] = [
     assignmentCount: 20,
     price: 12000,
     originalPrice: 16000,
-    instructor: {
-      name: 'Michael Chen',
-      role: "full stack developer",
-      bio: 'Mobile Development Expert and React Native core contributor',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
-     intro:'Senior SQA Engineer-I at Digital Payments Limited | Former Software QA Engineer Wunderman Thompson Studios | Former Software Quality Assurance Engineer at Aplectrum Solutions Ltd | Former SQA Engineer at ReliSource '
-    },
+     instructors: [
+      {
+        name: 'Sarah Johnson',
+        role: "Full stack developer",
+        bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
+        image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'David Miller',
+        role: "Backend Engineer",
+        bio: 'Specialist in Node.js, databases, and scalable systems',
+        image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'Emily Davis',
+        role: "Frontend Architect",
+        bio: 'React and UI/UX expert with 6+ years of teaching experience',
+        image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+      }
+    ],
     features: [
       'Pre-recorded HD videos',
       'Downloadable resources',
@@ -168,13 +194,26 @@ export const courses: Course[] = [
     assignmentCount: 28,
     price: 18000,
     originalPrice: 24000,
-    instructor: {
-      name: 'Dr. Priya Sharma',
-      role: "Full stack developer",
-      bio: 'Data Scientist and ML Engineer with PhD in Computer Science',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400',
-        intro:'Senior SQA Engineer-I at Digital Payments Limited | Former Software QA Engineer Wunderman Thompson Studios | Former Software Quality Assurance Engineer at Aplectrum Solutions Ltd | Former SQA Engineer at ReliSource '
-    },
+     instructors: [
+      {
+        name: 'Sarah Johnson',
+        role: "Full stack developer",
+        bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
+        image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'David Miller',
+        role: "Backend Engineer",
+        bio: 'Specialist in Node.js, databases, and scalable systems',
+        image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'Emily Davis',
+        role: "Frontend Architect",
+        bio: 'React and UI/UX expert with 6+ years of teaching experience',
+        image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+      }
+    ],
     features: [
       'Live coding sessions',
       'Real datasets',
@@ -205,6 +244,8 @@ export const courses: Course[] = [
     isUpcoming: true
   }
 ];
+
+
 
 export const testimonials: Testimonial[] = [
   {
