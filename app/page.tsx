@@ -87,7 +87,7 @@ export default function HomePage() {
                   alt="Students learning online"
                   width={600}
                   height={500}
-                  className="rounded-2xl shadow-2xl"
+                  className=" rounded-2xl shadow-2xl"
                   priority
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
@@ -211,7 +211,7 @@ export default function HomePage() {
   plugins={[
     Autoplay({
       delay: 3000,
-      // stopOnInteraction: false
+     
     })
   ]}
   className="w-full max-w-7xl" 
@@ -254,8 +254,8 @@ export default function HomePage() {
       </CarouselItem>
     ))}
   </CarouselContent>
-  <CarouselPrevious />
-  <CarouselNext />
+  {/* <CarouselPrevious /> */}
+  {/* <CarouselNext /> */}
 </Carousel>
 
              
