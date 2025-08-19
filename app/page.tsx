@@ -130,7 +130,7 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Ongoing Courses */}
+      {/* previous Courses */}
       <section className="py-20 bg-[#010019e7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
@@ -220,7 +220,7 @@ export default function HomePage() {
     {testimonials.map((testimonial, index) => (
       <CarouselItem key={testimonial.id || index} className="md:basis-1/2 lg:basis-1/3 ">
         <div className="  [background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
-          <Card className="bg-[#171D31] backdrop-blur border-white/20 p-2 text-white">
+          <Card className="bg-slate-800/50 backdrop-blur border-white/20 p-2 text-white">
             <CardContent className="p-8 text-center">
                <div className="flex items-center justify-center space-x-4 mb-4">
                 <Image
