@@ -192,12 +192,12 @@ export default function HomePage() {
       {/* Student Reviews */}
       <section className="py-20  bg-gradient-to-l from-primary via-primary to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
+          {/* <SectionTitle
             title="What Our Students Say"
             subtitle="Real feedback from our amazing learning community"
             centered
             className="text-white [&>h2]:text-white [&>p]:text-gray-300"
-          />
+          /> */}
 
           <div className="max-w-6xl mx-auto">
             <div className="relative min-h-[450px] md:min-h-[300px]">

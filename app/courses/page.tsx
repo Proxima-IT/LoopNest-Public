@@ -37,7 +37,7 @@ export default function CoursesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#010019ef]">
       <Navbar />
       
       <div className="pt-16">
@@ -54,7 +54,7 @@ export default function CoursesPage() {
         </section>
 
         {/* Filters Section */}
-        <section className="py-8 bg-gray-50 border-b">
+        <section className="py-8 border-b border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row gap-6 items-center">
               {/* Search */}
@@ -118,7 +118,7 @@ export default function CoursesPage() {
             {/* Results Header */}
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-gray-300">
                   {filteredCourses.length} Course{filteredCourses.length !== 1 ? 's' : ''} Found
                 </h2>
                 <p className="text-gray-600 mt-1">
@@ -127,7 +127,7 @@ export default function CoursesPage() {
                 </p>
               </div>
               
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <SlidersHorizontal className="w-4 h-4" />
                 <span>Sort by: Popular</span>
               </div>
@@ -145,12 +145,12 @@ export default function CoursesPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+              <div className="text-center py-16 ">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center">
                   <Search className="w-8 h-8 text-gray-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No courses found</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-xl font-semibold text-gray-300 mb-2">No courses found</h3>
+                <p className="text-gray-400 mb-6">
                   Try adjusting your search criteria or browse all courses.
                 </p>
                 <Button 
@@ -169,12 +169,12 @@ export default function CoursesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 ">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Can&apos;t Find What You&apos;re Looking For?
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-400 mb-8">
               Our course catalog is constantly growing. Let us know what you&apos;d like to learn and we&apos;ll consider adding it to our platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

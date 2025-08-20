@@ -102,7 +102,7 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
         <Link href={`/course/${course.slug}`} className="w-full">
           <Button className="w-full bg-accent hover:bg-accent-light text-white transition-colors duration-300 font-semibold">
             View Details
-          </Button>
+        </Button>
         </Link>
       </CardFooter>
     </Card>

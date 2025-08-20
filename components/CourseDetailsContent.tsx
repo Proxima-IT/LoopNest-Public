@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/carousel"; // your shadcn carousel
 import LightGallery from "lightgallery/react";
 import "lightgallery/css/lightgallery.css";
+import Link from "next/link";
 
 interface CourseDetailsContentProps {
   course: Course;
@@ -353,10 +354,11 @@ export default function CourseDetailsContent({
             </Card>
 
             {/* Instructor */}
-            <Card className=" bg-transparent border-0 mt-6">
-            <SectionTitle title="Instructor" subtitle=" " centered />
+            <Card className=" bg-transparent border-0">
+            {/* <SectionTitle title="Instructor" subtitle=" " centered /> */}
               
-              <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
+             <Link href="/course/${course.slug}"> 
+             <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
                 {course?.instructors?.map((instructor, index) => (
                   <div
                     key={index}
@@ -401,6 +403,7 @@ export default function CourseDetailsContent({
                   </div>
                 ))}
               </CardContent>
+              </Link>
             </Card>
 
             {/* Course Content */}
