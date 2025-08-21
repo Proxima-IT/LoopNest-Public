@@ -13,7 +13,7 @@ interface CourseCardProps {
 
 export default function CourseCard({ course, className = '' }: CourseCardProps) {
   return (
-    <Card className={`group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden ${className}`}>
+    <Card className={`group bg-[#11102794] border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden ${className}`}>
       <div className="relative overflow-hidden">
         <Image
           src={course.image}
@@ -54,25 +54,25 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
       </div>
 
       <CardContent className="p-6">
-        <h3 className="font-bold text-lg mb-2 group-hover:text-accent transition-colors duration-300 line-clamp-2">
+        <h3 className="font-bold text-lg mb-2 text-white group-hover:text-accent transition-colors duration-300 line-clamp-2">
           {course.title}
         </h3>
         
         {/* Course Stats */}
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
+          <div className="flex items-center space-x-2 text-sm text-gray-300">
             <Users className="w-4 h-4 text-accent" />
             <span>{course.enrolledStudents.toLocaleString()} students</span>
           </div>
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
+          <div className="flex items-center space-x-2 text-sm text-gray-300">
             <BookOpen className="w-4 h-4 text-accent" />
             <span>{course.moduleCount} modules</span>
           </div>
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
+          <div className="flex items-center space-x-2 text-sm text-gray-300">
             <FolderOpen className="w-4 h-4 text-accent" />
             <span>{course.projectCount} projects</span>
           </div>
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
+          <div className="flex items-center space-x-2 text-sm text-gray-300">
             <ClipboardList className="w-4 h-4 text-accent" />
             <span>{course.assignmentCount} assignments</span>
           </div>
@@ -81,7 +81,7 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
         {/* Pricing */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-accent">
+            <span className="text-2xl font-bold text-white">
               ৳{course.price.toLocaleString()}
             </span>
             {course.originalPrice && (
@@ -100,7 +100,7 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
 
       <CardFooter className="p-6 pt-0">
         <Link href={`/course/${course.slug}`} className="w-full">
-          <Button className="w-full bg-primary hover:bg-accent text-white transition-colors duration-300 font-semibold">
+          <Button className="w-full bg-accent hover:bg-accent-light text-white transition-colors duration-300 font-semibold">
             View Details
           </Button>
         </Link>
