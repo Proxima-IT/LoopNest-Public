@@ -63,10 +63,13 @@ export default function HomePage() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-400">
+               <Link href="/courses">
                 <Button size="lg" className="bg-accent hover:bg-accent-light text-white px-8 py-4 text-lg font-semibold transition-colors duration-300">
                   Browse Courses
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
+               </Link>
+               <Link href="https://www.youtube.com/@loopnest.academy" target='blank'>
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -75,6 +78,7 @@ export default function HomePage() {
                   Watch Demo
                   <Play className="ml-2 w-5 h-5" />
                 </Button>
+               </Link>
               </div>
 
             
@@ -313,7 +317,7 @@ export default function HomePage() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-20 bg-[#010019ef]">
+      <section id='blog' className="py-20 bg-[#010019ef]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Latest from Our Blog"
@@ -323,7 +327,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <Card key={post.id} className={`group hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200} bg-white/70`}>
+              <Card key={post.id} className={`group hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200} bg-[#11102794] border-gray-700 `}>
                 <div className="relative overflow-hidden">
                   <Image
                     src={post.image}
@@ -341,17 +345,17 @@ export default function HomePage() {
                 </div>
                 
                 <CardContent className="p-6">
-                  <div className="text-sm text-gray-500 mb-2">
+                  <div className="text-sm text-gray-400 mb-2">
                     {new Date(post.publishDate).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
                     })}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-accent transition-colors duration-300">
+                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent transition-colors duration-300">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-gray-400 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
                   <Link 

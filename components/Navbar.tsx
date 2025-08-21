@@ -15,6 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Link as Navlink } from 'react-scroll';
+import Image from 'next/image';
 
 
 export default function Navbar() {
@@ -42,8 +44,12 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
-              Loop Nest
+            <div className="flex items-center text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+              <Image src='/public/logo.png' alt="loop nest"
+                  width={150}
+                  height={150} className='w-16 h-12' />
+                 <h2> Loop Nest</h2>
+             
             </div>
           </Link>
 
@@ -58,14 +64,14 @@ export default function Navbar() {
             <Link href="/about" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               About
             </Link>
-            <Link href="/blog" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            <Navlink to="blog" smooth={true} duration={500} className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer">
               Blog
-            </Link>
+            </Navlink>
             {/* <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               Contact
             </Link> */}
 
-              <DropdownMenu>
+              {/* <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button  className="text-white hover:text-accent transition-colors duration-300 font-medium">More <ChevronDown /> </Button>
       </DropdownMenuTrigger>
@@ -78,7 +84,7 @@ export default function Navbar() {
           <DropdownMenuRadioItem value="blogs">Blogs</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenu> */}
           </div>
 
           {/* Auth Buttons */}
