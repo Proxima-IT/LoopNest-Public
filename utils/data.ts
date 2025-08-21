@@ -14,11 +14,12 @@ export interface Course {
   assignmentCount: number;
   price: number;
   originalPrice?: number;
-  instructor: {
+  instructors: {
     name: string;
     bio: string;
+    role: string;
     image: string;
-  };
+  }[];
   features: string[];
   modules: {
     title: string;
@@ -28,6 +29,7 @@ export interface Course {
   projects: string[];
   isUpcoming?: boolean;
 }
+
 
 export interface Testimonial {
   id: string;
@@ -63,11 +65,26 @@ export const courses: Course[] = [
     assignmentCount: 24,
     price: 15000,
     originalPrice: 20000,
-    instructor: {
-      name: 'Sarah Johnson',
-      bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
-      image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400'
-    },
+    instructors: [
+      {
+        name: 'Sarah Johnson',
+        role: "LEAD INSTRUCTOR",
+        bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
+        image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'David Miller',
+        role: "Backend Engineer",
+        bio: 'Specialist in Node.js, databases, and scalable systems',
+        image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'Emily Davis',
+        role: "Frontend Architect",
+        bio: 'React and UI/UX expert with 6+ years of teaching experience',
+        image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+      }
+    ],
     features: [
       'Live interactive sessions',
       '24/7 doubt support',
@@ -115,11 +132,26 @@ export const courses: Course[] = [
     assignmentCount: 20,
     price: 12000,
     originalPrice: 16000,
-    instructor: {
-      name: 'Michael Chen',
-      bio: 'Mobile Development Expert and React Native core contributor',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
-    },
+     instructors: [
+      {
+        name: 'Sarah Johnson',
+        role: "Full stack developer",
+        bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
+        image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'David Miller',
+        role: "Backend Engineer",
+        bio: 'Specialist in Node.js, databases, and scalable systems',
+        image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'Emily Davis',
+        role: "Frontend Architect",
+        bio: 'React and UI/UX expert with 6+ years of teaching experience',
+        image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+      }
+    ],
     features: [
       'Pre-recorded HD videos',
       'Downloadable resources',
@@ -162,11 +194,26 @@ export const courses: Course[] = [
     assignmentCount: 28,
     price: 18000,
     originalPrice: 24000,
-    instructor: {
-      name: 'Dr. Priya Sharma',
-      bio: 'Data Scientist and ML Engineer with PhD in Computer Science',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
-    },
+     instructors: [
+      {
+        name: 'Sarah Johnson',
+        role: "Full stack developer",
+        bio: 'Senior Full Stack Developer with 8+ years experience at top tech companies',
+        image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'David Miller',
+        role: "Backend Engineer",
+        bio: 'Specialist in Node.js, databases, and scalable systems',
+        image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      },
+      {
+        name: 'Emily Davis',
+        role: "Frontend Architect",
+        bio: 'React and UI/UX expert with 6+ years of teaching experience',
+        image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+      }
+    ],
     features: [
       'Live coding sessions',
       'Real datasets',
@@ -198,6 +245,8 @@ export const courses: Course[] = [
   }
 ];
 
+
+
 export const testimonials: Testimonial[] = [
   {
     id: '1',
@@ -217,6 +266,22 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: '3',
+    name: 'Arif Hassan',
+    role: 'Mobile App Developer',
+    image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=200',
+    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
+    rating: 5
+  },
+  {
+    id: '4',
+    name: 'Arif Hassan',
+    role: 'Mobile App Developer',
+       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200',
+    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
+    rating: 5
+  },
+  {
+    id: '5',
     name: 'Arif Hassan',
     role: 'Mobile App Developer',
     image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=200',
@@ -275,5 +340,19 @@ export const whyLoopNest = [
     icon: '🤝',
     title: 'Community & Networking',
     description: 'Join a vibrant community of learners and professionals. Network, collaborate, and grow together.'
-  }
+  },
+  {
+    icon: '🚀',
+    title: 'Job Placement Support',
+    description: 'Get dedicated career support, interview preparation, and job placement assistance after course completion.'
+  },{
+    icon: '🚀',
+    title: 'Job Placement Support',
+    description: 'Get dedicated career support, interview preparation, and job placement assistance after course completion.'
+  },
+  {
+    icon: '🚀',
+    title: 'Job Placement Support',
+    description: 'Get dedicated career support, interview preparation, and job placement assistance after course completion.'
+  },
 ];

@@ -12,6 +12,16 @@ import Footer from '@/components/Footer';
 import CourseCard from '@/components/CourseCard';
 import SectionTitle from '@/components/SectionTitle';
 import { courses, testimonials, blogPosts, whyLoopNest } from '@/utils/data';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay";
+import { isArrayBufferView } from 'node:util/types';
+
 
 export default function HomePage() {
   const [visibleTestimonial, setVisibleTestimonial] = useState(0);
@@ -53,10 +63,13 @@ export default function HomePage() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-400">
+               <Link href="/courses">
                 <Button size="lg" className="bg-accent hover:bg-accent-light text-white px-8 py-4 text-lg font-semibold transition-colors duration-300">
                   Browse Courses
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
+               </Link>
+               <Link href="https://www.youtube.com/@loopnest.academy" target='blank'>
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -65,22 +78,10 @@ export default function HomePage() {
                   Watch Demo
                   <Play className="ml-2 w-5 h-5" />
                 </Button>
+               </Link>
               </div>
 
-              <div className="flex items-center space-x-8 text-white animate-fade-in-up animate-delay-600">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">10K+</div>
-                  <div className="text-sm text-gray-300">Students</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">50+</div>
-                  <div className="text-sm text-gray-300">Courses</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">95%</div>
-                  <div className="text-sm text-gray-300">Job Success</div>
-                </div>
-              </div>
+            
             </div>
 
             <div className="relative animate-fade-in-right">
@@ -90,7 +91,7 @@ export default function HomePage() {
                   alt="Students learning online"
                   width={600}
                   height={500}
-                  className="rounded-2xl shadow-2xl"
+                  className=" rounded-2xl shadow-2xl"
                   priority
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
@@ -133,11 +134,11 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Ongoing Courses */}
+      {/* previous Courses */}
       <section className="py-20 bg-[#010019e7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="Popular Courses"
+            title="Previous Courses"
             subtitle="Join thousands of students already learning with us"
             centered
           />
@@ -172,37 +173,97 @@ export default function HomePage() {
             centered
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyLoopNest.map((item, index) => (
-              <Card key={index} className={`text-center bg-[#11102794] border-gray-700 hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200}`}>
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-300 mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-slate-800/50 rounded-lg">
+          {whyLoopNest.map((item, index) => (
+            <div
+              key={index}
+              className=" p-6 hover:bg-slate-800/70 transition-colors duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <div className="text-3xl flex-shrink-0">{item.icon}</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2 leading-tight">{item.title}</h3>
+                  {/* <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p> */}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         </div>
       </section>
 
       {/* Student Reviews */}
-      <section className="py-20 bg-[#010019e7] text-white">
+      <section className="py-20  bg-gradient-to-l from-primary via-primary to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
+          {/* <SectionTitle
             title="What Our Students Say"
             subtitle="Real feedback from our amazing learning community"
             centered
             className="text-white [&>h2]:text-white [&>p]:text-gray-300"
-          />
+          /> */}
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="relative min-h-[450px] md:min-h-[300px]">
-              {testimonials.map((testimonial, index) => (
+           
+
+<Carousel
+  opts={{
+    align: "start",
+    loop: true
+  }}
+  plugins={[
+    Autoplay({
+      delay: 3000,
+     
+    })
+  ]}
+  className="w-full max-w-7xl" 
+>
+  <CarouselContent>
+    {testimonials.map((testimonial, index) => (
+      <CarouselItem key={testimonial.id || index} className="md:basis-1/2 lg:basis-1/3 ">
+        <div className="  [background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
+          <Card className="bg-slate-800/50 backdrop-blur border-white/20 p-2 text-white">
+            <CardContent className="p-8 text-center">
+               <div className="flex items-center justify-center space-x-4 mb-4">
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  width={60}
+                  height={60}
+                  className="h-[80px] w-[80px] rounded-full bg-slate-50"
+                />
+              
+              </div>
+
+
+              <p className="text-xs leading-relaxed mb-8 italic text-gray-200 font-normal">
+                &ldquo;{testimonial.content}&rdquo;
+              </p>
+
+              
+              <div className="flex justify-center mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+               <div className="text-center">
+                  <div className="font-semibold text-lg">{testimonial.name}</div>
+                  <div className="text-accent">{testimonial.role}</div>
+                </div>
+            </CardContent>
+          </Card>
+        </div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+  {/* <CarouselPrevious /> */}
+  {/* <CarouselNext /> */}
+</Carousel>
+
+             
+              {/* {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
                   className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -237,7 +298,7 @@ export default function HomePage() {
                     </CardContent>
                   </Card>
                 </div>
-              ))}
+              ))} */}
             </div>
 
             <div className="flex justify-center space-x-2 mt-8">
@@ -256,7 +317,7 @@ export default function HomePage() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-20">
+      <section id='blog' className="py-20 bg-[#010019ef]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Latest from Our Blog"
@@ -266,7 +327,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <Card key={post.id} className={`group hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200}`}>
+              <Card key={post.id} className={`group hover:shadow-lg transition-shadow duration-300 animate-fade-in-up animate-delay-${index * 200} bg-[#11102794] border-gray-700 `}>
                 <div className="relative overflow-hidden">
                   <Image
                     src={post.image}
@@ -284,17 +345,17 @@ export default function HomePage() {
                 </div>
                 
                 <CardContent className="p-6">
-                  <div className="text-sm text-gray-500 mb-2">
+                  <div className="text-sm text-gray-400 mb-2">
                     {new Date(post.publishDate).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
                     })}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-accent transition-colors duration-300">
+                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent transition-colors duration-300">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-gray-400 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
                   <Link 

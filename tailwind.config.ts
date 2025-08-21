@@ -50,6 +50,7 @@ const config: Config = {
         'slide-in-right': 'slideInRight 0.6s ease-out',
         'pulse-accent': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce-slow': 'bounce 3s infinite',
+         'border': 'border 4s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -72,6 +73,9 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(30px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        'border': {
+                    to: { '--border-angle': '360deg' },
+                }
       },
       borderRadius: {
         lg: 'var(--radius)',

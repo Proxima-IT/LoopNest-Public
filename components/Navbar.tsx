@@ -3,14 +3,27 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Menu, X, User as UserIcon, LogOut } from 'lucide-react';
+import { Menu, X, User as UserIcon, LogOut, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { isLoggedIn, getCurrentUser, logout, User } from '@/utils/auth';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Link as Navlink } from 'react-scroll';
+import Image from 'next/image';
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+    const [position, setPosition] = useState<string>("bottom")
   const router = useRouter();
 
   useEffect(() => {
@@ -31,8 +44,12 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
-              Loop Nest
+            <div className="flex items-center text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+              <Image src='/public/logo.png' alt="loop nest"
+                  width={150}
+                  height={150} className='w-16 h-12' />
+                 <h2> Loop Nest</h2>
+             
             </div>
           </Link>
 
@@ -47,12 +64,27 @@ export default function Navbar() {
             <Link href="/about" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               About
             </Link>
-            <Link href="/blog" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            <Navlink to="blog" smooth={true} duration={500} className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer">
               Blog
-            </Link>
-            <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            </Navlink>
+            {/* <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               Contact
-            </Link>
+            </Link> */}
+
+              {/* <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button  className="text-white hover:text-accent transition-colors duration-300 font-medium">More <ChevronDown /> </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 bg-primary text-white">
+        <DropdownMenuLabel>Explore</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+          <DropdownMenuRadioItem value="career">Career</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="hire-talent">Hire Talent</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="blogs">Blogs</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu> */}
           </div>
 
           {/* Auth Buttons */}
