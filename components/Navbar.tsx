@@ -43,8 +43,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
+
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className=" text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+            <div className="  transition-colors duration-300">
               <Image src='/assets/logo.png' alt="loop nest"
                   width={180}
                   height={180} className='w-36 h-24' />
