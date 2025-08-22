@@ -12,6 +12,7 @@ import CourseCard from '@/components/CourseCard';
 import SectionTitle from '@/components/SectionTitle';
 import { courses } from '@/utils/data';
 
+
 export default function CoursesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
