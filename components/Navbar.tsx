@@ -44,11 +44,11 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="flex items-center text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
-              <Image src='/public/logo.png' alt="loop nest"
-                  width={150}
-                  height={150} className='w-16 h-12' />
-                 <h2> Loop Nest</h2>
+            <div className=" text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+              <Image src='/assets/logo.png' alt="loop nest"
+                  width={180}
+                  height={180} className='w-36 h-24' />
+                 {/* <h2> Loop Nest</h2> */}
              
             </div>
           </Link>
