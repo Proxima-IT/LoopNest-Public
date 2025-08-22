@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
-  ArrowLeft,
   Play,
   Users,
   BookOpen,
@@ -34,6 +33,12 @@ import {
 import LightGallery from "lightgallery/react";
 import "lightgallery/css/lightgallery.css";
 import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface CourseDetailsContentProps {
   course: Course;
@@ -45,7 +50,7 @@ export default function CourseDetailsContent({
   const router = useRouter();
   const [couponCode, setCouponCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
-  const [showVideo, setShowVideo] = useState(false);
+  // const [showVideo, setShowVideo] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -95,50 +100,64 @@ export default function CourseDetailsContent({
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-6 ">
               {/* Media Section */}
-              <Card className="">
+              <Card className="p-0 m-0 border-0">
                 <div className="relative w-full  mx-auto">
-                  {showVideo ? (
-                    <div className="aspect-video bg-gray-900 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                        <p>Video preview would play here</p>
-                      </div>
-                    </div>
-                  ) : (
-                    <Carousel>
-                      <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
-                          <CarouselItem key={index}>
-                            <div className=" ">
-                              {/* <Card> */}
-                                <CardContent className="p-0">
-                                  <div className="relative aspect-video overflow-hidden">
-                                    <Image
-                                      src={course.image}
-                                      alt={course.title}
-                                      width={600}
-                                      height={500}
-                                      className=" w-full object-cover rounded-lg"
-                                    />
-                                    <button
-                                      onClick={() => setShowVideo(true)}
-                                      className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
-                                    >
-                                      <Play className="w-16 h-16 text-white" />
-                                    </button>
-                                  </div>
-                                </CardContent>
-                              {/* </Card> */}
-                            </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
+                  <Carousel>
+                    <CarouselContent>
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <CarouselItem key={index}>
+                          <Dialog>
+                            {/* dialog trigger */}
+                            <DialogTrigger asChild>
+                             
+                                <div className="relative aspect-video overflow-hidden w-full">
+                                  <Image
+                                    src={course.image}
+                                    alt={course.title}
+                                    width={600}
+                                    height={500}
+                                    className=" w-full object-cover rounded-lg"
+                                  />
+                                  <button
+                                    // onClick={() => setShowVideo(true)}
+                                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
+                                  >
+                                    <Play className="w-16 h-16 text-white" />
+                                  </button>
+                                </div>
+                             
+                            </DialogTrigger>
 
-                      {/* ✅ Position arrows */}
-                      <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
-                      <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
-                    </Carousel>
-                  )}
+                            {/* dialog content */}
+                            <DialogContent>
+                              <CardContent className="p-0">
+                                <div className="relative aspect-video overflow-hidden">
+                                  <Image
+                                    src={course.image}
+                                    alt={course.title}
+                                    width={600}
+                                    height={500}
+                                    className=" w-full object-cover rounded-lg"
+                                  />
+                                  <button
+                                    // onClick={() => setShowVideo(true)}
+                                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
+                                  >
+                                    <Play className="w-16 h-16 text-white" />
+                                  </button>
+                                </div>
+                              </CardContent>
+                            </DialogContent>
+                          </Dialog>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+
+                    {/* ✅ Position arrows */}
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
+                  </Carousel>
+                  {/* )} */}
                 </div>
               </Card>
 
@@ -241,7 +260,9 @@ export default function CourseDetailsContent({
             {/* Course Header */}
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <Badge variant="outline" className="text-gray-300">{course.batchName}</Badge>
+                <Badge variant="outline" className="text-gray-300">
+                  {course.batchName}
+                </Badge>
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
@@ -265,7 +286,9 @@ export default function CourseDetailsContent({
             {/* About the Course */}
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-300">About This Course</CardTitle>
+                <CardTitle className="text-gray-300">
+                  About This Course
+                </CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
                 <p className="text-gray-400 leading-relaxed mb-4">
@@ -287,7 +310,9 @@ export default function CourseDetailsContent({
             {/* Course Features */}
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-300">What You&apos;ll Get</CardTitle>
+                <CardTitle className="text-gray-300">
+                  What You&apos;ll Get
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -304,7 +329,9 @@ export default function CourseDetailsContent({
             {/* What You'll Learn */}
             <Card className="bg-transparent border-[1px] border-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-300">What You&apos;ll Learn</CardTitle>
+                <CardTitle className="text-gray-300">
+                  What You&apos;ll Learn
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="bg-slate-800/50 border-l-4 border-accent p-6 rounded-r-lg">
@@ -332,7 +359,9 @@ export default function CourseDetailsContent({
             {/* Who This Course Is For */}
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-300">Who This Course Is For</CardTitle>
+                <CardTitle className="text-gray-300">
+                  Who This Course Is For
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -355,66 +384,73 @@ export default function CourseDetailsContent({
 
             {/* Instructor */}
             <Card className=" bg-transparent border-0">
-            {/* <SectionTitle title="Instructor" subtitle=" " centered /> */}
-              
-             <Link href="/course/${course.slug}"> 
-             <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
-                {course?.instructors?.map((instructor, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3 bg-slate-800/50  mb-4 p-4 shadow-lg transition-shadow duration-300 border-[1px] border-gray-800 rounded-lg"
-                  >
-                    {/* Profile Image */}
-                    <div>
-                      <Image
-                        src={instructor.image}
-                        alt={instructor.name}
-                        width={80}
-                        height={80}
-                        className="rounded-xl w-32 h-32"
-                      />
+              {/* <SectionTitle title="Instructor" subtitle=" " centered /> */}
+
+              <Link href="/course/${course.slug}">
+                <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
+                  {course?.instructors?.map((instructor, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start space-x-3 bg-slate-800/50  mb-4 p-4 shadow-lg transition-shadow duration-300 border-[1px] border-gray-800 rounded-lg"
+                    >
+                      {/* Profile Image */}
+                      <div>
+                        <Image
+                          src={instructor.image}
+                          alt={instructor.name}
+                          width={80}
+                          height={80}
+                          className="rounded-xl w-32 h-32"
+                        />
+                      </div>
+
+                      <div className="pr-4 flex-1">
+                        {/* Role Badge */}
+                        <Badge
+                          variant={
+                            instructor.role === "LEAD INSTRUCTOR"
+                              ? "default"
+                              : "secondary"
+                          }
+                          className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
+                            instructor.role === "LEAD INSTRUCTOR"
+                              ? "bg-purple-100 text-purple-700 border-purple-300"
+                              : "bg-green-100 text-green-700 border-green-300"
+                          }`}
+                        >
+                          {instructor.role}
+                        </Badge>
+
+                        {/* Name */}
+                        <h3 className="text-xl font-bold text-gray-300 mb-2 leading-tight">
+                          {instructor.name}
+                        </h3>
+
+                        {/* Bio */}
+                        <p className="text-sm  text-gray-400">
+                          {instructor.bio}
+                        </p>
+                      </div>
                     </div>
-
-                    <div className="pr-4 flex-1">
-                      {/* Role Badge */}
-                      <Badge
-                        variant={
-                          instructor.role === "LEAD INSTRUCTOR"
-                            ? "default"
-                            : "secondary"
-                        }
-                        className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
-                          instructor.role === "LEAD INSTRUCTOR"
-                            ? "bg-purple-100 text-purple-700 border-purple-300"
-                            : "bg-green-100 text-green-700 border-green-300"
-                        }`}
-                      >
-                        {instructor.role}
-                      </Badge>
-
-                      {/* Name */}
-                      <h3 className="text-xl font-bold text-gray-300 mb-2 leading-tight">
-                        {instructor.name}
-                      </h3>
-
-                      {/* Bio */}
-                      <p className="text-sm  text-gray-400">{instructor.bio}</p>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
+                  ))}
+                </CardContent>
               </Link>
             </Card>
 
             {/* Course Content */}
             <Card className="bg-transparent border-[1px] border-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-300">Course Curriculum</CardTitle>
+                <CardTitle className="text-gray-300">
+                  Course Curriculum
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {course.modules.map((module, index) => (
-                    <div key={index} className="border border-gray-800 rounded-lg p-4">
+                    <div
+                      key={index}
+                      className="border border-gray-800 rounded-lg p-4"
+                    >
                       <h4 className="font-semibold text-gray-300 mb-3">
                         Module {index + 1}: {module.title}
                       </h4>
@@ -478,7 +514,7 @@ export default function CourseDetailsContent({
                         <div className="flex items-start space-x-3">
                           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
                             <FolderOpen className="w-4 h-4 text-white" />
-                           {/* <Image
+                            {/* <Image
                                       src='https://cdn.dribbble.com/userupload/26375831/file/still-0881fd5ba2033c2cbc13b366c678861e.png?resize=400x0'
                                       alt='projects'
                                       fill

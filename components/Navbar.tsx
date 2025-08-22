@@ -61,12 +61,12 @@ export default function Navbar() {
             <Link href="/courses" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               Courses
             </Link>
-            <Link href="/about" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            {/* <Link href="/about" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               About
-            </Link>
-            <Navlink to="blog" smooth={true} duration={500} className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer">
+            </Link> */}
+            <Link href="/#blog"  className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer">
               Blog
-            </Navlink>
+            </Link>
             {/* <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               Contact
             </Link> */}

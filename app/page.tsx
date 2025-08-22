@@ -196,12 +196,6 @@ export default function HomePage() {
       {/* Student Reviews */}
       <section className="py-20  bg-gradient-to-l from-primary via-primary to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* <SectionTitle
-            title="What Our Students Say"
-            subtitle="Real feedback from our amazing learning community"
-            centered
-            className="text-white [&>h2]:text-white [&>p]:text-gray-300"
-          /> */}
 
           <div className="max-w-6xl mx-auto">
             <div className="relative min-h-[450px] md:min-h-[300px]">
@@ -262,43 +256,6 @@ export default function HomePage() {
   {/* <CarouselNext /> */}
 </Carousel>
 
-             
-              {/* {testimonials.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className={`absolute inset-0 transition-opacity duration-1000 ${
-                    index === visibleTestimonial ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  <Card className="bg-white/10 backdrop-blur border-white/20 text-white">
-                    <CardContent className="p-8 text-center">
-                      <div className="flex justify-center mb-6">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 text-accent fill-current" />
-                        ))}
-                      </div>
-                      
-                      <blockquote className="text-xl md:text-2xl leading-relaxed mb-8 italic">
-                        &ldquo;{testimonial.content}&rdquo;
-                      </blockquote>
-                      
-                      <div className="flex items-center justify-center space-x-4">
-                        <Image
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          width={60}
-                          height={60}
-                          className="rounded-full"
-                        />
-                        <div className="text-left">
-                          <div className="font-semibold text-lg">{testimonial.name}</div>
-                          <div className="text-accent">{testimonial.role}</div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))} */}
             </div>
 
             <div className="flex justify-center space-x-2 mt-8">
@@ -334,7 +291,7 @@ export default function HomePage() {
                     alt={post.title}
                     width={400}
                     height={240}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover rounded-t-md group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-4 left-4">
                     <Badge variant="secondary" className="text-xs">
