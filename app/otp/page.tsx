@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 import Navbar from '@/components/Navbar';
-import { verifyOTP } from '@/utils/auth';
+import axios from 'axios';
 
 export default function OTPPage() {
   const [otp, setOtp] = useState('');
@@ -14,18 +14,21 @@ export default function OTPPage() {
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
+  // const [otp, setOtp] = useState('');
   const router = useRouter();
-
   useEffect(() => {
     if (timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      const timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
       return () => clearTimeout(timer);
     } else {
       setCanResend(true);
     }
   }, [timeLeft]);
 
-  const handleVerify = async () => {
+const handleVerify = async () => {
+   const userData = localStorage.getItem('currentUser');
+   const user = userData ? JSON.parse(userData) : null;
+   
     if (otp.length !== 6) {
       setError('Please enter a valid 6-digit OTP.');
       return;
@@ -35,14 +38,18 @@ export default function OTPPage() {
     setError('');
 
     try {
-      const success = await verifyOTP(otp);
-      if (success) {
-        router.push('/');
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_APIURL}/student/verify-otp`,{
+    otpCode:otp,
+    auth_input: user?.email});
+      console.log(res.data)
+      if (res.data?.success) {
+        router.push('/'); // redirect to dashboard/home
       } else {
-        setError('Invalid OTP. Please try again.');
+        setError(res.data?.message || 'Invalid OTP. Please try again.');
       }
-    } catch (err) {
-      setError('An error occurred. Please try again.');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Server error. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -52,14 +59,14 @@ export default function OTPPage() {
     setTimeLeft(60);
     setCanResend(false);
     setError('');
-    // In a real app, you would call an API to resend the OTP
+    // TODO: Call resend OTP API
     console.log('Resending OTP...');
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
@@ -88,12 +95,9 @@ export default function OTPPage() {
                   onComplete={handleVerify}
                 >
                   <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
+                    {[0, 1, 2, 3, 4, 5].map((i) => (
+                      <InputOTPSlot key={i} index={i} />
+                    ))}
                   </InputOTPGroup>
                 </InputOTP>
               </div>
@@ -110,7 +114,7 @@ export default function OTPPage() {
                 <p className="text-sm text-gray-600">
                   Didn&apos;t receive the code?
                 </p>
-                
+
                 {canResend ? (
                   <Button
                     variant="link"

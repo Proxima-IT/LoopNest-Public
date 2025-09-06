@@ -32,8 +32,11 @@ export default function SignupPage() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
 
-    const { name, auth_input, password, confirmPassword, acceptTerms } = data;
-    
+    const { fullName, auth_input, password, confirmPassword, acceptTerms } = data;
+    // Remove confirmPassword & acceptTerms before sending
+  const payload = { fullName, auth_input, password };
+
+
     // Validation inside RHF
     if (password !== confirmPassword) {
       setError("confirmPassword", { message: "Passwords do not match" });
@@ -46,25 +49,33 @@ export default function SignupPage() {
       setIsLoading(false);
       return;
     }
-console.log(process.env.NEXT_PUBLIC_APIURL + '/student/register')
+
     // send user data in database
-    axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/register',data)
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
-    console.log(data)
+    axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/register',payload)
+    .then(res=>{
+      alert('data successfully add')
+      console.log(res.data)
+      //  export data = res?.data
+      signup(fullName, auth_input, password);
+     router.push('/otp');
+      // }
+ 
+    })
+    .catch(err=>console.log(err?.response?.data?.message))
+    // console.log(payload)
     
-    try {
-      const success = await signup(name, auth_input, password);
-      if (success) {
-        router.push('/otp');
-      } else {
-        setError("root", { message: "Failed to create account. Please try again." });
-      }
-    } catch (err) {
-      setError("root", { message: "An error occurred. Please try again." });
-    } finally {
-      setIsLoading(false);
-    }
+  //   try {
+  //     const success = await signup(fullName, auth_input, password);
+  //     if (success) {
+  //       router.push('/otp');
+  //     } else {
+  //       setError("root", { message: "Failed to create account. Please try again." });
+  //     }
+  //   } catch (err) {
+  //     setError("root", { message: "An error occurred. Please try again." });
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
   };
 
   return (
@@ -98,14 +109,14 @@ console.log(process.env.NEXT_PUBLIC_APIURL + '/student/register')
                   <div className="relative">
                     <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
-                      id="name"
+                      id="fullName"
                       type="text"
                       placeholder="Enter your full name"
-                      {...register("name", { required: "Full name is required" })}
+                      {...register("fullName", { required: "Full name is required" })}
                       className="pl-10"
                     />
                   </div>
-                  {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+                  {errors.fullName && <p className="text-xs text-red-500">{errors.fullName.message}</p>}
                 </div>
 
                 {/* Email */}
@@ -178,7 +189,7 @@ console.log(process.env.NEXT_PUBLIC_APIURL + '/student/register')
                   <input
                     id="terms"
                     type="checkbox"
-                    // {...register("acceptTerms")}
+                    {...register("acceptTerms")}
                     className="h-4 w-4 text-accent focus:ring-accent border-gray-300 rounded mt-1"
                   />
                   <label htmlFor="terms" className="text-sm text-gray-700 leading-5">

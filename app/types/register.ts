@@ -1,5 +1,5 @@
 export interface Inputs {
-  name: string, 
+  fullName: string, 
   auth_input: string , 
 //   phone: number,
   password: string, 
