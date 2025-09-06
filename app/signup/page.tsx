@@ -159,7 +159,7 @@ console.log(process.env.NEXT_PUBLIC_APIURL + '/student/register')
                       id="confirmPassword"
                       type={showConfirmPassword ? 'text' : 'password'}
                       placeholder="Confirm your password"
-                      // {...register("", { required: "Please confirm your password" })}
+                      {...register("confirmPassword", { required: "Please confirm your password" })}
                       className="pl-10 pr-10"
                     />
                     <button
