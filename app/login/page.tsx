@@ -39,7 +39,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary">
       <Navbar />
       
       <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
@@ -49,7 +49,7 @@ export default function LoginPage() {
             <p className="text-gray-600">Sign in to your Loop Nest account</p>
           </div>
 
-          <Card className="shadow-lg">
+          <Card className="shadow-lg bg-[#11102794] border-gray-700 ">
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
             </CardHeader>
@@ -62,7 +62,7 @@ export default function LoginPage() {
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email or Phone</Label>
+                  <Label htmlFor="email" className='text-white'>Email or Phone</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
@@ -78,7 +78,7 @@ export default function LoginPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password" className='text-white'>Password</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
