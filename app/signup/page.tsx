@@ -32,7 +32,7 @@ export default function SignupPage() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
 
-    const { name, email, password, confirmPassword, acceptTerms } = data;
+    const { name, auth_input, password, confirmPassword, acceptTerms } = data;
     
     // Validation inside RHF
     if (password !== confirmPassword) {
@@ -46,25 +46,25 @@ export default function SignupPage() {
       setIsLoading(false);
       return;
     }
-
+console.log(process.env.NEXT_PUBLIC_APIURL + '/student/register')
     // send user data in database
-    axios.post('https://loopnest.onrender.com/api/v1/student/register',data)
+    axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/register',data)
     .then(res=>console.log(res))
     .catch(err=>console.log(err))
     console.log(data)
     
-    // try {
-    //   const success = await signup(name, email, password);
-    //   if (success) {
-    //     router.push('/otp');
-    //   } else {
-    //     setError("root", { message: "Failed to create account. Please try again." });
-    //   }
-    // } catch (err) {
-    //   setError("root", { message: "An error occurred. Please try again." });
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      const success = await signup(name, auth_input, password);
+      if (success) {
+        router.push('/otp');
+      } else {
+        setError("root", { message: "Failed to create account. Please try again." });
+      }
+    } catch (err) {
+      setError("root", { message: "An error occurred. Please try again." });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -114,14 +114,14 @@ export default function SignupPage() {
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
-                      id="email"
+                      id="auth_input"
                       type="text"
                       placeholder="Enter your email or phone"
-                      {...register("email", { required: "Email is required" })}
+                      {...register("auth_input", { required: "Email is required" })}
                       className="pl-10"
                     />
                   </div>
-                  {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
+                  {errors.auth_input && <p className="text-xs text-red-500">{errors.auth_input.message}</p>}
                 </div>
 
                 {/* Password */}
@@ -159,7 +159,7 @@ export default function SignupPage() {
                       id="confirmPassword"
                       type={showConfirmPassword ? 'text' : 'password'}
                       placeholder="Confirm your password"
-                      {...register("confirmPassword", { required: "Please confirm your password" })}
+                      // {...register("", { required: "Please confirm your password" })}
                       className="pl-10 pr-10"
                     />
                     <button
@@ -178,7 +178,7 @@ export default function SignupPage() {
                   <input
                     id="terms"
                     type="checkbox"
-                    {...register("acceptTerms")}
+                    // {...register("acceptTerms")}
                     className="h-4 w-4 text-accent focus:ring-accent border-gray-300 rounded mt-1"
                   />
                   <label htmlFor="terms" className="text-sm text-gray-700 leading-5">

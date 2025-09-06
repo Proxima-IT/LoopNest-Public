@@ -1,6 +1,6 @@
 export interface Inputs {
   name: string, 
-  email: string | number, 
+  auth_input: string , 
 //   phone: number,
   password: string, 
   confirmPassword: string, 
