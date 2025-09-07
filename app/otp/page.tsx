@@ -44,7 +44,7 @@ const handleVerify = async () => {
     auth_input: user?.email});
       console.log(res.data)
       if (res.data?.success) {
-        router.push('/'); // redirect to dashboard/home
+        router.push('/login'); // redirect to dashboard/home
       } else {
         setError(res.data?.message || 'Invalid OTP. Please try again.');
       }

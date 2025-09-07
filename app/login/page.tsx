@@ -33,14 +33,17 @@ export default function LoginPage() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
+    const payload={
+        auth_input: data?.email,
+        password: data?.password,
+      }
+
     try {
       // Send login request to backend
-      const res = await axios.post(process.env.NEXT_PUBLIC_APIURL + 'student/login', {
-        email: data.email,
-        password: data.password,
-      });
+      const res = await axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/login', payload,{withCredentials:true});
 
       if (res.data.success) {
+
         router.push("/"); //  redirect on success
       } else {
         setError("root", { message: res.data.message || "Invalid credentials" });
