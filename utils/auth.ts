@@ -1,3 +1,6 @@
+// import { verifyOTP } from '@/utils/auth';
+import axios from "axios"
+
 // Mock authentication utility functions
 export interface User {
   id: string
@@ -66,10 +69,20 @@ export const signup = (
   })
 }
 
-export const verifyOTP = (otp: string): Promise<boolean> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(otp === "123456") // Mock OTP verification
-    }, 1000)
-  })
-}
+// export const verifyOTP = (otp: string): Promise<boolean> => {
+  
+
+//   // new Promise((resolve) => {
+//   //   setTimeout(() => {
+//   //     resolve(otp === "123456") // Mock OTP verification
+//   //   }, 1000)
+//   // })
+// }
+
+
+// export const verifyOTP = (otp: string) => {
+//    axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/verify-otp')
+//    .then(res=>console.log(res.data))
+//    .catch(err=>console.log(err))
+
+// }
