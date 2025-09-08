@@ -20,6 +20,7 @@ type Inputs = {
 };
 
 export default function LoginPage() {
+  const [data,setData] = useState(null)
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -40,11 +41,13 @@ export default function LoginPage() {
 
     try {
       // Send login request to backend
-      const res = await axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/login', payload,{withCredentials:true});
+      const res = await axios.post(process.env.NEXT_PUBLIC_BASEURL + 'user/login', payload,{withCredentials:true});
 
       if (res.data.success) {
-
-        router.push("/"); //  redirect on success
+        console.log(res.data)
+        setData(res.data)
+        // router.push("/"); //  redirect on success
+         router.push(process.env.NEXT_PUBLIC_DASHBOARD ?? '/');
       } else {
         setError("root", { message: res.data.message || "Invalid credentials" });
       }
@@ -58,18 +61,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-primary">
-      <Navbar />
+    <div className="min-h-screen bg-[#19182F]">
+      <Navbar data={data}/>
       <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
             <p className="text-gray-600">Sign in to your Loop Nest account</p>
           </div>
 
           <Card className="shadow-lg bg-[#11102794] border-gray-700">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
+              <CardTitle className="text-2xl font-bold text-center text-white">Login</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
