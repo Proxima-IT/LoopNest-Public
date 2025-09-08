@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { Menu, X, User as UserIcon, LogOut, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { isLoggedIn, getCurrentUser, logout, User } from '@/utils/auth';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Menu, X, User as UserIcon, LogOut, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { isLoggedIn, getCurrentUser, logout, User } from "@/utils/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,17 +14,18 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Link as Navlink } from 'react-scroll';
-import Image from 'next/image';
+} from "@/components/ui/dropdown-menu";
+import { Link as Navlink } from "react-scroll";
+import Image from "next/image";
+import axios from "axios";
 
-
-export default function Navbar() {
+export default function Navbar({ data }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-    const [position, setPosition] = useState<string>("bottom")
+  const [position, setPosition] = useState<string>("bottom");
   const router = useRouter();
+  console.log(currentUser);
 
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
@@ -32,10 +33,20 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = () => {
-    logout();
-    setUserLoggedIn(false);
-    setCurrentUser(null);
-    router.push('/');
+    axios
+      .post(process.env.NEXT_PUBLIC_BASEURL + "/student/logout", {
+        withCredentials: true,
+      })
+      .then((result) => {
+        console.log(result);
+        logout();
+        setUserLoggedIn(false);
+        setCurrentUser(null);
+        router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -46,46 +57,55 @@ export default function Navbar() {
 
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="  transition-colors duration-300">
-              <Image src='/assets/logo.png' alt="loop nest"
-                  width={180}
-                  height={180} className='w-36 h-24' />
-                 {/* <h2> Loop Nest</h2> */}
-             
+              <Image
+                src="/assets/logo.png"
+                alt="loop nest"
+                width={180}
+                height={180}
+                className="w-36 h-24"
+              />
+              {/* <h2> Loop Nest</h2> */}
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            <Link
+              href="/"
+              className="text-white hover:text-accent transition-colors duration-300 font-medium"
+            >
               Home
             </Link>
-            <Link href="/courses" className="text-white hover:text-accent transition-colors duration-300 font-medium">
+            <Link
+              href="/courses"
+              className="text-white hover:text-accent transition-colors duration-300 font-medium"
+            >
               Courses
             </Link>
             {/* <Link href="/about" className="text-white hover:text-accent transition-colors duration-300 font-medium">
               About
             </Link> */}
-            <Link href="/#blog"  className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer">
+            <Link
+              href="/#blog"
+              className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+            >
               Blog
             </Link>
-            {/* <Link href="/contact" className="text-white hover:text-accent transition-colors duration-300 font-medium">
-              Contact
-            </Link> */}
-
-              {/* <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button  className="text-white hover:text-accent transition-colors duration-300 font-medium">More <ChevronDown /> </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-primary text-white">
-        <DropdownMenuLabel>Explore</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="career">Career</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="hire-talent">Hire Talent</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="blogs">Blogs</DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu> */}
+            {currentUser?.role === "student" ? (
+              <Link
+                href="https://loop-nest-student-dashboard.vercel.app/"
+                className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <Link
+                href="https://loop-nest-admin-dashboard.vercel.app/"
+                className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
 
           {/* Auth Buttons */}
@@ -94,7 +114,9 @@ export default function Navbar() {
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2 text-white">
                   <UserIcon className="w-5 h-5" />
-                  <span className="text-sm font-medium">{currentUser?.name}</span>
+                  <span className="text-sm font-medium">
+                    {currentUser?.name}
+                  </span>
                 </div>
                 <Button
                   variant="outline"
@@ -135,7 +157,11 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white hover:text-accent transition-colors duration-300"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -172,6 +198,22 @@ export default function Navbar() {
               >
                 Blog
               </Link>
+              {currentUser?.role === "student" ? (
+                <Link
+                  href="https://loop-nest-student-dashboard.vercel.app/"
+                  className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  href="https://loop-nest-admin-dashboard.vercel.app/"
+                  className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+                >
+                  Dashboard
+                </Link>
+              )}
+
               <Link
                 href="/contact"
                 className="block px-3 py-2 text-white hover:text-accent transition-colors duration-300"
@@ -179,7 +221,7 @@ export default function Navbar() {
               >
                 Contact
               </Link>
-              
+
               {/* Mobile Auth */}
               <div className="pt-4 border-t border-gray-700">
                 {userLoggedIn ? (

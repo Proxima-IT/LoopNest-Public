@@ -6,6 +6,7 @@ export interface User {
   id: string
   name: string 
   email: string
+  role: string
   avatar?: string
 }
 
@@ -14,6 +15,7 @@ const mockUser: User = {
   id: "1",
   name: "John Doe",
   email: "john.doe@example.com",
+  role: "student",
   avatar:
     "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
 }
@@ -55,11 +57,12 @@ export const logout = (): void => {
 export const signup = (
   name: string,
   email: string,
-  password: string
+  password: string,
+  role: string,
 ): Promise<boolean> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const newUser = { ...mockUser, name, email }
+      const newUser = { ...mockUser, name, email, role }
       if (typeof window !== "undefined") {
         localStorage.setItem("isLoggedIn", "true")
         localStorage.setItem("currentUser", JSON.stringify(newUser))
@@ -81,7 +84,7 @@ export const signup = (
 
 
 // export const verifyOTP = (otp: string) => {
-//    axios.post(process.env.NEXT_PUBLIC_APIURL + '/student/verify-otp')
+//    axios.post(process.env.NEXT_PUBLIC_BASEURL + '/student/verify-otp')
 //    .then(res=>console.log(res.data))
 //    .catch(err=>console.log(err))
 
