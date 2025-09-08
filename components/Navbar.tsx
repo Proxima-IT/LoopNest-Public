@@ -6,15 +6,6 @@ import { useRouter } from "next/navigation";
 import { Menu, X, User as UserIcon, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { isLoggedIn, getCurrentUser, logout, User } from "@/utils/auth";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Link as Navlink } from "react-scroll";
 import Image from "next/image";
 import axios from "axios";
@@ -33,12 +24,14 @@ export default function Navbar({ data }: any) {
   }, []);
 
   const handleLogout = () => {
+    console.log(process.env.NEXT_PUBLIC_BASEURL + "user/logout")
     axios
-      .post(process.env.NEXT_PUBLIC_BASEURL + "/student/logout", {
+      .post(process.env.NEXT_PUBLIC_BASEURL + "user/logout", {
         withCredentials: true,
       })
       .then((result) => {
         console.log(result);
+        alert('user successfully log out')
         logout();
         setUserLoggedIn(false);
         setCurrentUser(null);

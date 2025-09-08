@@ -51,7 +51,7 @@ export default function SignupPage() {
 
     // send user data in database
     axios
-      .post(process.env.NEXT_PUBLIC_BASEURL + "/student/register", payload)
+      .post(process.env.NEXT_PUBLIC_BASEURL + "user/register", payload)
       .then((res) => {
         alert("data successfully add");
         console.log(res.data.data.role);

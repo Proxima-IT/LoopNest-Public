@@ -41,12 +41,13 @@ export default function LoginPage() {
 
     try {
       // Send login request to backend
-      const res = await axios.post(process.env.NEXT_PUBLIC_BASEURL + '/student/login', payload,{withCredentials:true});
+      const res = await axios.post(process.env.NEXT_PUBLIC_BASEURL + 'user/login', payload,{withCredentials:true});
 
       if (res.data.success) {
         console.log(res.data)
         setData(res.data)
-        router.push("/"); //  redirect on success
+        // router.push("/"); //  redirect on success
+         router.push(process.env.NEXT_PUBLIC_DASHBOARD ?? '/');
       } else {
         setError("root", { message: res.data.message || "Invalid credentials" });
       }

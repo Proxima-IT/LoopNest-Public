@@ -39,7 +39,7 @@ const handleVerify = async () => {
 
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}/student/verify-otp`,{
+        `${process.env.NEXT_PUBLIC_BASEURL}user/verify-otp`,{
     otpCode:otp,
     auth_input: user?.email});
       console.log(res.data)
