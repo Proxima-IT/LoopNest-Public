@@ -12,6 +12,7 @@ import Navbar from '@/components/Navbar';
 import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
+// import { signup } from '@/utils/auth';
 
 type Inputs = {
   email: string;
@@ -46,6 +47,7 @@ export default function LoginPage() {
       if (res.data.success) {
         console.log(res.data)
         setData(res.data)
+        // signup(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role);
         // router.push("/"); //  redirect on success
          router.push(process.env.NEXT_PUBLIC_DASHBOARD ?? '/');
       } else {

@@ -16,7 +16,7 @@ export default function Navbar({ data }: any) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [position, setPosition] = useState<string>("bottom");
   const router = useRouter();
-  console.log(currentUser);
+  // console.log(currentUser);
 
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
@@ -84,7 +84,11 @@ export default function Navbar({ data }: any) {
             >
               Blog
             </Link>
-            {currentUser?.role === "student" ? (
+            {userLoggedIn && 
+            
+           <>
+           {
+             currentUser?.role === "student" ? (
               <Link
                 href="https://loop-nest-student-dashboard.vercel.app/"
                 className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
@@ -98,7 +102,11 @@ export default function Navbar({ data }: any) {
               >
                 Dashboard
               </Link>
-            )}
+            )
+           }
+           </>
+            
+            }
           </div>
 
           {/* Auth Buttons */}
@@ -191,21 +199,29 @@ export default function Navbar({ data }: any) {
               >
                 Blog
               </Link>
-              {currentUser?.role === "student" ? (
-                <Link
-                  href="https://loop-nest-student-dashboard.vercel.app/"
-                  className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
-                >
-                  Dashboard
-                </Link>
-              ) : (
-                <Link
-                  href="https://loop-nest-admin-dashboard.vercel.app/"
-                  className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
-                >
-                  Dashboard
-                </Link>
-              )}
+              {userLoggedIn && 
+            
+           <>
+           {
+             currentUser?.role === "student" ? (
+              <Link
+                href="https://loop-nest-student-dashboard.vercel.app/"
+                className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <Link
+                href="https://loop-nest-admin-dashboard.vercel.app/"
+                className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+              >
+                Dashboard
+              </Link>
+            )
+           }
+           </>
+            
+            }
 
               <Link
                 href="/contact"
