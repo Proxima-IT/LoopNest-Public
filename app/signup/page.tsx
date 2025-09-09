@@ -13,8 +13,11 @@ import { signup } from "@/utils/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "../types/register";
 import axios from "axios";
+import { DataContext } from "@/providers/DataProvider";
 
 export default function SignupPage() {
+  // const { setUser} =useContext(DataContext)
+  // console.log(user)
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,27 +57,14 @@ export default function SignupPage() {
       .post(process.env.NEXT_PUBLIC_BASEURL + "user/register", payload)
       .then((res) => {
         alert("data successfully add");
-        console.log(res.data.data.role);
+        console.log(res?.data?.data?.email);
+
         //  export data = res?.data
-        signup(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role);
-        router.push("/otp");
+        // signup(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role);
+        router.push(`/otp?auth_input=${res?.data?.data?.email}`);
         // }
       })
       .catch((err) => console.log(err?.response?.data?.message));
-    // console.log(payload)
-
-    //   try {
-    //     const success = await signup(fullName, auth_input, password);
-    //     if (success) {
-    //       router.push('/otp');
-    //     } else {
-    //       setError("root", { message: "Failed to create account. Please try again." });
-    //     }
-    //   } catch (err) {
-    //     setError("root", { message: "An error occurred. Please try again." });
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
   };
 
   return (

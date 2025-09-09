@@ -1,20 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useContext } from 'react';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 import Navbar from '@/components/Navbar';
 import axios from 'axios';
+import { DataContext } from '@/providers/DataProvider';
 
 export default function OTPPage() {
+  const params = useSearchParams()
+  console.log(params)
+  const auth_input = params.get("auth_input");
+  // const { user} = useContext(DataContext)
+  // console.log(user)
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   // const [otp, setOtp] = useState('');
+  // console.log(user)
   const router = useRouter();
   useEffect(() => {
     if (timeLeft > 0) {
@@ -24,24 +31,22 @@ export default function OTPPage() {
       setCanResend(true);
     }
   }, [timeLeft]);
-
-const handleVerify = async () => {
-   const userData = localStorage.getItem('currentUser');
-   const user = userData ? JSON.parse(userData) : null;
-   
+  
+  const handleVerify = async () => {
+    const userData = localStorage.getItem('currentUser');
+    const user = userData ? JSON.parse(userData) : null;
+    // console.log({ otpCode:otp,auth_input: user?.email})
     if (otp.length !== 6) {
       setError('Please enter a valid 6-digit OTP.');
       return;
     }
-
+    
     setIsLoading(true);
     setError('');
 
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}user/verify-otp`,{
-    otpCode:otp,
-    auth_input: user?.email});
+        `${process.env.NEXT_PUBLIC_BASEURL}user/verify-otp`,{ otpCode:otp, auth_input});
       console.log(res.data)
       if (res.data?.success) {
         router.push('/login'); // redirect to dashboard/home
