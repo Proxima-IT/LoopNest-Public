@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import Navbar from '@/components/Navbar';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import Navbar from "@/components/Navbar";
 // import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
-import { signin } from '@/utils/auth';
+import { signin } from "@/utils/auth";
 // import { signup } from '@/utils/auth';
 
 type Inputs = {
@@ -22,7 +22,7 @@ type Inputs = {
 };
 
 export default function LoginPage() {
-  const [data,setData] = useState(null)
+  const [data, setData] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -36,33 +36,44 @@ export default function LoginPage() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
-    const payload={
-        auth_input: data?.email,
-        password: data?.password,
-      }
+    const payload = {
+      auth_input: data?.email,
+      password: data?.password,
+    };
 
     try {
       // Send login request to backend
-      const res = await axios.post(process.env.NEXT_PUBLIC_BASEURL + 'user/login', payload,{withCredentials:true});
+      const res = await axios.post(
+        process.env.NEXT_PUBLIC_BASEURL + "user/login",
+        payload,
+        { withCredentials: true }
+      );
 
       if (res.data.success) {
-        console.log(res.data)
-        setData(res.data)
-        signin(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role)
-      
-        if (res?.data?.data?.role === 'admin') {
-           router.push(process.env.NEXT_PUBLIC_DASHBOARD ?? '/');
-          return 
-        }else{
-           router.push(process.env.NEXT_STUDENT_DASHBOARD ?? '/');
-          
+        console.log(res.data);
+        setData(res.data);
+        signin(
+          res?.data?.data?.student?.fullName,
+          res?.data?.data?.student?.email,
+          res?.data?.data?.student?.password,
+          res?.data?.data?.student?.role
+        );
+console.log(res?.data.data.student.role)
+        if (res?.data.data.student.role === "admin") {
+          router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
+          return;
+        } else {
+          router.push(process.env.NEXT_STUDENT_DASHBOARD ?? "/");
         }
       } else {
-        setError("root", { message: res.data.message || "Invalid credentials" });
+        setError("root", {
+          message: res.data.message || "Invalid credentials",
+        });
       }
     } catch (err: any) {
       setError("root", {
-        message: err.response?.data?.message || "Server error. Please try again.",
+        message:
+          err.response?.data?.message || "Server error. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -71,7 +82,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#19182F]">
-      <Navbar data={data}/>
+      <Navbar data={data} />
       <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
@@ -81,11 +92,12 @@ export default function LoginPage() {
 
           <Card className="shadow-lg bg-[#11102794] border-gray-700">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-bold text-center text-white">Login</CardTitle>
+              <CardTitle className="text-2xl font-bold text-center text-white">
+                Login
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                
                 {/* Global error */}
                 {errors.root && (
                   <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
@@ -95,7 +107,9 @@ export default function LoginPage() {
 
                 {/* Email */}
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-white">Email or Phone</Label>
+                  <Label htmlFor="email" className="text-white">
+                    Email or Phone
+                  </Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
@@ -106,19 +120,27 @@ export default function LoginPage() {
                       className="pl-10"
                     />
                   </div>
-                  {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-xs text-red-500">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Password */}
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-white">Password</Label>
+                  <Label htmlFor="password" className="text-white">
+                    Password
+                  </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
                       id="password"
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      {...register("password", { required: "Password is required" })}
+                      {...register("password", {
+                        required: "Password is required",
+                      })}
                       className="pl-10 pr-10"
                     />
                     <button
@@ -129,7 +151,11 @@ export default function LoginPage() {
                       {showPassword ? <EyeOff /> : <Eye />}
                     </button>
                   </div>
-                  {errors.password && <p className="text-xs text-red-500">{errors.password.message}</p>}
+                  {errors.password && (
+                    <p className="text-xs text-red-500">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Remember me */}
@@ -141,11 +167,17 @@ export default function LoginPage() {
                       {...register("remember")}
                       className="h-4 w-4 text-accent focus:ring-accent border-gray-300 rounded"
                     />
-                    <label htmlFor="remember" className="ml-2 block text-sm text-gray-300">
+                    <label
+                      htmlFor="remember"
+                      className="ml-2 block text-sm text-gray-300"
+                    >
                       Remember me
                     </label>
                   </div>
-                  <Link href="/forgot-password" className="text-sm text-accent hover:text-accent-light">
+                  <Link
+                    href="/forgot-password"
+                    className="text-sm text-accent hover:text-accent-light"
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -156,7 +188,7 @@ export default function LoginPage() {
                   className="w-full bg-accent hover:bg-accent-light text-white py-3 text-lg font-semibold"
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Signing in...' : 'Sign In'}
+                  {isLoading ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
             </CardContent>

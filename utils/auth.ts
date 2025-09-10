@@ -4,7 +4,7 @@ import axios from "axios"
 // Mock authentication utility functions
 export interface User {
   id: string
-  fullName: string 
+  name: string 
   email: string
   role: string
   avatar?: string
@@ -13,7 +13,7 @@ export interface User {
 // Mock user data
 const mockUser: User = {
   id: "1",
-  fullName: "John Doe",
+  name: "John Doe",
   email: "john.doe@example.com",
   role: "student",
   avatar:

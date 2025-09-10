@@ -55,7 +55,7 @@ export default function PaymentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#010019e7]">
       <Navbar />
       
       <div className="pt-20 pb-12">
@@ -72,7 +72,7 @@ export default function PaymentPage() {
               Back
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Complete Your Purchase</h1>
+              <h1 className="text-3xl font-bold text-white">Complete Your Purchase</h1>
               <p className="text-gray-600">Secure checkout powered by industry-standard encryption</p>
             </div>
           </div>
@@ -81,9 +81,9 @@ export default function PaymentPage() {
             {/* Payment Form */}
             <div className="lg:col-span-2 space-y-6">
               {/* Course Summary */}
-              <Card>
+              <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                 <CardHeader>
-                  <CardTitle>Course Summary</CardTitle>
+                  <CardTitle className='text-white'>Course Summary</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-start space-x-4">
@@ -95,7 +95,7 @@ export default function PaymentPage() {
                       className="rounded-lg object-cover"
                     />
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900">{selectedCourse.title}</h3>
+                      <h3 className="font-semibold text-gray-200">{selectedCourse.title}</h3>
                       <p className="text-sm text-gray-600 mb-2">{selectedCourse.batchName}</p>
                       <div className="flex items-center space-x-4 text-sm text-gray-500">
                         <span>{selectedCourse.moduleCount} modules</span>
@@ -118,7 +118,7 @@ export default function PaymentPage() {
               </Card>
 
               {/* Payment Method */}
-              <Card>
+              <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                 <CardHeader>
                   <CardTitle>Payment Method</CardTitle>
                 </CardHeader>
@@ -170,7 +170,7 @@ export default function PaymentPage() {
 
               {/* Payment Details Form */}
               {paymentMethod === 'card' && (
-                <Card>
+                <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>Card Details</CardTitle>
                   </CardHeader>
@@ -200,7 +200,7 @@ export default function PaymentPage() {
               )}
 
               {paymentMethod === 'mobile' && (
-                <Card>
+                <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>Mobile Banking</CardTitle>
                   </CardHeader>
@@ -211,7 +211,7 @@ export default function PaymentPage() {
                     </div>
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <p className="text-sm text-blue-800">
-                        You will receive a payment request on your mobile banking app after clicking "Confirm Payment".
+                        You will receive a payment request on your mobile banking app after clicking &quot;Confirm Payment&quot;.
                       </p>
                     </div>
                   </CardContent>
@@ -219,7 +219,7 @@ export default function PaymentPage() {
               )}
 
               {paymentMethod === 'bank' && (
-                <Card>
+                <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>Bank Transfer</CardTitle>
                   </CardHeader>
@@ -242,7 +242,7 @@ export default function PaymentPage() {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-                <Card>
+                <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>Order Summary</CardTitle>
                   </CardHeader>
@@ -281,7 +281,7 @@ export default function PaymentPage() {
                           Apply
                         </Button>
                       </div>
-                      <p className="text-xs text-gray-500">Try "welcome10" for 10% off</p>
+                      <p className="text-xs text-gray-500">Try &quot;welcome10&quot; for 10% off</p>
                     </div>
 
                     <Button
@@ -303,7 +303,7 @@ export default function PaymentPage() {
                 </Card>
 
                 {/* What You'll Get */}
-                <Card>
+                <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>What You&apos;ll Get</CardTitle>
                   </CardHeader>
