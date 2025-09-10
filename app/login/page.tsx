@@ -58,7 +58,7 @@ export default function LoginPage() {
           res?.data?.data?.student?.password,
           res?.data?.data?.student?.role
         );
-console.log(res?.data.data.student.role)
+console.log(res?.data.data.student.email)
         if (res?.data.data.student.role === "admin") {
           router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
           return;
