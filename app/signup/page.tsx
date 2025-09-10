@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
-import { signup } from "@/utils/auth";
+// import { signup } from "@/utils/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "../types/register";
 import axios from "axios";

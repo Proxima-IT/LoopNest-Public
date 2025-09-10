@@ -54,7 +54,7 @@ export const logout = (): void => {
   }
 }
 
-export const signup = (
+export const signin = (
   name: string,
   email: string,
   password: string,
