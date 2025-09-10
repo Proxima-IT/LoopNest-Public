@@ -75,9 +75,6 @@ export default function Navbar({ data }: any) {
             >
               Courses
             </Link>
-            {/* <Link href="/about" className="text-white hover:text-accent transition-colors duration-300 font-medium">
-              About
-            </Link> */}
             <Link
               href="/#blog"
               className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
@@ -88,16 +85,16 @@ export default function Navbar({ data }: any) {
             
            <>
            {
-             currentUser?.role === "student" ? (
+             currentUser?.role === "admin" ? (
               <Link
-                href="https://loop-nest-student-dashboard.vercel.app/"
+                href="https://loop-nest-admin-dashboard.vercel.app/"
                 className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
               >
                 Dashboard
               </Link>
             ) : (
               <Link
-                href="https://loop-nest-admin-dashboard.vercel.app/"
+                href="https://loop-nest-student-dashboard.vercel.app/"
                 className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
               >
                 Dashboard
@@ -116,7 +113,7 @@ export default function Navbar({ data }: any) {
                 <div className="flex items-center space-x-2 text-white">
                   <UserIcon className="w-5 h-5" />
                   <span className="text-sm font-medium">
-                    {currentUser?.name}
+                    {currentUser?.fullName}
                   </span>
                 </div>
                 <Button
@@ -203,16 +200,16 @@ export default function Navbar({ data }: any) {
             
            <>
            {
-             currentUser?.role === "student" ? (
+             currentUser?.role === "admin" ? (
               <Link
-                href="https://loop-nest-student-dashboard.vercel.app/"
+                href="https://loop-nest-admin-dashboard.vercel.app/"
                 className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
               >
                 Dashboard
               </Link>
             ) : (
               <Link
-                href="https://loop-nest-admin-dashboard.vercel.app/"
+                href="https://loop-nest-student-dashboard.vercel.app/"
                 className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
               >
                 Dashboard
@@ -236,7 +233,7 @@ export default function Navbar({ data }: any) {
                 {userLoggedIn ? (
                   <div className="space-y-2">
                     <div className="px-3 py-2 text-white text-sm">
-                      Welcome, {currentUser?.name}
+                      Welcome, {currentUser?.fullName}
                     </div>
                     <button
                       onClick={handleLogout}

@@ -4,7 +4,7 @@ import axios from "axios"
 // Mock authentication utility functions
 export interface User {
   id: string
-  name: string 
+  fullName: string 
   email: string
   role: string
   avatar?: string
@@ -13,7 +13,7 @@ export interface User {
 // Mock user data
 const mockUser: User = {
   id: "1",
-  name: "John Doe",
+  fullName: "John Doe",
   email: "john.doe@example.com",
   role: "student",
   avatar:
@@ -54,7 +54,7 @@ export const logout = (): void => {
   }
 }
 
-export const signup = (
+export const signin = (
   name: string,
   email: string,
   password: string,

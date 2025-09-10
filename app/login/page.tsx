@@ -9,9 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import Navbar from '@/components/Navbar';
-import { signIn } from "next-auth/react";
+// import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
+import { signin } from '@/utils/auth';
 // import { signup } from '@/utils/auth';
 
 type Inputs = {
@@ -47,9 +48,15 @@ export default function LoginPage() {
       if (res.data.success) {
         console.log(res.data)
         setData(res.data)
-        // signup(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role);
-        // router.push("/"); //  redirect on success
-         router.push(process.env.NEXT_PUBLIC_DASHBOARD ?? '/');
+        signin(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role)
+      
+        if (res?.data?.data?.role === 'admin') {
+           router.push(process.env.NEXT_PUBLIC_DASHBOARD ?? '/');
+          return 
+        }else{
+           router.push(process.env.NEXT_STUDENT_DASHBOARD ?? '/');
+          
+        }
       } else {
         setError("root", { message: res.data.message || "Invalid credentials" });
       }
