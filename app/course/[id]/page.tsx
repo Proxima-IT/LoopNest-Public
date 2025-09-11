@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CourseDetailsContent from '@/components/CourseDetailsContent';
 import { courses } from '@/utils/data';
+// import { useEffect } from 'react';
+import axios from 'axios';
 
 // export async function generateStaticParams() {
 //   // সব _id string হিসেবে return করো
@@ -25,12 +27,13 @@ export default function CoursePage({ params }: CoursePageProps) {
   if (!id) {
     return notFound();
   }
-
+ 
+  
   return (
     <div className="min-h-screen bg-white">
       <h2>vcxc</h2>
       <Navbar />
-      {/* <CourseDetailsContent course={course} /> */}
+      <CourseDetailsContent id={id} />
       <Footer />
     </div>
   );

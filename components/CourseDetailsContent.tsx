@@ -39,14 +39,16 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import axios from "axios";
 
 interface CourseDetailsContentProps {
-  course: Course;
+  id:string
 }
 
 export default function CourseDetailsContent({
-  course,
+  id
 }: CourseDetailsContentProps) {
+  const [course,setCourse] =useState<any>({})
   const router = useRouter();
   const [couponCode, setCouponCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
@@ -55,8 +57,17 @@ export default function CourseDetailsContent({
 
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
-  }, []);
+     axios.get(`${process.env.NEXT_PUBLIC_BASEURL}course/${id}`)
+      .then((result) => {
+        console.log(result?.data?.data)
+        setCourse(result?.data?.data)
+      }).catch((err) => {
+console.log(err)
+      });
+  }, [id]);
 
+
+  
   const handleEnrollNow = () => {
     if (userLoggedIn) {
       router.push("/payment");
@@ -66,8 +77,8 @@ export default function CourseDetailsContent({
   };
 
   const applyCoupon = () => {
-    if (course && couponCode.toLowerCase() === "welcome10") {
-      setDiscountedPrice(course.price * 0.9);
+    if (course && couponCode?.toLowerCase() === "welcome10") {
+      setDiscountedPrice(course?.price * 0.9);
     } else {
       setDiscountedPrice(null);
     }
@@ -92,7 +103,7 @@ export default function CourseDetailsContent({
             Courses
           </button>
           <span>/</span>
-          <span className="text-gray-300">{course.title}</span>
+          <span className="text-gray-300">{course?.title}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -167,16 +178,16 @@ export default function CourseDetailsContent({
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-3xl font-bold text-accent">
-                        ৳{(discountedPrice || course.price).toLocaleString()}
+                        ৳{(discountedPrice || course?.price)?.toLocaleString()}
                       </div>
-                      {course.originalPrice && (
+                      {course?.originalPrice && (
                         <div className="text-lg text-gray-400 line-through">
-                          ৳{course.originalPrice.toLocaleString()}
+                          ৳{course?.originalPrice?.toLocaleString()}
                         </div>
                       )}
                       {discountedPrice && (
                         <Badge className="bg-green-100 text-green-800 mt-2">
-                          ৳{(course.price - discountedPrice).toLocaleString()}{" "}
+                          ৳{(course.price - discountedPrice)?.toLocaleString()}{" "}
                           saved!
                         </Badge>
                       )}
@@ -234,9 +245,9 @@ export default function CourseDetailsContent({
                 <CardContent className="p-4 grid grid-cols-2 gap-4 text-white">
                   <div className="flex items-center space-x-2 text-sm">
                     <Users className="w-4 h-4 text-accent" />
-                    <span>
+                    {/* <span>
                       {course.enrolledStudents.toLocaleString()} students
-                    </span>
+                    </span> */}
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
                     <BookOpen className="w-4 h-4 text-accent" />
@@ -316,12 +327,12 @@ export default function CourseDetailsContent({
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {course?.courseFeatures.map((feature, index) => (
+                  {/* {course?.courseFeatures.map((feature, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
                       <span className="text-gray-400">{feature}</span>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </CardContent>
             </Card>
@@ -385,10 +396,7 @@ export default function CourseDetailsContent({
             {/* Instructor */}
             <Card className=" bg-transparent border-0">
               {/* <SectionTitle title="Instructor" subtitle=" " centered /> */}
-
-              <Link href="/course/${course.slug}">
-                <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
-                  {course?.instructors?.map((instructor, index) => (
+   {course?.instructors?.map((instructor, index) => (
                     <div
                       key={index}
                       className="flex items-start space-x-3 bg-slate-800/50  mb-4 p-4 shadow-lg transition-shadow duration-300 border-[1px] border-gray-800 rounded-lg"
@@ -396,7 +404,7 @@ export default function CourseDetailsContent({
                       {/* Profile Image */}
                       <div>
                         <Image
-                          src={instructor.image}
+                          src={instructor?.image}
                           alt={instructor.name}
                           width={80}
                           height={80}
@@ -433,6 +441,9 @@ export default function CourseDetailsContent({
                       </div>
                     </div>
                   ))}
+              <Link href="/course/${course.slug}">
+                <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
+               
                 </CardContent>
               </Link>
             </Card>
@@ -446,7 +457,7 @@ export default function CourseDetailsContent({
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {course.modules.map((module, index) => (
+                  {course?.modules?.map((module, index) => (
                     <div
                       key={index}
                       className="border border-gray-800 rounded-lg p-4"
@@ -455,7 +466,7 @@ export default function CourseDetailsContent({
                         Module {index + 1}: {module.title}
                       </h4>
                       <ul className="space-y-2">
-                        {module.lessons.map((lesson, lessonIndex) => (
+                        {module?.lessons?.map((lesson, lessonIndex) => (
                           <li
                             key={lessonIndex}
                             className="flex items-center space-x-2 text-sm text-gray-400"
@@ -483,7 +494,7 @@ export default function CourseDetailsContent({
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {course.assignments.map((assignment, index) => (
+                    {course?.assignments?.map((assignment, index) => (
                       <li
                         key={index}
                         className="flex items-start space-x-2 text-sm"
@@ -505,8 +516,8 @@ export default function CourseDetailsContent({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {course.projects.map((project, index) => (
+                  {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {course?.projects?.map((project, index) => (
                       <div
                         key={index}
                         className="bg-slate-800/50  border border-gray-800 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -514,19 +525,14 @@ export default function CourseDetailsContent({
                         <div className="flex items-start space-x-3">
                           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
                             <FolderOpen className="w-4 h-4 text-white" />
-                            {/* <Image
-                                      src='https://cdn.dribbble.com/userupload/26375831/file/still-0881fd5ba2033c2cbc13b366c678861e.png?resize=400x0'
-                                      alt='projects'
-                                      fill
-                                      className="rounded-lg"
-                                    /> */}
+                            
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-gray-300 mb-2">
                               {project}
                             </h4>
                             <p className="text-sm text-gray-400 mb-3">
-                              Build a complete {project.toLowerCase()} with
+                              Build a complete {project?.toLowerCase()} with
                               modern technologies and best practices.
                             </p>
                             <div className="flex items-center space-x-2">
@@ -545,7 +551,7 @@ export default function CourseDetailsContent({
                         </div>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
             </div>
