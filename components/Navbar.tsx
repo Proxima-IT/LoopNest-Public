@@ -92,7 +92,7 @@ export default function Navbar({ data }: any) {
                   </Link>
                 ) : (
                   <Link
-                    href="https://loop-nest-student-dashboard.vercel.app/"
+                    href="/student-dashboard"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                   >
                     Dashboard
@@ -203,7 +203,7 @@ export default function Navbar({ data }: any) {
                     </Link>
                   ) : (
                     <Link
-                      href="https://loop-nest-student-dashboard.vercel.app/"
+                      href="/student-dashboard"
                       className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                     >
                       Dashboard
