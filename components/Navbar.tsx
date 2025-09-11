@@ -85,7 +85,7 @@ export default function Navbar({ data }: any) {
               <>
                 {currentUser?.role === "admin" ? (
                   <Link
-                    href=" http://localhost:3002"
+                    href="http://localhost:3000/"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                   >
                     Dashboard
