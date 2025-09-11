@@ -515,7 +515,7 @@ export default function PaymentPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      {selectedCourse.features.map((feature, index) => (
+                      {selectedCourse.courseFeatures && selectedCourse.courseFeatures.map((feature: any, index: number) => (
                         <div key={index} className="flex items-start space-x-2">
                           <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                           <span className="text-sm text-gray-700">{feature.value}</span>
