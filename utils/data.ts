@@ -1,12 +1,13 @@
 // Mock data for courses, testimonials, blog posts, etc.
 
 export interface Course {
+  _id: any;
   id: string;
   slug: string;
   title: string;
   batchName: string;
   description: string;
-  image: string;
+  imageUrl: string;
   type: 'live' | 'recorded';
   enrolledStudents: number;
   moduleCount: number;
@@ -20,14 +21,14 @@ export interface Course {
     role: string;
     image: string;
   }[];
-  features: string[];
+  courseFeatures: string[];
   modules: {
     title: string;
     lessons: string[];
   }[];
   assignments: string[];
   projects: string[];
-  isUpcoming?: boolean;
+  upcomingCourse?: boolean;
 }
 
 
@@ -52,12 +53,13 @@ export interface BlogPost {
 
 export const courses: Course[] = [
   {
-    id: '1',
+    _id: '1',
+    id:1,
     slug: 'full-stack-web-development',
     title: 'Complete Full Stack Web Development',
     batchName: 'Batch 15',
     description: 'Master modern web development with React, Node.js, MongoDB, and more. Build real-world projects and get job-ready skills.',
-    image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageUrl: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=800',
     type: 'live',
     enrolledStudents: 2847,
     moduleCount: 12,
@@ -85,7 +87,7 @@ export const courses: Course[] = [
         image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
       }
     ],
-    features: [
+    courseFeatures: [
       'Live interactive sessions',
       '24/7 doubt support',
       'Industry projects',
@@ -116,15 +118,16 @@ export const courses: Course[] = [
       'Social media app',
       'Task management system'
     ],
-    isUpcoming: false
+    upcomingCourse: false
   },
   {
+    _id:2,
     id: '2',
     slug: 'mobile-app-development',
     title: 'Mobile App Development with React Native',
     batchName: 'Batch 8',
     description: 'Build cross-platform mobile apps with React Native. Learn to create iOS and Android apps with a single codebase.',
-    image: 'https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageUrl: 'https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=800',
     type: 'recorded',
     enrolledStudents: 1523,
     moduleCount: 10,
@@ -152,7 +155,7 @@ export const courses: Course[] = [
         image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
       }
     ],
-    features: [
+    courseFeatures: [
       'Pre-recorded HD videos',
       'Downloadable resources',
       'Mobile app projects',
@@ -181,12 +184,13 @@ export const courses: Course[] = [
     ]
   },
   {
+    _id: '3',
     id: '3',
     slug: 'data-science-machine-learning',
     title: 'Data Science & Machine Learning',
     batchName: 'Batch 12',
     description: 'Dive into data science and machine learning with Python. Learn to analyze data and build predictive models.',
-    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageUrl: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
     type: 'live',
     enrolledStudents: 1876,
     moduleCount: 14,
@@ -214,7 +218,7 @@ export const courses: Course[] = [
         image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
       }
     ],
-    features: [
+    courseFeatures: [
       'Live coding sessions',
       'Real datasets',
       'Industry case studies',
@@ -241,7 +245,7 @@ export const courses: Course[] = [
       'Stock price prediction',
       'Image recognition system'
     ],
-    isUpcoming: true
+    upcomingCourse: true
   }
 ];
 

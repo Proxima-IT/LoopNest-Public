@@ -11,7 +11,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
 import SectionTitle from "@/components/SectionTitle";
-import { courses, testimonials, blogPosts, whyLoopNest } from "@/utils/data";
+import { testimonials, blogPosts, whyLoopNest } from "@/utils/data";
 import {
   Carousel,
   CarouselContent,
@@ -21,20 +21,32 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { isArrayBufferView } from "node:util/types";
+import axios from "axios";
 
 export default function HomePage() {
   const [visibleTestimonial, setVisibleTestimonial] = useState(0);
-
-  useEffect(() => {
+  const [courses,setCourses] = useState([])
+   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
+    // course api call
+     axios.get(`${process.env.NEXT_PUBLIC_BASEURL}course?page=1&limit=10`)
+    .then((result) => {
+      console.log(result?.data?.data?.courses)
+      setCourses(result?.data?.data?.courses || []);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
     return () => clearInterval(interval);
   }, []);
 
-  const upcomingCourses = courses.filter((course) => course.isUpcoming);
-  const ongoingCourses = courses.filter((course) => !course.isUpcoming);
+
+  const upcomingCourses = courses?.filter((course) => course?.upcomingCourse);
+  const ongoingCourses = courses?.filter((course) => !course?.upcomingCourse);
 
   return (
     <div className="min-h-screen bg-white">
@@ -132,7 +144,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {upcomingCourses.map((course, index) => (
                 <CourseCard
-                  key={course.id}
+                  key={index}
                   course={course}
                   className={`animate-fade-in-up animate-delay-${index * 200}`}
                 />

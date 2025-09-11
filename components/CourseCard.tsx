@@ -16,7 +16,7 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
     <Card className={`group bg-[#11102794] border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden ${className}`}>
       <div className="relative overflow-hidden">
         <Image
-          src={course.image}
+          src={course.imageUrl}
           alt={course.title}
           width={400}
           height={240}
@@ -90,7 +90,7 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
               </span>
             )}
           </div>
-          {course.isUpcoming && (
+          {course?.upcomingCourse && (
             <Badge variant="outline" className="text-orange-600 border-orange-600">
               Upcoming
             </Badge>
@@ -99,11 +99,15 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
       </CardContent>
 
       <CardFooter className="p-6 pt-0">
-        <Link href={`/course/${course.slug}`} className="w-full">
+        <Link href={`/course/${course?._id}`} className="w-full">
           <Button className="w-full bg-accent hover:bg-accent-light text-white transition-colors duration-300 font-semibold">
             View Details
         </Button>
         </Link>
+
+        <Link href={`/course/${course._id}/page`} className="w-full">
+  <Button className="w-full">View Details</Button>
+</Link>
       </CardFooter>
     </Card>
   );
