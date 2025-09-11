@@ -31,6 +31,7 @@ export default function Navbar({ data }: any) {
       })
       .then((result) => {
         console.log(result);
+        
         alert("user successfully log out");
         logout();
         setUserLoggedIn(false);
@@ -85,7 +86,7 @@ export default function Navbar({ data }: any) {
               <>
                 {currentUser?.role === "admin" ? (
                   <Link
-                    href="http://localhost:3000/"
+                    href="http://localhost:3001/"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                   >
                     Dashboard

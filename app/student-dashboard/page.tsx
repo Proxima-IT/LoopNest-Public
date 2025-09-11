@@ -7,8 +7,7 @@ const StudentDashboard = () => {
     <div>
       <Navbar/>
       <div className="min-h-screen text-black">
-
-           <h2 className='text-xl font-bold '>course not available</h2>
+        <h2 className='text-xl font-bold '>course not available</h2>
       </div>
       <Footer/>
     </div>
