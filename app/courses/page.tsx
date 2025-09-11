@@ -15,7 +15,7 @@ import axios from 'axios';
 
 
 export default function CoursesPage() {
-  const [courses, setCourses] = useState([])
+  const [courses, setCourses] = useState<any>([])
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -30,7 +30,7 @@ export default function CoursesPage() {
       console.error(err);
     });
 }, []);
-  const filteredCourses = courses?.filter(course => {
+  const filteredCourses = courses?.filter((course: any) => {
     const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || course.type === selectedType;
@@ -149,7 +149,7 @@ export default function CoursesPage() {
             {/* Courses Grid */}
             {filteredCourses.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredCourses.map((course, index) => (
+                {filteredCourses.map((course: any, index: number) => (
                   <CourseCard 
                     key={index} 
                     course={course}

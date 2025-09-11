@@ -195,10 +195,10 @@ console.log(err)
                     <div className="text-right">
                       <Badge
                         variant={
-                          course.type === "live" ? "destructive" : "secondary"
+                          course.courseType === "live" ? "destructive" : "secondary"
                         }
                       >
-                        {course.type === "live" ? "LIVE" : "RECORDED"}
+                        {course.courseType === "live" ? "LIVE" : "RECORDED"}
                       </Badge>
                     </div>
                   </div>
@@ -245,9 +245,9 @@ console.log(err)
                 <CardContent className="p-4 grid grid-cols-2 gap-4 text-white">
                   <div className="flex items-center space-x-2 text-sm">
                     <Users className="w-4 h-4 text-accent" />
-                    {/* <span>
-                      {course.enrolledStudents.toLocaleString()} students
-                    </span> */}
+                    <span>
+                      {course.enrolledStudents?.toLocaleString()} students
+                    </span>
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
                     <BookOpen className="w-4 h-4 text-accent" />
@@ -327,12 +327,12 @@ console.log(err)
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* {course?.courseFeatures.map((feature, index) => (
+                  {course?.courseFeatures?.map((feature: any, index: number) => (
                     <div key={index} className="flex items-center space-x-2">
                       <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-400">{feature}</span>
+                      <span className="text-gray-400">{feature.value}</span>
                     </div>
-                  ))} */}
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -396,7 +396,7 @@ console.log(err)
             {/* Instructor */}
             <Card className=" bg-transparent border-0">
               {/* <SectionTitle title="Instructor" subtitle=" " centered /> */}
-   {course?.instructors?.map((instructor, index) => (
+   {course?.instructors?.map((instructor: any, index: number) => (
                     <div
                       key={index}
                       className="flex items-start space-x-3 bg-slate-800/50  mb-4 p-4 shadow-lg transition-shadow duration-300 border-[1px] border-gray-800 rounded-lg"
@@ -404,7 +404,7 @@ console.log(err)
                       {/* Profile Image */}
                       <div>
                         <Image
-                          src={instructor?.image}
+                          src={instructor?.imageUrl}
                           alt={instructor.name}
                           width={80}
                           height={80}
@@ -457,7 +457,7 @@ console.log(err)
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {course?.modules?.map((module, index) => (
+                  {course?.courseModules?.map((module: any, index: number) => (
                     <div
                       key={index}
                       className="border border-gray-800 rounded-lg p-4"
@@ -466,7 +466,7 @@ console.log(err)
                         Module {index + 1}: {module.title}
                       </h4>
                       <ul className="space-y-2">
-                        {module?.lessons?.map((lesson, lessonIndex) => (
+                        {module?.lessons?.map((lesson: string, lessonIndex: number) => (
                           <li
                             key={lessonIndex}
                             className="flex items-center space-x-2 text-sm text-gray-400"
@@ -494,7 +494,7 @@ console.log(err)
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {course?.assignments?.map((assignment, index) => (
+                    {course?.assignments?.map((assignment: any, index: number) => (
                       <li
                         key={index}
                         className="flex items-start space-x-2 text-sm"
@@ -503,6 +503,9 @@ console.log(err)
                         <span className="text-gray-400">{assignment}</span>
                       </li>
                     ))}
+                    {(!course?.assignments || course.assignments.length === 0) && (
+                      <li className="text-gray-400 text-sm">No assignments available</li>
+                    )}
                   </ul>
                 </CardContent>
               </Card>
@@ -516,8 +519,8 @@ console.log(err)
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {course?.projects?.map((project, index) => (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {course?.projects?.map((project: any, index: number) => (
                       <div
                         key={index}
                         className="bg-slate-800/50  border border-gray-800 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -529,10 +532,10 @@ console.log(err)
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-gray-300 mb-2">
-                              {project}
+                              {project.name}
                             </h4>
                             <p className="text-sm text-gray-400 mb-3">
-                              Build a complete {project?.toLowerCase()} with
+                              Build a complete {project.name?.toLowerCase()} with
                               modern technologies and best practices.
                             </p>
                             <div className="flex items-center space-x-2">
@@ -551,7 +554,7 @@ console.log(err)
                         </div>
                       </div>
                     ))}
-                  </div> */}
+                  </div>
                 </CardContent>
               </Card>
             </div>

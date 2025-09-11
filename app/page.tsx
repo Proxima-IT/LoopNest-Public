@@ -45,8 +45,8 @@ export default function HomePage() {
   }, []);
 
 
-  const upcomingCourses = courses?.filter((course) => course?.upcomingCourse);
-  const ongoingCourses = courses?.filter((course) => !course?.upcomingCourse);
+  const upcomingCourses = courses?.filter((course: any) => course?.upcomingCourse);
+  const ongoingCourses = courses?.filter((course: any) => !course?.upcomingCourse);
 
   return (
     <div className="min-h-screen bg-white">
@@ -164,7 +164,7 @@ export default function HomePage() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ongoingCourses.map((course, index) => (
+            {ongoingCourses.map((course: any, index: number) => (
               <CourseCard
                 key={course.id}
                 course={course}
