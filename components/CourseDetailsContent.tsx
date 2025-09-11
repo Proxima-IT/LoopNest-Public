@@ -70,7 +70,7 @@ console.log(err)
   
   const handleEnrollNow = () => {
     if (userLoggedIn) {
-      router.push("/payment");
+      router.push(`/payment/${course?._id}`);
     } else {
       router.push("/login");
     }
