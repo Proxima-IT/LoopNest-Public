@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, Filter, SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,15 +10,27 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CourseCard from '@/components/CourseCard';
 import SectionTitle from '@/components/SectionTitle';
-import { courses } from '@/utils/data';
+// import { courses } from '@/utils/data';
+import axios from 'axios';
 
 
 export default function CoursesPage() {
+  const [courses, setCourses] = useState([])
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const filteredCourses = courses.filter(course => {
+  useEffect(() => {
+  axios.get(`${process.env.NEXT_PUBLIC_BASEURL}course?page=1&limit=10`)
+    .then((result) => {
+      console.log(result?.data?.data?.courses)
+      setCourses(result?.data?.data?.courses || []);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}, []);
+  const filteredCourses = courses?.filter(course => {
     const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || course.type === selectedType;
@@ -139,7 +151,7 @@ export default function CoursesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredCourses.map((course, index) => (
                   <CourseCard 
-                    key={course.id} 
+                    key={index} 
                     course={course}
                     className={`animate-fade-in-up animate-delay-${(index % 6) * 100}`}
                   />

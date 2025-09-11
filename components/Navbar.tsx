@@ -85,7 +85,7 @@ export default function Navbar({ data }: any) {
               <>
                 {currentUser?.role === "admin" ? (
                   <Link
-                    href="https://loop-nest-admin-dashboard.vercel.app/"
+                    href=" http://localhost:3002"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                   >
                     Dashboard

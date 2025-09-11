@@ -112,7 +112,7 @@ export default function CourseDetailsContent({
                              
                                 <div className="relative aspect-video overflow-hidden w-full">
                                   <Image
-                                    src={course.image}
+                                    src={course.imageUrl}
                                     alt={course.title}
                                     width={600}
                                     height={500}
@@ -133,7 +133,7 @@ export default function CourseDetailsContent({
                               <CardContent className="p-0">
                                 <div className="relative aspect-video overflow-hidden">
                                   <Image
-                                    src={course.image}
+                                    src={course.imageUrl}
                                     alt={course.title}
                                     width={600}
                                     height={500}
@@ -316,7 +316,7 @@ export default function CourseDetailsContent({
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {course.features.map((feature, index) => (
+                  {course?.courseFeatures.map((feature, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
                       <span className="text-gray-400">{feature}</span>
