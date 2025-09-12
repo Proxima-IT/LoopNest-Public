@@ -254,26 +254,26 @@ export const courses: Course[] = [
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'Rahul Ahmed',
-    role: 'Software Engineer at TechCorp',
-    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200',
-    content: 'Loop Nest transformed my career completely. The instructors are amazing and the curriculum is industry-relevant. I landed my dream job within 3 months of completing the course!',
+    name: 'Sadia Ashra',
+    role: 'N/A',
+    image: 'https://scontent.fcgp36-1.fna.fbcdn.net/v/t39.30808-1/459861866_828083206150976_3652064759255190968_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=101&ccb=1-7&_nc_sid=e99d92&_nc_ohc=KolphMLfeiIQ7kNvwEM6UZy&_nc_oc=AdnUdDL89LvxuQGXcrcO2kgQkAPFmKtjjpWcDmL3Xw7jKsf4v-aA1V0uuvxXGeUpwBM&_nc_zt=24&_nc_ht=scontent.fcgp36-1.fna&_nc_gid=VcFtNzxGe_MhDRnCXpvdvg&oh=00_AfaJ1xgr_98XnSrc65I_Y_OokGSerDQ44go5TX3unbaluQ&oe=68C99584',
+    content: '১৪ দিনের ওয়েব ডিজাইন বুটক্যাম্পে জয়েন করাই হয়েছিল আগের ফ্রী পাইথন ক্লাসগুলো থেকে। পাইথনের মতোই ওয়েব ডিজাইনের ক্লাস গুলোও খুবই স্মুথ ছিল। Md Ha San ভাই HTML, CSS  এবং Ettisaf Rup ভাই JS ও গিটের ক্লাসগুলো খুব সহজভাবে আমাদের বুঝিয়ে দিয়েছেন। Tahsin Ahmad ভাইয়ের ভাইব কোডিং ক্লাস সহ সকল মেন্টরদের সার্বক্ষণিক মেন্টরশিপ অনেক হেল্পফুল ছিল ।ভবিষ্যতে এই সেক্টরে থাকলে এইগুলো নিঃসন্দেহে অনেক সাহায্য করবে। ধন্যবাদ।',
     rating: 5
   },
   {
     id: '2',
-    name: 'Fatima Khan',
-    role: 'Full Stack Developer',
-    image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=200',
-    content: 'The hands-on projects and real-world applications made learning so engaging. I went from zero coding knowledge to building full applications. Highly recommend Loop Nest!',
+    name: 'Saker Ahmed Hridoy',
+    role: 'Founder at NST BIKER',
+    image: 'https://scontent.fcgp36-1.fna.fbcdn.net/v/t39.30808-6/542753017_3194166497453382_6329904304193556114_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=DYfPA3wML5UQ7kNvwFwodJE&_nc_oc=AdkgPb6QXuOscq7fOlshD_gNdOnDWPU0xnFCD61_D8GdJ27-ioHIO2aLHfzosg5L8Lc&_nc_zt=23&_nc_ht=scontent.fcgp36-1.fna&_nc_gid=tNFnBZTkyEpjfbumDOwvjg&oh=00_AfZlCWWFsSn_3xnbFa83o-8s_OQp4SBzFZmu1ooxoKzOKQ&oe=68C98DD5',
+    content: 'আমি Saker Ahmed Hridoy সম্প্রতি Loop Nest-এর ১৫ দিনের HTML5, CSS3 এবং JavaScript বুটক্যাম্পে অংশগ্রহণ করেছি, এবং অভিজ্ঞতাটি ছিল সত্যিই চমৎকার। HTML ও CSS এর ক্লাস নিয়েছেন হাসান ভাই, যিনি খুব সহজ ও বাস্তব উদাহরণ দিয়ে প্রতিটি টপিক সুন্দরভাবে বুঝিয়েছেন। তার শেখানোর স্টাইল ছিল গঠনমূলক এবং শিক্ষার্থীবান্ধব। JavaScript এর ক্লাস নিয়েছেন রুপ ভাই, যিনি মাত্র তিনটি লাইভ ক্লাসে খুব স্পষ্টভাবে এবং ধাপে ধাপে JavaScript এর বেসিক কনসেপ্টগুলো আমাদেরকে শিখিয়েছেন। নতুনদের জন্য এই ক্লাসগুলো বেশ উপকারী ছিল। তবে আমার মনে হয়েছে, যদি রেকর্ডেড ক্লাসের পরিবর্তে প্রতিটি ক্লাসই লাইভ হত, তাহলে ইন্টার‍অ্যাকশন আরও বাড়ত এবং শেখার অভিজ্ঞতাটিও আরও সমৃদ্ধ হতো। এছাড়া তাহসিন ভাইয়ের "বুলেট ভাইব কোডিং" এবং AI ব্যাখ্যা ছিল একেবারে ফ্রিহিটের মতো — সহজ, গতিময় ও আনন্দদায়ক। তার শেখানোর স্টাইল কোডিংকে যেন আরও জীবন্ত করে তুলেছিল। সব মিলিয়ে, এই বুটক্যাম্পটি ওয়েব ডেভেলপমেন্ট শেখার একটি দারুণ শুরু ছিল। Loop Nest এবং মেন্টরদের প্রতি কৃতজ্ঞতা জানাই এমন একটি শিক্ষামূলক অভিজ্ঞতা দেওয়ার জন্য। বিশেষভাবে প্রভাবিত হয়েছি রুপ ভাইয়ের ক্লাসগুলোতে। মিস করবো রুপ ভাই। আপনার নাম্বার সেভ করে রেখেছি যেকোন দিন যেকোন সময় প্রয়োজনে অপ্রয়োজনে আপনার কথা মনে হলেই নক দিবো ইন-শা-আল্লাহ।',
     rating: 5
   },
   {
     id: '3',
-    name: 'Arif Hassan',
-    role: 'Mobile App Developer',
-    image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=200',
-    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
+    name: 'Dip Paul  (দ্বীপ)',
+    role: 'N/A',
+    image: 'https://scontent.fcgp40-1.fna.fbcdn.net/v/t39.30808-1/529311459_2979063882280188_6162635582155627403_n.jpg?stp=c0.135.960.960a_dst-jpg_s160x160_tt6&_nc_cat=111&ccb=1-7&_nc_sid=1d2534&_nc_ohc=wKxH8UJSbWoQ7kNvwFHU97Z&_nc_oc=Adl5ux299FKgK7XaJK5HLqoPFEClSRjOITc_3qq1Px-RDY5CKX27TR3bX0a0YailgsI&_nc_zt=24&_nc_ht=scontent.fcgp40-1.fna&_nc_gid=qvp4rMC_eBi-3vBLIRdUrA&oh=00_AfbUjimU2h7-jMMHoCRADz58SoSzoGuvv5EdnIuN-HvwFg&oe=68C98837',
+    content: 'ওয়েব ডেভেলপমেন্টের ১৫ বেসিক কোর্স করেছিলাম। খুঁটিনাটিঅনেক কিছুই কভার করেছি এই ১৫ দিনের কোর্সে। তাহসিন ভাই, হাসান ভাই , রূপ ভাই এবং সর্বোপরি লুপনেস্টের জন্য শুভকামনা রইলো। Loop Nest এবং মেন্টরদের প্রতি কৃতজ্ঞতা জানাই',
     rating: 5
   },
   {
@@ -281,17 +281,10 @@ export const testimonials: Testimonial[] = [
     name: 'Arif Hassan',
     role: 'Mobile App Developer',
        image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200',
-    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
+    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business. and i really love this course',
     rating: 5
   },
-  {
-    id: '5',
-    name: 'Arif Hassan',
-    role: 'Mobile App Developer',
-    image: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=200',
-    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business.',
-    rating: 5
-  }
+ 
 ];
 
 export const blogPosts: BlogPost[] = [

@@ -102,7 +102,7 @@ Creative Design Mastery
             <div className="relative animate-fade-in-right">
               <div className="relative">
                 <Image
-                  src="https://ibb.co.com/k2TL7VX7"
+                  src="https://i.ibb.co.com/84zG5xDc/1bd9f109-82e0-44d6-a5ff-6846bef597a6.jpg"
                   alt="Students learning online"
                   width={600}
                   height={500}
@@ -115,9 +115,9 @@ Creative Design Mastery
                       <Star className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900">
+                      {/* <div className="font-bold text-gray-900">
                         4.9/5 Rating
-                      </div>
+                      </div> */}
                       <div className="text-sm text-gray-600">
                         From 2000+ reviews
                       </div>
@@ -239,8 +239,8 @@ Creative Design Mastery
                       className="md:basis-1/2 lg:basis-1/3 "
                     >
                       <div className="  [background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
-                        <Card className="bg-slate-800/50 backdrop-blur border-white/20 p-2 text-white">
-                          <CardContent className="p-8 text-center">
+                        <Card className="bg-slate-800/50 backdrop-blur border-white/20 p-2 text-white h-xl">
+                          <CardContent className="p-8 text-center h-xl">
                             <div className="flex items-center justify-center space-x-4 mb-4">
                               <Image
                                 src={testimonial.image}
@@ -252,7 +252,7 @@ Creative Design Mastery
                             </div>
 
                             <p className="text-xs leading-relaxed mb-8 italic text-gray-200 font-normal">
-                              &ldquo;{testimonial.content}&rdquo;
+                              &ldquo;{testimonial.content?.slice(0,280)}....&rdquo;
                             </p>
 
                             <div className="flex justify-center mb-6">
