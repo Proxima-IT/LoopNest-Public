@@ -84,11 +84,11 @@ export default function EnrollmentStatusPage() {
             )}
 
             {/* Demo button to toggle status - remove in production */}
-            <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
               <Button variant="outline" onClick={handleStatusChange} className="w-full text-sm bg-transparent">
                 Demo: Toggle Status ({status === "pending" ? "Show Approved" : "Show Pending"})
               </Button>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       </div>
