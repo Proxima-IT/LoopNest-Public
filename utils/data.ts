@@ -278,10 +278,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: '4',
-    name: 'Arif Hassan',
-    role: 'Mobile App Developer',
-       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200',
-    content: 'Excellent course structure and mentorship. The community support is incredible. I built my first mobile app during the course and now I have my own app development business. and i really love this course',
+    name: 'Sazzad Redefined ',
+    role: 'N/A',
+       image: 'https://scontent.fcgp36-1.fna.fbcdn.net/v/t39.30808-6/544896049_122173675652465831_9068802048151450015_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zyHi1LZgyqcQ7kNvwGc-bhi&_nc_oc=AdmqUQCxoVZ1Ovt7GxHon26l-iAEILO6Cj94SfoscaqUnNl5lRJmNyKvVjmPZXC-M3M&_nc_zt=23&_nc_ht=scontent.fcgp36-1.fna&_nc_gid=KEqFIAibUIUNYAxDMalMUg&oh=00_AfZE6TgyjTuH7m-Z2IaHcWx7GaLOZzu6bR3snwZ25PPxiw&oe=68C9B1AC',
+    content: "As a non-technical background though I was very sick during the course I tried my best to do & found very easy & explaining all the things of Our course. The HTML, CSS, JS part has been very interesting to me. Rest things are yet to cope up as can't concentrate fully due to illness (dengu patient).",
     rating: 5
   },
  
