@@ -9,6 +9,7 @@ import { isLoggedIn, getCurrentUser, logout, User } from "@/utils/auth";
 import { Link as Navlink } from "react-scroll";
 import Image from "next/image";
 import axios from "axios";
+import Marquee from "react-fast-marquee";
 
 export default function Navbar({ data }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,6 +45,11 @@ export default function Navbar({ data }: any) {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg">
+      <div className="bg-green-600 text-white text-xs border-white border-b-2 py-[6px]">
+       <Marquee>
+আমাদের ওয়েবসাইটের কাজ বর্তমানে চলমান। শীঘ্রই পূর্ণাঙ্গ রূপে আপনাদের জন্য উন্মুক্ত করা হবে।
+</Marquee>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
