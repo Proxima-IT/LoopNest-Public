@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
 
           {/* Popular Courses */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Popular Courses</h3>
             <div className="space-y-2">
               <Link href="/course/full-stack-web-development" className="block text-gray-300 hover:text-accent transition-colors duration-300 text-sm">
@@ -72,7 +72,7 @@ export default function Footer() {
                 Digital Marketing
               </Link>
             </div>
-          </div>
+          </div> */}
 
           {/* Contact Info */}
           <div className="space-y-4">
@@ -99,6 +99,9 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2024 Loop Nest. All rights reserved.
+            </p>
+            <p className="text-gray-400 text-sm">
+              Powered and developed by proxima it
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/privacy" className="text-gray-400 hover:text-accent transition-colors duration-300 text-sm">
