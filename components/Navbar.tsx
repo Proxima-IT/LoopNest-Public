@@ -59,8 +59,8 @@ export default function Navbar({ data }: any) {
               <Image
                 src="/assets/logo.png"
                 alt="loop nest"
-                width={180}
-                height={180}
+                width={210}
+                height={210}
                 className="w-36 h-24"
               />
               {/* <h2> Loop Nest</h2> */}

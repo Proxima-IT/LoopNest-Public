@@ -66,6 +66,14 @@ export default function OTPPage() {
     setError('');
     // TODO: Call resend OTP API
     console.log('Resending OTP...');
+      axios.post(`${process.env.NEXT_PUBLIC_BASEURL}user/resend-otp`,{ auth_input})
+          .then((result) => {
+            console.log(result?.data?.data)
+            alert('otp successfully send')
+            // setCourse(result?.data?.data)
+          }).catch((err) => {
+    console.log(err)
+          });
   };
 
   return (
