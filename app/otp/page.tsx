@@ -1,23 +1,28 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useContext } from 'react';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
-import Navbar from '@/components/Navbar';
-import axios from 'axios';
-import { DataContext } from '@/providers/DataProvider';
+import { useState, useEffect, useContext } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
+import Navbar from "@/components/Navbar";
+import axios from "axios";
+import { DataContext } from "@/providers/DataProvider";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function OTPPage() {
-  const params = useSearchParams()
-  console.log(params)
+  const params = useSearchParams();
+  console.log(params);
   const auth_input = params.get("auth_input");
   // const { user} = useContext(DataContext)
   // console.log(user)
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   // const [otp, setOtp] = useState('');
@@ -31,30 +36,39 @@ export default function OTPPage() {
       setCanResend(true);
     }
   }, [timeLeft]);
-  
+
   const handleVerify = async () => {
-    const userData = localStorage.getItem('currentUser');
+    const userData = localStorage.getItem("currentUser");
     const user = userData ? JSON.parse(userData) : null;
     // console.log({ otpCode:otp,auth_input: user?.email})
     if (otp.length !== 6) {
-      setError('Please enter a valid 6-digit OTP.');
+      setError("Please enter a valid 6-digit OTP.");
       return;
     }
-    
+
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}user/verify-otp`,{ otpCode:otp, auth_input});
-      console.log(res.data)
+        `${process.env.NEXT_PUBLIC_BASEURL}user/verify-otp`,
+        { otpCode: otp, auth_input }
+      );
+      console.log(res.data);
       if (res.data?.success) {
-        router.push('/login'); // redirect to dashboard/home
+        toast.success("Verification Successful", {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        router.push("/login"); // redirect to dashboard/home
       } else {
-        setError(res.data?.message || 'Invalid OTP. Please try again.');
+        setError(res.data?.message || "Invalid OTP. Please try again.");
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Server error. Please try again.');
+      setError(
+        err.response?.data?.message || "Server error. Please try again."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -63,17 +77,19 @@ export default function OTPPage() {
   const handleResend = () => {
     setTimeLeft(60);
     setCanResend(false);
-    setError('');
+    setError("");
     // TODO: Call resend OTP API
-    console.log('Resending OTP...');
-      axios.post(`${process.env.NEXT_PUBLIC_BASEURL}user/resend-otp`,{ auth_input})
-          .then((result) => {
-            console.log(result?.data?.data)
-            alert('otp successfully send')
-            // setCourse(result?.data?.data)
-          }).catch((err) => {
-    console.log(err)
-          });
+    console.log("Resending OTP...");
+    axios
+      .post(`${process.env.NEXT_PUBLIC_BASEURL}user/resend-otp`, { auth_input })
+      .then((result) => {
+        console.log(result?.data?.data);
+        alert("otp successfully send");
+        // setCourse(result?.data?.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -83,7 +99,9 @@ export default function OTPPage() {
       <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Verify Your Account</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Verify Your Account
+            </h1>
             <p className="text-gray-600">
               We&apos;ve sent a 6-digit verification code to your email/phone
             </p>
@@ -91,7 +109,9 @@ export default function OTPPage() {
 
           <Card className="shadow-lg">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-bold text-center">Enter OTP</CardTitle>
+              <CardTitle className="text-2xl font-bold text-center">
+                Enter OTP
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {error && (
@@ -120,7 +140,7 @@ export default function OTPPage() {
                 className="w-full bg-accent hover:bg-accent-light text-white py-3 text-lg font-semibold"
                 disabled={isLoading || otp.length !== 6}
               >
-                {isLoading ? 'Verifying...' : 'Verify OTP'}
+                {isLoading ? "Verifying..." : "Verify OTP"}
               </Button>
 
               <div className="text-center space-y-2">
@@ -152,6 +172,7 @@ export default function OTPPage() {
           </Card>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

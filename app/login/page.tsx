@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { signin } from "@/utils/auth";
+import { toast, ToastContainer } from "react-toastify";
 // import { signup } from '@/utils/auth';
 
 type Inputs = {
@@ -52,13 +53,18 @@ export default function LoginPage() {
       if (res.data.success) {
         console.log(res.data);
         setData(res.data);
+        toast.success("user successfully logged in", {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
         signin(
           res?.data?.data?.student?.fullName,
           res?.data?.data?.student?.email,
           res?.data?.data?.student?.password,
           res?.data?.data?.student?.role
         );
-console.log(res?.data.data.student.email)
+        console.log(res?.data.data.student.email);
         if (res?.data.data.student.role === "admin") {
           router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
           return;
@@ -83,11 +89,11 @@ console.log(res?.data.data.student.email)
   return (
     <div className="min-h-screen bg-[#19182F]">
       <Navbar data={data} />
-      <div className="flex items-center justify-center min-h-screen pt-20 pb-12 px-4 md:px-0">
+      <div className="flex items-center justify-center min-h-screen pt-[96px] pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-            <p className="text-gray-600">Sign in to your Loop Nest account</p>
+            <p className="text-gray-300">Sign in to your Loop Nest account</p>
           </div>
 
           <Card className="shadow-lg bg-[#11102794] border-gray-700">
@@ -195,6 +201,7 @@ console.log(res?.data.data.student.email)
           </Card>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

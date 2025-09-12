@@ -14,6 +14,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "../types/register";
 import axios from "axios";
 import { DataContext } from "@/providers/DataProvider";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function SignupPage() {
   // const { setUser} =useContext(DataContext)
@@ -56,7 +57,12 @@ export default function SignupPage() {
     axios
       .post(process.env.NEXT_PUBLIC_BASEURL + "user/register", payload)
       .then((res) => {
-        alert("user successfully ");
+        toast.success("user successfully signed up", {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+
         console.log(res?.data?.data?.email);
 
         //  export data = res?.data
@@ -257,6 +263,7 @@ export default function SignupPage() {
           </Card>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
