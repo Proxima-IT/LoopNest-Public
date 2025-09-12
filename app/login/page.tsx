@@ -63,7 +63,7 @@ console.log(res?.data.data.student.email)
           router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
           return;
         } else {
-          router.push(process.env.NEXT_STUDENT_DASHBOARD ?? "/");
+          router.push("/");
         }
       } else {
         setError("root", {

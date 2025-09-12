@@ -157,7 +157,7 @@ export default function PaymentPage() {
       
       if (response.data.success) {
         alert('Payment successful! You are now enrolled in the course.');
-        router.push('/');
+        router.push('/student-dashboard');
       } else {
         alert('Payment failed: ' + (response.data.message || 'Unknown error'));
       }
