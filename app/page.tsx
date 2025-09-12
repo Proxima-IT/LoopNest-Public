@@ -64,13 +64,12 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
               <div className="space-y-6 animate-fade-in-up">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Unlock Your
-                  <span className="text-accent block">Digital Future</span>
+                <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight">
+Creative Design Mastery 
+                  <span className="text-accent block">(Batch-01)</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
-                  Master cutting-edge technologies with industry experts and
-                  build the career you&apos;ve always dreamed of.
+                <p className="text-lg md:text-lg text-gray-200 leading-relaxed">
+                 আপনি কি প্রফেশনাল ডিজাইনার হতে চান? এই কোর্সটি একেবারে শুরু থেকে আপনাকে নিয়ে যাবে প্রফেশনাল পর্যায়ে। Photoshop Basics থেকে শুরু করে AI-Powered Design, Branding, Print Design, Portfolio Building, Client Onboading সবকিছুই শিখবেন একটা কোর্সে এবং রিয়েল প্রজেক্টের মাধ্যমে।
                 </p>
               </div>
 
@@ -80,7 +79,7 @@ export default function HomePage() {
                     size="lg"
                     className="bg-accent hover:bg-accent-light text-white px-8 py-4 text-lg font-semibold transition-colors duration-300"
                   >
-                    Browse Courses
+                    Enrol Now
                     <ChevronRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -103,7 +102,7 @@ export default function HomePage() {
             <div className="relative animate-fade-in-right">
               <div className="relative">
                 <Image
-                  src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="https://i.ibb.co.com/84zG5xDc/1bd9f109-82e0-44d6-a5ff-6846bef597a6.jpg"
                   alt="Students learning online"
                   width={600}
                   height={500}
@@ -116,9 +115,9 @@ export default function HomePage() {
                       <Star className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900">
+                      {/* <div className="font-bold text-gray-900">
                         4.9/5 Rating
-                      </div>
+                      </div> */}
                       <div className="text-sm text-gray-600">
                         From 2000+ reviews
                       </div>
@@ -192,24 +191,22 @@ export default function HomePage() {
       <section className="py-20 bg-[#010019ef]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="Why Choose Loop Nest?"
-            subtitle="We provide everything you need to succeed in your learning journey"
+            title="কেনো LoopNest সেরা পছন্দ?"
+            subtitle="আমরা আপনার শেখার যাত্রায় সফল হওয়ার জন্য প্রয়োজনীয় সবকিছু প্রদান করি"
             centered
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-slate-800/50 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
             {whyLoopNest.map((item, index) => (
               <div
                 key={index}
-                className=" p-6 hover:bg-slate-800/70 transition-colors duration-300"
+                className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-300 hover:transform hover:scale-105"
               >
-                <div className="flex items-center gap-4">
-                  <div className="text-3xl flex-shrink-0">{item.icon}</div>
+                <div className="flex flex-col items-start gap-4">
+                  <div className="text-4xl mb-2">{item.icon}</div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2 leading-tight">
-                      {item.title}
-                    </h3>
-                    {/* <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p> */}
+                    <h3 className="text-xl font-bold text-white mb-3 leading-tight">{item.title}</h3>
+                    <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -242,8 +239,8 @@ export default function HomePage() {
                       className="md:basis-1/2 lg:basis-1/3 "
                     >
                       <div className="  [background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
-                        <Card className="bg-slate-800/50 backdrop-blur border-white/20 p-2 text-white">
-                          <CardContent className="p-8 text-center">
+                        <Card className="bg-slate-800/50 backdrop-blur border-white/20 p-2 text-white h-xl">
+                          <CardContent className="p-8 text-center h-xl">
                             <div className="flex items-center justify-center space-x-4 mb-4">
                               <Image
                                 src={testimonial.image}
@@ -255,7 +252,7 @@ export default function HomePage() {
                             </div>
 
                             <p className="text-xs leading-relaxed mb-8 italic text-gray-200 font-normal">
-                              &ldquo;{testimonial.content}&rdquo;
+                              &ldquo;{testimonial.content?.slice(0,280)}....&rdquo;
                             </p>
 
                             <div className="flex justify-center mb-6">
