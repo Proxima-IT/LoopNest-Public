@@ -56,7 +56,7 @@ export default function SignupPage() {
     axios
       .post(process.env.NEXT_PUBLIC_BASEURL + "user/register", payload)
       .then((res) => {
-        alert("data successfully add");
+        alert("user successfully ");
         console.log(res?.data?.data?.email);
 
         //  export data = res?.data
