@@ -338,7 +338,7 @@ console.log(err)
             </Card>
 
             {/* What You'll Learn */}
-            <Card className="bg-transparent border-[1px] border-gray-800">
+            {/* <Card className="bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
                   What You&apos;ll Learn
@@ -365,7 +365,7 @@ console.log(err)
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Who This Course Is For */}
             <Card className=" bg-transparent border-[1px] border-gray-800">

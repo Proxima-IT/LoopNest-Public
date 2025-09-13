@@ -98,7 +98,7 @@ export default function Navbar({ data }: any) {
               <>
                 {currentUser?.role === "admin" ? (
                   <Link
-                    href="http://localhost:3001/"
+                    href="process.env.NEXT_ADMIN_DASHBOARD"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                   >
                     Dashboard
@@ -209,7 +209,7 @@ export default function Navbar({ data }: any) {
                 <>
                   {currentUser?.role === "admin" ? (
                     <Link
-                      href="https://loop-nest-admin-dashboard.vercel.app/"
+                      href="process.env.NEXT_ADMIN_DASHBOARD"
                       className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                     >
                       Dashboard

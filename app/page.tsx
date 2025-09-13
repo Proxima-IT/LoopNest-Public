@@ -139,11 +139,11 @@ Creative Design Mastery
         </section>
       )}
 
-      {/* previous Courses */}
+      {/* upcoming Courses */}
       <section className="py-20 bg-[#010019e7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="Previous Courses"
+            title="Upcoming Courses"
             subtitle="Join thousands of students already learning with us"
             centered
           />

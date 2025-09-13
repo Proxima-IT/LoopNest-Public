@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -63,11 +63,11 @@ export default function SignupPage() {
           theme: "dark",
         });
 
-        console.log(res?.data?.data?.email);
+        console.log(res?.data?.data?.phone);
 
         //  export data = res?.data
         // signup(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role);
-        router.push(`/otp?auth_input=${res?.data?.data?.email}`);
+        router.push(`/otp?auth_input=${res?.data?.data?.phone}`);
         // }
       })
       .catch((err) => console.log(err?.response?.data?.message));
@@ -128,16 +128,17 @@ export default function SignupPage() {
                 {/* Email */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-white">
-                    Email or Phone
+                     Phone
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    {/* <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" /> */}
+                     <PhoneCall className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
                       id="auth_input"
-                      type="text"
-                      placeholder="Enter your email or phone"
+                      type="number"
+                      placeholder="Enter your phone number"
                       {...register("auth_input", {
-                        required: "Email is required",
+                        required: "phone number is required",
                       })}
                       className="pl-10"
                     />
@@ -254,7 +255,7 @@ export default function SignupPage() {
                 <Button
                   type="submit"
                   className="w-full bg-accent hover:bg-accent-light text-white py-3 text-lg font-semibold"
-                  disabled={isLoading}
+                  // disabled={isLoading}
                 >
                   {isLoading ? "Creating Account..." : "Create Account"}
                 </Button>

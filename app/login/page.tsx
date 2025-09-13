@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -58,6 +58,7 @@ export default function LoginPage() {
           autoClose: 3000,
           theme: "dark",
         });
+        window.location.reload()
         signin(
           res?.data?.data?.student?.fullName,
           res?.data?.data?.student?.email,
@@ -69,6 +70,7 @@ export default function LoginPage() {
           router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
           return;
         } else {
+          // window.location.reload()
           router.push("/");
         }
       } else {
@@ -114,15 +116,16 @@ export default function LoginPage() {
                 {/* Email */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-white">
-                    Email or Phone
+                     Phone
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    {/* <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" /> */}
+                    <PhoneCall className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
                       id="email"
-                      type="text"
-                      placeholder="Enter your email or phone"
-                      {...register("email", { required: "Email is required" })}
+                      type="number"
+                      placeholder="Enter your phone number"
+                      {...register("email", { required: "Phone number is required" })}
                       className="pl-10"
                     />
                   </div>
