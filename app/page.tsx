@@ -109,21 +109,7 @@ Creative Design Mastery
                   className=" rounded-2xl shadow-2xl"
                   priority
                 />
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                      <Star className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      {/* <div className="font-bold text-gray-900">
-                        4.9/5 Rating
-                      </div> */}
-                      {/* <div className="text-sm text-gray-600">
-                        From 2000+ reviews
-                      </div> */}
-                    </div>
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>
