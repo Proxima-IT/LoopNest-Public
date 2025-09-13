@@ -120,11 +120,11 @@ Creative Design Mastery
       {upcomingCourses.length > 0 && (
         <section className="py-20 bg-[#010019ef]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionTitle
-              title="Upcoming Courses"
-              subtitle="Get ready for our latest courses launching soon"
-              centered
-            />
+          <SectionTitle
+            title="আপকামিং কোর্স"
+            subtitle="আজকের প্রস্তুতি, আগামীর সাফল্য । শিখুন নতুন দক্ষতা, গড়ুন আপনার ভবিষ্যৎ।"
+            centered
+          />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {upcomingCourses.map((course, index) => (
@@ -143,8 +143,8 @@ Creative Design Mastery
       <section className="py-20 bg-[#010019e7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="Upcoming Courses"
-            subtitle="Join thousands of students already learning with us"
+            title="আপকামিং কোর্স"
+            subtitle="আজকের প্রস্তুতি, আগামীর সাফল্য । শিখুন নতুন দক্ষতা, গড়ুন আপনার ভবিষ্যৎ।"
             centered
           />
 

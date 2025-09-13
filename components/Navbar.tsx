@@ -12,7 +12,7 @@ import axios from "axios";
 import Marquee from "react-fast-marquee";
 import { toast, ToastContainer } from "react-toastify";
 
-export default function Navbar({ data }: any) {
+export default function Navbar({ data, role }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -96,7 +96,7 @@ export default function Navbar({ data }: any) {
             </Link>
             {userLoggedIn && (
               <>
-                {currentUser?.role === "admin" ? (
+                {role === "admin" ? (
                   <Link
                     href="process.env.NEXT_ADMIN_DASHBOARD"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
@@ -207,7 +207,7 @@ export default function Navbar({ data }: any) {
               </Link>
               {userLoggedIn && (
                 <>
-                  {currentUser?.role === "admin" ? (
+                  {role === "admin" ? (
                     <Link
                       href="process.env.NEXT_ADMIN_DASHBOARD"
                       className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"

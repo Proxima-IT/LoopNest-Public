@@ -24,6 +24,7 @@ type Inputs = {
 
 export default function LoginPage() {
   const [data, setData] = useState(null);
+  const [role, setRole] = useState<object>({});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -58,7 +59,7 @@ export default function LoginPage() {
           autoClose: 3000,
           theme: "dark",
         });
-        window.location.reload()
+       setRole( res?.data?.data?.student?.role)
         signin(
           res?.data?.data?.student?.fullName,
           res?.data?.data?.student?.email,
@@ -66,13 +67,15 @@ export default function LoginPage() {
           res?.data?.data?.student?.role
         );
         console.log(res?.data.data.student.email);
-        if (res?.data.data.student.role === "admin") {
-          router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
-          return;
-        } else {
-          // window.location.reload()
-          router.push("/");
-        }
+        router.push("/");
+      
+        // if (res?.data.data.student.role === "admin") {
+        //   router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
+        //   return;
+        // } else {
+        //   router.push("/");
+        // }
+         
       } else {
         setError("root", {
           message: res.data.message || "Invalid credentials",
@@ -90,7 +93,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#19182F]">
-      <Navbar data={data} />
+      <Navbar data={data} role={role} />
       <div className="flex items-center justify-center min-h-screen pt-[96px] pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">

@@ -63,11 +63,11 @@ export default function SignupPage() {
           theme: "dark",
         });
 
-        console.log(res?.data?.data?.phone);
+        console.log(res?.data?.data?.auth_input);
 
         //  export data = res?.data
         // signup(res?.data?.data?.fullName, res?.data?.data?.auth_input, res?.data?.data?.password, res?.data?.data?.role);
-        router.push(`/otp?auth_input=${res?.data?.data?.phone}`);
+        router.push(`/otp?auth_input=${res?.data?.data?.auth_input}`);
         // }
       })
       .catch((err) => console.log(err?.response?.data?.message));
