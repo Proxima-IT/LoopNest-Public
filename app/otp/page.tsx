@@ -18,6 +18,8 @@ export default function OTPPage() {
   const params = useSearchParams();
   console.log(params);
   const auth_input = params.get("auth_input");
+
+  console.log(auth_input)
   // const { user} = useContext(DataContext)
   // console.log(user)
   const [otp, setOtp] = useState("");

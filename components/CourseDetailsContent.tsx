@@ -281,9 +281,9 @@ console.log(err)
                       className="w-4 h-4 text-accent fill-current"
                     />
                   ))}
-                  <span className="text-sm text-gray-400 ml-2">
+                  {/* <span className="text-sm text-gray-400 ml-2">
                     (4.9) • 2,847 reviews
-                  </span>
+                  </span> */}
                 </div>
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-300 mb-4">
@@ -298,7 +298,7 @@ console.log(err)
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
-                  About This Course
+কোর্স সম্পর্কেঃ 
                 </CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
@@ -338,7 +338,7 @@ console.log(err)
             </Card>
 
             {/* What You'll Learn */}
-            <Card className="bg-transparent border-[1px] border-gray-800">
+            {/* <Card className="bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
                   What You&apos;ll Learn
@@ -365,7 +365,7 @@ console.log(err)
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Who This Course Is For */}
             <Card className=" bg-transparent border-[1px] border-gray-800">

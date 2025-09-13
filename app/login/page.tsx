@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,6 +24,7 @@ type Inputs = {
 
 export default function LoginPage() {
   const [data, setData] = useState(null);
+  const [role, setRole] = useState<object>({});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -58,6 +59,7 @@ export default function LoginPage() {
           autoClose: 3000,
           theme: "dark",
         });
+       setRole( res?.data?.data?.student?.role)
         signin(
           res?.data?.data?.student?.fullName,
           res?.data?.data?.student?.email,
@@ -65,12 +67,15 @@ export default function LoginPage() {
           res?.data?.data?.student?.role
         );
         console.log(res?.data.data.student.email);
-        if (res?.data.data.student.role === "admin") {
-          router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
-          return;
-        } else {
-          router.push("/");
-        }
+        router.push("/");
+      
+        // if (res?.data.data.student.role === "admin") {
+        //   router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
+        //   return;
+        // } else {
+        //   router.push("/");
+        // }
+         
       } else {
         setError("root", {
           message: res.data.message || "Invalid credentials",
@@ -88,7 +93,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#19182F]">
-      <Navbar data={data} />
+      <Navbar data={data} role={role} />
       <div className="flex items-center justify-center min-h-screen pt-[96px] pb-12 px-4 md:px-0">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
@@ -114,15 +119,16 @@ export default function LoginPage() {
                 {/* Email */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-white">
-                    Email or Phone
+                     Phone
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    {/* <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" /> */}
+                    <PhoneCall className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
                       id="email"
-                      type="text"
-                      placeholder="Enter your email or phone"
-                      {...register("email", { required: "Email is required" })}
+                      type="number"
+                      placeholder="Enter your phone number"
+                      {...register("email", { required: "Phone number is required" })}
                       className="pl-10"
                     />
                   </div>
