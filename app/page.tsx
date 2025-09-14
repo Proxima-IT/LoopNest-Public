@@ -52,13 +52,13 @@ export default function HomePage() {
   const ongoingCourses = courses?.filter((course: any) => !course?.upcomingCourse);
 
   // handle enrollment
-  const handleEnrollNow = () => {
-    if (userLoggedIn) {
-      // Router.push(`/payment/${courses?._id}`);
-    } else {
-      Router.push("/login");
-    }
-  };
+  // const handleEnrollNow = () => {
+  //   if (userLoggedIn) {
+  //     // Router.push(`/payment/${courses?._id}`);
+  //   } else {
+  //     Router.push("/login");
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-white">
@@ -86,7 +86,7 @@ Creative Design Mastery
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-400">
-                {/* <Link href="/courses">
+                <Link href="/courses">
                   <Button
                     size="lg"
                     className="bg-accent hover:bg-accent-light text-white px-8 py-4 text-lg font-semibold transition-colors duration-300"
@@ -94,14 +94,14 @@ Creative Design Mastery
                     Enrol Now
                     <ChevronRight className="ml-2 w-5 h-5" />
                   </Button>
-                </Link> */}
-                 <Button
+                </Link>
+                 {/* <Button
                                     onClick={handleEnrollNow}
                                     size="lg"
                                    className="bg-accent hover:bg-accent-light text-white px-8 py-4 text-lg font-semibold transition-colors duration-300"
                                   >
                                     Enroll Now
-                                  </Button>
+                                  </Button> */}
                 <Link
                   href="https://www.youtube.com/@loopnest.academy"
                   target="blank"
