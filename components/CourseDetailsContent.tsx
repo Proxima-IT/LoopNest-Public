@@ -12,6 +12,7 @@ import {
   Star,
   Check,
   Tag,
+  Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,13 +43,13 @@ import {
 import axios from "axios";
 
 interface CourseDetailsContentProps {
-  id:string
+  id: string;
 }
 
 export default function CourseDetailsContent({
-  id
+  id,
 }: CourseDetailsContentProps) {
-  const [course,setCourse] =useState<any>({})
+  const [course, setCourse] = useState<any>({});
   const router = useRouter();
   const [couponCode, setCouponCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
@@ -57,17 +58,17 @@ export default function CourseDetailsContent({
 
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
-     axios.get(`${process.env.NEXT_PUBLIC_BASEURL}course/${id}`)
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BASEURL}course/${id}`)
       .then((result) => {
-        console.log(result?.data?.data)
-        setCourse(result?.data?.data)
-      }).catch((err) => {
-console.log(err)
+        console.log(result?.data?.data);
+        setCourse(result?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [id]);
 
-
-  
   const handleEnrollNow = () => {
     if (userLoggedIn) {
       router.push(`/payment/${course?._id}`);
@@ -120,23 +121,21 @@ console.log(err)
                           <Dialog>
                             {/* dialog trigger */}
                             <DialogTrigger asChild>
-                             
-                                <div className="relative aspect-video overflow-hidden w-full">
-                                  <Image
-                                    src={course.imageUrl}
-                                    alt={course.title}
-                                    width={600}
-                                    height={500}
-                                    className=" w-full object-cover rounded-lg"
-                                  />
-                                  <button
-                                    // onClick={() => setShowVideo(true)}
-                                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
-                                  >
-                                    <Play className="w-16 h-16 text-white" />
-                                  </button>
-                                </div>
-                             
+                              <div className="relative aspect-video overflow-hidden w-full">
+                                <Image
+                                  src={course.imageUrl}
+                                  alt={course.title}
+                                  width={600}
+                                  height={500}
+                                  className=" w-full object-cover rounded-lg"
+                                />
+                                <button
+                                  // onClick={() => setShowVideo(true)}
+                                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
+                                >
+                                  <Play className="w-16 h-16 text-white" />
+                                </button>
+                              </div>
                             </DialogTrigger>
 
                             {/* dialog content */}
@@ -195,7 +194,9 @@ console.log(err)
                     <div className="text-right">
                       <Badge
                         variant={
-                          course.courseType === "live" ? "destructive" : "secondary"
+                          course.courseType === "live"
+                            ? "destructive"
+                            : "secondary"
                         }
                       >
                         {course.courseType === "live" ? "LIVE" : "RECORDED"}
@@ -216,14 +217,19 @@ console.log(err)
                         onChange={(e) => setCouponCode(e.target.value)}
                         className="flex-1"
                       />
-                      <Button onClick={applyCoupon} variant="outline" size="sm">
+                      <Button
+                        disabled
+                        onClick={applyCoupon}
+                        variant="outline"
+                        size="sm"
+                      >
                         <Tag className="w-4 h-4 mr-1" />
                         Apply
                       </Button>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">
+                    {/* <p className="text-xs text-gray-500 mt-1">
                       Try &quot;welcome10&quot for 10% off
-                    </p>
+                    </p> */}
                   </div>
 
                   <Button
@@ -234,9 +240,9 @@ console.log(err)
                     Enroll Now
                   </Button>
 
-                  <div className="text-center text-sm text-gray-600">
+                  {/* <div className="text-center text-sm text-gray-600">
                     30-day money-back guarantee
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
 
@@ -274,17 +280,17 @@ console.log(err)
                 <Badge variant="outline" className="text-gray-300">
                   {course.batchName}
                 </Badge>
-                <div className="flex items-center space-x-1">
+                {/* <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
                       className="w-4 h-4 text-accent fill-current"
                     />
                   ))}
-                  {/* <span className="text-sm text-gray-400 ml-2">
+                  <span className="text-sm text-gray-400 ml-2">
                     (4.9) • 2,847 reviews
-                  </span> */}
-                </div>
+                  </span>
+                </div> */}
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-300 mb-4">
                 {course.title}
@@ -297,27 +303,51 @@ console.log(err)
             {/* About the Course */}
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-300">
-কোর্স সম্পর্কেঃ 
-                </CardTitle>
+                <CardTitle className="text-gray-300">কোর্স সম্পর্কেঃ</CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
                 <p className="text-gray-400 leading-relaxed mb-4">
-                 Creative Design Mastery (Batch-01) একটি লাইভ কোর্স, যেখানে আপনি একেবারে বেসিক থেকে শুরু করে প্রফেশনাল লেভেলের ডিজাইন শেখার সুযোগ পাবেন। এই কোর্সে শুধু সফটওয়্যার শেখানো হবে না, বরং আপনাকে শেখানো হবে কিভাবে ডিজাইনকে ক্যারিয়ার বা আয়ের উৎসে রূপান্তর করবেন।
+                  Creative Design Mastery (Batch-01) একটি লাইভ কোর্স, যেখানে
+                  আপনি একেবারে বেসিক থেকে শুরু করে প্রফেশনাল লেভেলের ডিজাইন
+                  শেখার সুযোগ পাবেন। এই কোর্সে শুধু সফটওয়্যার শেখানো হবে না,
+                  বরং আপনাকে শেখানো হবে কিভাবে ডিজাইনকে ক্যারিয়ার বা আয়ের উৎসে
+                  রূপান্তর করবেন।
                 </p>
 
-                <p className="text-gray-300 leading-relaxed mb-2">কোর্সে থাকছেঃ </p>
-              
-                  <ul className="text-gray-400 leading-relaxed mb-4">
-                    <li>✅ Photoshop Basics থেকে Advanced Design – লেয়ার, কালার থিওরি, টাইপোগ্রাফি, কম্পোজিশন</li>
-                    <li>✅ AI-পাওয়ারড ডিজাইন টেকনিকস – নতুন আইডিয়া, প্রোডাক্ট কনসেপ্ট ও ক্রিয়েটিভ এসেট জেনারেশন</li>
-                    <li>✅ Portfolio & Branding – নিজের ডিজাইন আইডেন্টিটি তৈরি ও পোর্টফোলিও সাজানো</li>
-                    <li>✅ Print & Digital Design – পোস্টার, ব্রোশিওর, সোশ্যাল মিডিয়া ব্যানার, ক্যাম্পেইন ডিজাইন</li>
-                    <li>
-✅ Freelancing & Career Growth Roadmap – ক্লায়েন্টের সাথে কানেক্ট হওয়া, LinkedIn এ গ্রোথ, আয়ের উৎস তৈরি ইত্যাদি। </li>
-                  </ul>
+                <p className="text-gray-300 leading-relaxed mb-2">
+                  কোর্সে থাকছেঃ{" "}
+                </p>
+
+                <ul className="text-gray-400 leading-relaxed mb-4">
+                  <li>
+                    ✅ Photoshop Basics থেকে Advanced Design – লেয়ার, কালার
+                    থিওরি, টাইপোগ্রাফি, কম্পোজিশন
+                  </li>
+                  <li>
+                    ✅ AI-পাওয়ারড ডিজাইন টেকনিকস – নতুন আইডিয়া, প্রোডাক্ট
+                    কনসেপ্ট ও ক্রিয়েটিভ এসেট জেনারেশন
+                  </li>
+                  <li>
+                    ✅ Portfolio & Branding – নিজের ডিজাইন আইডেন্টিটি তৈরি ও
+                    পোর্টফোলিও সাজানো
+                  </li>
+                  <li>
+                    ✅ Print & Digital Design – পোস্টার, ব্রোশিওর, সোশ্যাল
+                    মিডিয়া ব্যানার, ক্যাম্পেইন ডিজাইন
+                  </li>
+                  <li>
+                    ✅ Freelancing & Career Growth Roadmap – ক্লায়েন্টের সাথে
+                    কানেক্ট হওয়া, LinkedIn এ গ্রোথ, আয়ের উৎস তৈরি ইত্যাদি।{" "}
+                  </li>
+                </ul>
                 <p className="text-gray-400 leading-relaxed">
-                ২০টি ক্লাসে আপনি পাবেন ২৫টির বেশি হ্যান্ডসঅন প্রজেক্ট এবং ২০টির বেশি অ্যাসাইনমেন্ট, যা আপনাকে বাস্তব অভিজ্ঞতা দেবে। কোর্স শেষে আপনার হাতে থাকবে ফাইনাল ব্র্যান্ড কিট ও পূর্ণাঙ্গ পোর্টফোলিও, যা দিয়ে আপনি সহজেই ফ্রিল্যান্সিং শুরু করতে পারবেন অথবা ডিজাইন ইন্ডাস্ট্রিতে প্রবেশ করতে পারবেন।আর পুরো কোর্সটা ডিজাইন করা হয়েছে প্রজেক্ট বেইজড লার্নিং এর ধাঁচে, যাতে করে আপনি প্রজেক্ট করতে করতে শিখতে পারেন।
+                  ২০টি ক্লাসে আপনি পাবেন ২৫টির বেশি হ্যান্ডসঅন প্রজেক্ট এবং
+                  ২০টির বেশি অ্যাসাইনমেন্ট, যা আপনাকে বাস্তব অভিজ্ঞতা দেবে।
+                  কোর্স শেষে আপনার হাতে থাকবে ফাইনাল ব্র্যান্ড কিট ও পূর্ণাঙ্গ
+                  পোর্টফোলিও, যা দিয়ে আপনি সহজেই ফ্রিল্যান্সিং শুরু করতে পারবেন
+                  অথবা ডিজাইন ইন্ডাস্ট্রিতে প্রবেশ করতে পারবেন।আর পুরো কোর্সটা
+                  ডিজাইন করা হয়েছে প্রজেক্ট বেইজড লার্নিং এর ধাঁচে, যাতে করে
+                  আপনি প্রজেক্ট করতে করতে শিখতে পারেন।
                 </p>
               </CardContent>
             </Card>
@@ -325,23 +355,24 @@ console.log(err)
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
-                  What You&apos;ll Get
+                  কোর্স থেকে আপনি কি কি পাবেনঃ
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {course?.courseFeatures?.map((feature: any, index: number) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-400">{feature.value}</span>
-                    </div>
-                  ))}
+                  {course?.courseFeatures?.map(
+                    (feature: any, index: number) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-400">{feature.value}</span>
+                      </div>
+                    )
+                  )}
                 </div>
               </CardContent>
             </Card>
-
             {/* What You'll Learn */}
-            {/* <Card className="bg-transparent border-[1px] border-gray-800">
+            <Card className="bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
                   What You&apos;ll Learn
@@ -351,12 +382,15 @@ console.log(err)
                 <div className="bg-slate-800/50 border-l-4 border-accent p-6 rounded-r-lg">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
-                      "Build responsive web applications from scratch",
-                      "Master modern JavaScript frameworks and libraries",
-                      "Implement secure authentication and authorization",
-                      "Deploy applications to production environments",
-                      "Work with databases and APIs effectively",
-                      "Follow industry best practices and coding standards",
+                      "Photoshop Basics থেকে Advanced",
+                      "Composition, Color & Typography",
+                      "AI-পাওয়ারড ডিজাইন",
+                      "Product Manipulation",
+                      "Poster & Banner Design",
+                      "Print Design Skills",
+                      "Portfolio Development",
+                      "Branding & Campaign Design",
+                      "Networking & Career Growth",
                     ].map((item, index) => (
                       <div key={index} className="flex items-start space-x-3">
                         <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -368,7 +402,7 @@ console.log(err)
                   </div>
                 </div>
               </CardContent>
-            </Card> */}
+            </Card>
 
             {/* Who This Course Is For */}
             <Card className=" bg-transparent border-[1px] border-gray-800">
@@ -380,12 +414,14 @@ console.log(err)
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
-                    "Complete beginners to programming",
-                    "Computer science students",
-                    "Career changers into tech",
-                    "Freelancers wanting to upskill",
-                    "Small business owners",
-                    "Anyone passionate about technology",
+                    "যারা একেবারে শুরু থেকে ডিজাইন শিখতে চান",
+                    "যারা গ্রাফিক্স ডিজাইন শিখতে চান",
+                    "যারা AI টুল ব্যবহার করে ক্রিয়েটিভ ডিজাইন বানাতে আগ্রহী",
+                    "যারা ফ্রিল্যান্সিং শুরু করতে চান",
+                    "যারা নিজেদের জন্য প্রফেশনাল ডিজাইন পোর্টফোলিও বানাতে চান",
+                    "যারা সোশ্যাল মিডিয়া পোস্টার, ব্যানার, থাম্বনেইল ডিজাইন শিখতে চান",
+                    "যারা প্রিন্ট ডিজাইন (ফ্লায়ার, ব্রোশিওর, পোস্টার) শিখতে চান",
+                    "যারা ক্যারিয়ার হিসেবে ডিজাইন ফিল্ডে প্রবেশ করতে চান",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -395,60 +431,59 @@ console.log(err)
                 </div>
               </CardContent>
             </Card>
+            {/*rd> */}
 
             {/* Instructor */}
             <Card className=" bg-transparent border-0">
               {/* <SectionTitle title="Instructor" subtitle=" " centered /> */}
-   {course?.instructors?.map((instructor: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-3 bg-slate-800/50  mb-4 p-4 shadow-lg transition-shadow duration-300 border-[1px] border-gray-800 rounded-lg"
+              {course?.instructors?.map((instructor: any, index: number) => (
+                <div
+                  key={index}
+                  className="flex items-start space-x-3 bg-slate-800/50  mb-4 p-4 shadow-lg transition-shadow duration-300 border-[1px] border-gray-800 rounded-lg"
+                >
+                  {/* Profile Image */}
+                  <div>
+                    <Image
+                      src={instructor?.imageUrl}
+                      alt={instructor.name}
+                      width={80}
+                      height={80}
+                      className="rounded-xl w-32 h-32"
+                    />
+                  </div>
+
+                  <div className="pr-4 flex-1">
+                    {/* Role Badge */}
+                    <Badge
+                      variant={
+                        instructor.role === "LEAD INSTRUCTOR"
+                          ? "default"
+                          : "secondary"
+                      }
+                      className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
+                        instructor.role === "LEAD INSTRUCTOR"
+                          ? "bg-purple-100 text-purple-700 border-purple-300"
+                          : "bg-green-100 text-green-700 border-green-300"
+                      }`}
                     >
-                      {/* Profile Image */}
-                      <div>
-                        <Image
-                          src={instructor?.imageUrl}
-                          alt={instructor.name}
-                          width={80}
-                          height={80}
-                          className="rounded-xl w-32 h-32"
-                        />
-                      </div>
+                      {instructor.role}
+                    </Badge>
 
-                      <div className="pr-4 flex-1">
-                        {/* Role Badge */}
-                        <Badge
-                          variant={
-                            instructor.role === "LEAD INSTRUCTOR"
-                              ? "default"
-                              : "secondary"
-                          }
-                          className={`mb-3 px-3 py-1 text-xs font-semibold rounded-full border-2 ${
-                            instructor.role === "LEAD INSTRUCTOR"
-                              ? "bg-purple-100 text-purple-700 border-purple-300"
-                              : "bg-green-100 text-green-700 border-green-300"
-                          }`}
-                        >
-                          {instructor.role}
-                        </Badge>
+                    {/* Name */}
+                    <h3 className="text-xl font-bold text-gray-300 mb-2 leading-tight">
+                      {instructor.name}
+                    </h3>
 
-                        {/* Name */}
-                        <h3 className="text-xl font-bold text-gray-300 mb-2 leading-tight">
-                          {instructor.name}
-                        </h3>
-
-                        {/* Bio */}
-                        <p className="text-sm  text-gray-400">
-                          {instructor.bio}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-              <Link href="/course/${course.slug}">
+                    {/* Bio */}
+                    <p className="text-sm  text-gray-400">{instructor.bio}</p>
+                  </div>
+                </div>
+              ))}
+              {/* <Link href="/course/${course.slug}">
                 <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-[1px] border-gray-800 rounded-lg ">
-               
+               fghg
                 </CardContent>
-              </Link>
+              </Link> */}
             </Card>
 
             {/* Course Content */}
@@ -469,15 +504,18 @@ console.log(err)
                         Module {index + 1}: {module.title}
                       </h4>
                       <ul className="space-y-2">
-                        {module?.lessons?.map((lesson: string, lessonIndex: number) => (
-                          <li
-                            key={lessonIndex}
-                            className="flex items-center space-x-2 text-sm text-gray-400"
-                          >
-                            <Play className="w-3 h-3 text-accent flex-shrink-0" />
-                            <span>{lesson}</span>
-                          </li>
-                        ))}
+                        {module?.lessons?.map(
+                          (lesson: string, lessonIndex: number) => (
+                            <li
+                              key={lessonIndex}
+                              className="flex items-center space-x-2 text-sm text-gray-400"
+                            >
+                              {/* <Play className="w-3 h-3 text-accent flex-shrink-0" /> */}
+                              <Lock className="w-3 h-3 text-accent flex-shrink-0" />
+                              <span>{lesson}</span>
+                            </li>
+                          )
+                        )}
                       </ul>
                     </div>
                   ))}
@@ -531,15 +569,14 @@ console.log(err)
                         <div className="flex items-start space-x-3">
                           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
                             <FolderOpen className="w-4 h-4 text-white" />
-                            
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-gray-300 mb-2">
                               {project.name}
                             </h4>
                             <p className="text-sm text-gray-400 mb-3">
-                              Build a complete {project.name?.toLowerCase()} with
-                              modern technologies and best practices.
+                              Build a complete {project.name?.toLowerCase()}{" "}
+                              with modern technologies and best practices.
                             </p>
                             <div className="flex items-center space-x-2">
                               <Badge variant="outline" className="text-xs">

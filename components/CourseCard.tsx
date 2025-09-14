@@ -105,9 +105,9 @@ export default function CourseCard({ course, className = '' }: CourseCardProps) 
         </Button>
         </Link>
 
-        <Link href={`/course/${course._id}`} className="w-full">
-  {/* <Button className="w-full">View Details</Button> */}
-</Link>
+        {/* <Link href={`/course/${course._id}`} className="w-full">
+  <Button className="w-full">View Details</Button>
+</Link> */}
       </CardFooter>
     </Card>
   );
