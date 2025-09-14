@@ -55,7 +55,6 @@ export default function CourseDetailsContent({
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
   // const [showVideo, setShowVideo] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
     axios
