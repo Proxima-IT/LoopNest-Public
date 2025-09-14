@@ -37,12 +37,11 @@ export default function LoginPage() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setIsLoading(true);
     const payload = {
       auth_input: data?.email,
       password: data?.password,
     };
-
+    
     try {
       // Send login request to backend
       const res = await axios.post(
@@ -50,25 +49,25 @@ export default function LoginPage() {
         payload,
         { withCredentials: true }
       );
-
+      
       if (res.data.success) {
         console.log(res.data);
-        setData(res.data);
+        setIsLoading(true);
+        setData(res?.data?.data?.student);
         toast.success("user successfully logged in", {
           position: "top-center",
           autoClose: 3000,
           theme: "dark",
         });
-       setRole( res?.data?.data?.student?.role)
-        signin(
-          res?.data?.data?.student?.fullName,
-          res?.data?.data?.student?.email,
-          res?.data?.data?.student?.password,
-          res?.data?.data?.student?.role
-        );
-        console.log(res?.data.data.student.email);
-        router.push("/");
-      
+     signin(
+  res?.data?.data?.student?.fullName,
+  res?.data?.data?.student?.email,
+  res?.data?.data?.student?.password,
+  res?.data?.data?.student?.role
+).then(() => {
+  window.location.href = '/';
+});
+
         // if (res?.data.data.student.role === "admin") {
         //   router.push(process.env.NEXT_ADMIN_DASHBOARD ?? "/");
         //   return;

@@ -18,7 +18,7 @@ export default function Navbar({ data, role }: any) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [position, setPosition] = useState<string>("bottom");
   const router = useRouter();
-  // console.log(currentUser);
+  console.log(currentUser);
 
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
@@ -96,7 +96,7 @@ export default function Navbar({ data, role }: any) {
             </Link>
             {userLoggedIn && (
               <>
-                {role === "admin" ? (
+                {currentUser?.role === "admin" ? (
                   <Link
                     href="process.env.NEXT_ADMIN_DASHBOARD"
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
@@ -207,7 +207,7 @@ export default function Navbar({ data, role }: any) {
               </Link>
               {userLoggedIn && (
                 <>
-                  {role === "admin" ? (
+                  {currentUser?.role === "admin" ? (
                     <Link
                       href="process.env.NEXT_ADMIN_DASHBOARD"
                       className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
