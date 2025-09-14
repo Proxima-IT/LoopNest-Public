@@ -1,68 +1,77 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { ArrowLeft, CreditCard, Smartphone, Building2, Shield, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Separator } from '@/components/ui/separator';
-import Navbar from '@/components/Navbar';
-import { courses } from '@/utils/data';
-import { isLoggedIn } from '@/utils/auth';
-import axios from 'axios';
-import { useParams } from 'next/navigation';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import {
+  ArrowLeft,
+  CreditCard,
+  Smartphone,
+  Building2,
+  Shield,
+  Check,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Separator } from "@/components/ui/separator";
+import Navbar from "@/components/Navbar";
+import { courses } from "@/utils/data";
+import { isLoggedIn } from "@/utils/auth";
+import axios from "axios";
+import { useParams } from "next/navigation";
 
 export default function PaymentPage() {
   const [selectedCourse, setSelectedCourse] = useState(courses[0]); // Mock selected course
-  const [paymentMethod, setPaymentMethod] = useState('mobile');
-  const [mobileProvider, setMobileProvider] = useState('bkash');
-  const [couponCode, setCouponCode] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("mobile");
+  const [mobileProvider, setMobileProvider] = useState("bkash");
+  const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Form data states
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [transactionId, setTransactionId] = useState('');
-  const [accountName, setAccountName] = useState('');
-  const [accountNumber, setAccountNumber] = useState('');
-  const [bankName, setBankName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [transactionId, setTransactionId] = useState("");
+  const [accountName, setAccountName] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [bankName, setBankName] = useState("");
   const router = useRouter();
   const params = useParams();
   useEffect(() => {
     if (!isLoggedIn()) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [router]);
 
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}course/${params.id}`);
-        console.log('Course data:', response.data);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASEURL}course/${params.id}`
+        );
+        console.log("Course data:", response.data);
         if (response.data.success && response.data.data) {
           setSelectedCourse(response.data.data);
         } else {
-          console.error('Failed to fetch course:', response.data.message);
+          console.error("Failed to fetch course:", response.data.message);
         }
       } catch (error) {
-        console.error('Error fetching course:', error);
+        console.error("Error fetching course:", error);
       }
     };
-    
+
     if (params.id) {
       fetchCourse();
     }
-  }, [params.id])
+  }, [params.id]);
 
   const subtotal = selectedCourse?.price || 0;
   const finalAmount = subtotal - discount;
 
   const applyCoupon = () => {
-    if (couponCode.toLowerCase() === 'welcome10') {
+    if (couponCode.toLowerCase() === "welcome10") {
       setDiscount(subtotal * 0.1);
     } else {
       setDiscount(0);
@@ -71,51 +80,51 @@ export default function PaymentPage() {
 
   const handlePaymentMethodChange = (value: string) => {
     setPaymentMethod(value);
-    if (value !== 'mobile') {
-      setMobileProvider('');
+    if (value !== "mobile") {
+      setMobileProvider("");
     }
   };
 
   const handlePayment = async () => {
-    console.log('Payment method:', paymentMethod);
-    console.log('Course ID:', params.id);
-    console.log('Final amount:', finalAmount);
-    
+    console.log("Payment method:", paymentMethod);
+    console.log("Course ID:", params.id);
+    console.log("Final amount:", finalAmount);
+
     // Validate required fields based on payment method
-    if (paymentMethod === 'mobile') {
+    if (paymentMethod === "mobile") {
       if (!mobileProvider) {
-        alert('Please select a mobile banking provider');
+        alert("Please select a mobile banking provider");
         return;
       }
       if (!mobileNumber.trim()) {
-        alert('Please enter your mobile number');
+        alert("Please enter your mobile number");
         return;
       }
       if (!transactionId.trim()) {
-        alert('Please enter your transaction ID');
+        alert("Please enter your transaction ID");
         return;
       }
-    } else if (paymentMethod === 'bank') {
+    } else if (paymentMethod === "bank") {
       if (!accountName.trim()) {
-        alert('Please enter your account name');
+        alert("Please enter your account name");
         return;
       }
       if (!accountNumber.trim()) {
-        alert('Please enter your account number');
+        alert("Please enter your account number");
         return;
       }
       if (!bankName.trim()) {
-        alert('Please enter your bank name');
+        alert("Please enter your bank name");
         return;
       }
     }
 
     setIsLoading(true);
-    
+
     try {
       let requestBody;
-      
-      if (paymentMethod === 'mobile') {
+
+      if (paymentMethod === "mobile") {
         // Mobile banking payment
         requestBody = {
           courseId: params.id,
@@ -123,9 +132,9 @@ export default function PaymentPage() {
           paymentMethod: mobileProvider,
           price: finalAmount,
           transaction_id: transactionId,
-          send_number: mobileNumber
+          send_number: mobileNumber,
         };
-      } else if (paymentMethod === 'bank') {
+      } else if (paymentMethod === "bank") {
         // Bank transfer payment
         requestBody = {
           courseId: params.id,
@@ -134,7 +143,7 @@ export default function PaymentPage() {
           price: finalAmount,
           account_name: accountName,
           bank_name: bankName,
-          account_number: accountNumber
+          account_number: accountNumber,
         };
       } else {
         // Card payment (if needed in future)
@@ -142,28 +151,32 @@ export default function PaymentPage() {
           courseId: params.id,
           paymentType: "card",
           paymentMethod: "card",
-          price: finalAmount
+          price: finalAmount,
         };
       }
 
-      console.log('Sending payment request:', requestBody);
-      
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASEURL}payment`, requestBody, {
-        withCredentials: true, // This sends cookies
-        headers: {
-          'Content-Type': 'application/json',
+      console.log("Sending payment request:", requestBody);
+
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASEURL}payment`,
+        requestBody,
+        {
+          withCredentials: true, // This sends cookies
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
-      
+      );
+
       if (response.data.success) {
-        alert('Payment successful! You are now enrolled in the course.');
-        router.push('/student-dashboard');
+        alert("Payment successful! You are now enrolled in the course.");
+        router.push("/student-dashboard");
       } else {
-        alert('Payment failed: ' + (response.data.message || 'Unknown error'));
+        alert("Payment failed: " + (response.data.message || "Unknown error"));
       }
     } catch (error) {
-      console.error('Payment error:', error);
-      alert('Payment failed. Please try again.');
+      console.error("Payment error:", error);
+      alert("Payment failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -190,7 +203,7 @@ export default function PaymentPage() {
   return (
     <div className="min-h-screen bg-[#010019e7]">
       <Navbar />
-      
+
       <div className="pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -205,8 +218,12 @@ export default function PaymentPage() {
               Back
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-white">Complete Your Purchase</h1>
-              <p className="text-gray-600">Secure checkout powered by industry-standard encryption</p>
+              <h1 className="text-3xl font-bold text-white">
+                Complete Your Purchase
+              </h1>
+              <p className="text-gray-600">
+                Secure checkout powered by industry-standard encryption
+              </p>
             </div>
           </div>
 
@@ -216,7 +233,7 @@ export default function PaymentPage() {
               {/* Course Summary */}
               <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                 <CardHeader>
-                  <CardTitle className='text-white'>Course Summary</CardTitle>
+                  <CardTitle className="text-white">Course Summary</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-start space-x-4">
@@ -228,23 +245,32 @@ export default function PaymentPage() {
                       className="rounded-lg object-cover"
                     /> */}
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-200">{selectedCourse?.title || 'Loading...'}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{selectedCourse?.batchName || ''}</p>
+                      <h3 className="font-semibold text-gray-200">
+                        {selectedCourse?.title || "Loading..."}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-2">
+                        {selectedCourse?.batchName || ""}
+                      </p>
                       <div className="flex items-center space-x-4 text-sm text-gray-500">
                         <span>{selectedCourse?.moduleCount || 0} modules</span>
-                        <span>{selectedCourse?.projectCount || 0} projects</span>
-                        <span>{selectedCourse?.assignmentCount || 0} assignments</span>
+                        <span>
+                          {selectedCourse?.projectCount || 0} projects
+                        </span>
+                        <span>
+                          {selectedCourse?.assignmentCount || 0} assignments
+                        </span>
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-accent">
                         ৳{selectedCourse?.price || 0}
                       </div>
-                      {selectedCourse?.originalPrice && selectedCourse.originalPrice > 0 && (
-                        <div className="text-sm text-gray-400 line-through">
-                          ৳{selectedCourse.originalPrice}
-                        </div>
-                      )}
+                      {selectedCourse?.originalPrice &&
+                        selectedCourse.originalPrice > 0 && (
+                          <div className="text-sm text-gray-400 line-through">
+                            ৳{selectedCourse.originalPrice}
+                          </div>
+                        )}
                     </div>
                   </div>
                 </CardContent>
@@ -256,7 +282,10 @@ export default function PaymentPage() {
                   <CardTitle>Payment Method</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <RadioGroup value={paymentMethod} onValueChange={handlePaymentMethodChange}>
+                  <RadioGroup
+                    value={paymentMethod}
+                    onValueChange={handlePaymentMethodChange}
+                  >
                     <div className="space-y-4">
                       {/* <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50">
                         <RadioGroupItem value="card" id="card" />
@@ -277,21 +306,30 @@ export default function PaymentPage() {
                       <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50">
                         <RadioGroupItem value="mobile" id="mobile" />
                         <Smartphone className="w-5 h-5 text-gray-400" />
-                        <Label htmlFor="mobile" className="flex-1 cursor-pointer">
+                        <Label
+                          htmlFor="mobile"
+                          className="flex-1 cursor-pointer"
+                        >
                           Mobile Banking
                         </Label>
                       </div>
 
                       {/* Mobile Banking Providers - Only show when mobile is selected */}
-                      {paymentMethod === 'mobile' && (
+                      {paymentMethod === "mobile" && (
                         <div className="ml-8 space-y-3 border-l-2 border-gray-600 pl-4">
-                          <RadioGroup value={mobileProvider} onValueChange={setMobileProvider}>
+                          <RadioGroup
+                            value={mobileProvider}
+                            onValueChange={setMobileProvider}
+                          >
                             <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                               <RadioGroupItem value="bkash" id="bkash" />
                               <div className="w-6 h-6 bg-pink-600 rounded text-white text-xs flex items-center justify-center font-bold">
                                 bK
                               </div>
-                              <Label htmlFor="bkash" className="flex-1 cursor-pointer">
+                              <Label
+                                htmlFor="bkash"
+                                className="flex-1 cursor-pointer"
+                              >
                                 bKash
                               </Label>
                             </div>
@@ -301,7 +339,10 @@ export default function PaymentPage() {
                               <div className="w-6 h-6 bg-green-600 rounded text-white text-xs flex items-center justify-center font-bold">
                                 NG
                               </div>
-                              <Label htmlFor="nagad" className="flex-1 cursor-pointer">
+                              <Label
+                                htmlFor="nagad"
+                                className="flex-1 cursor-pointer"
+                              >
                                 Nagad
                               </Label>
                             </div>
@@ -311,7 +352,10 @@ export default function PaymentPage() {
                               <div className="w-6 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">
                                 RK
                               </div>
-                              <Label htmlFor="rocket" className="flex-1 cursor-pointer">
+                              <Label
+                                htmlFor="rocket"
+                                className="flex-1 cursor-pointer"
+                              >
                                 Rocket
                               </Label>
                             </div>
@@ -332,7 +376,7 @@ export default function PaymentPage() {
               </Card>
 
               {/* Payment Details Form */}
-              {paymentMethod === 'card' && (
+              {paymentMethod === "card" && (
                 <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>Card Details</CardTitle>
@@ -340,9 +384,12 @@ export default function PaymentPage() {
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="cardNumber">Card Number</Label>
-                      <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
+                      <Input
+                        id="cardNumber"
+                        placeholder="1234 5678 9012 3456"
+                      />
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="expiry">Expiry Date</Label>
@@ -353,7 +400,7 @@ export default function PaymentPage() {
                         <Input id="cvv" placeholder="123" />
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="cardName">Cardholder Name</Label>
                       <Input id="cardName" placeholder="John Doe" />
@@ -362,40 +409,54 @@ export default function PaymentPage() {
                 </Card>
               )}
 
-              {paymentMethod === 'mobile' && mobileProvider && (
+              {paymentMethod === "mobile" && mobileProvider && (
                 <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
-                    <CardTitle>Mobile Banking - {mobileProvider.charAt(0).toUpperCase() + mobileProvider.slice(1)}</CardTitle>
+                    <CardTitle>
+                      Mobile Banking -{" "}
+                      {mobileProvider.charAt(0).toUpperCase() +
+                        mobileProvider.slice(1)}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="mobileNumber">Mobile Number</Label>
-                      <Input 
-                        id="mobileNumber" 
-                        placeholder="+880 1234 567890" 
+                      <Input
+                        id="mobileNumber"
+                        placeholder="+880 1234 567890"
                         value={mobileNumber}
                         onChange={(e) => setMobileNumber(e.target.value)}
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="transactionId">Transaction ID</Label>
-                      <Input 
-                        id="transactionId" 
-                        placeholder="TraxID123" 
+                      <Input
+                        id="transactionId"
+                        placeholder="TraxID123"
                         value={transactionId}
                         onChange={(e) => setTransactionId(e.target.value)}
                       />
                     </div>
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                      <p className="text-sm text-green-800">
+                          <p>
+                          <strong>আমাদের বিকাশ/নগদ/রকেট নম্বর &quot;01904814714&quot;, এই নম্বরে সেন্ডমানী করুন এবং আপনার পেমেন্ট ইনফরমেশন দিয়ে পেমেন্ট সম্পূর্ণ করুন।
+wm</strong>
+                        </p>
+                      </p>
+                    </div>
+                    <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <p className="text-sm text-blue-800">
-                        You will receive a payment request on your {mobileProvider} app after clicking &quot;Confirm Payment&quot;.
+                        You will receive a payment request on your{" "}
+                        {mobileProvider} app after clicking &quot;Confirm
+                        Payment&quot;.
                       </p>
                     </div>
                   </CardContent>
                 </Card>
               )}
 
-              {paymentMethod === 'bank' && (
+              {paymentMethod === "bank" && (
                 <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
                     <CardTitle>Bank Transfer</CardTitle>
@@ -404,38 +465,55 @@ export default function PaymentPage() {
                     <div className="p-4 bg-gray-50 border rounded-lg">
                       <h4 className="font-semibold mb-2">Bank Details:</h4>
                       <div className="text-sm text-gray-700 space-y-1">
-                        <p><strong>Account Name:</strong> Loop Nest Limited</p>
-                        <p><strong>Bank:</strong> Dutch-Bangla Bank</p>
-                        <p><strong>Account Number:</strong> 123-456-789012</p>
-                        <p><strong>Branch:</strong> Dhanmondi Branch</p>
-                        <p><strong>Amount:</strong> ৳{finalAmount.toLocaleString()}</p>
+                        <p>
+                          <strong>Bank:</strong> Islami Bank Bangladesh PLC
+                        </p>
+                        <p>
+                          <strong>Account Name:</strong> TAHSIN AHMAD
+                        </p>
+                        <p>
+                          <strong>Account No:</strong> 20507146700016100
+                        </p>
+                        <p>
+                          <strong>Branch:</strong> Monipuri Para Sub-Branch,
+                          Farmgate
+                        </p>
+                        <p>
+                          <strong>Routing No:</strong> 714
+                        </p>
+                        <p>
+                          <strong>Swift Code:</strong> IBBLBDDH
+                        </p>
+                        <p>
+                          <strong>Amount:</strong> ৳
+                          {finalAmount.toLocaleString()}
+                        </p>
                       </div>
                     </div>
 
-
                     <div className="space-y-2">
                       <Label htmlFor="accountName">Account Name</Label>
-                      <Input 
-                        id="accountName" 
-                        placeholder="Your Account Name" 
+                      <Input
+                        id="accountName"
+                        placeholder="Your Account Name"
                         value={accountName}
                         onChange={(e) => setAccountName(e.target.value)}
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="accountNumber">Account Number</Label>
-                      <Input 
-                        id="accountNumber" 
-                        placeholder="Your Account Number" 
+                      <Input
+                        id="accountNumber"
+                        placeholder="Your Account Number"
                         value={accountNumber}
                         onChange={(e) => setAccountNumber(e.target.value)}
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="bankName">Bank Name</Label>
-                      <Input 
-                        id="bankName" 
-                        placeholder="Your Bank Name" 
+                      <Input
+                        id="bankName"
+                        placeholder="Your Bank Name"
                         value={bankName}
                         onChange={(e) => setBankName(e.target.value)}
                       />
@@ -465,12 +543,14 @@ export default function PaymentPage() {
                         </div>
                       )}
                     </div>
-                    
+
                     <Separator />
-                    
+
                     <div className="flex justify-between font-semibold text-lg">
                       <span>Total</span>
-                      <span className="text-accent">৳{finalAmount.toLocaleString()}</span>
+                      <span className="text-accent">
+                        ৳{finalAmount.toLocaleString()}
+                      </span>
                     </div>
 
                     {/* Coupon Code */}
@@ -483,11 +563,15 @@ export default function PaymentPage() {
                           value={couponCode}
                           onChange={(e) => setCouponCode(e.target.value)}
                         />
-                        <Button onClick={applyCoupon} variant="outline" size="sm">
+                        <Button
+                          onClick={applyCoupon}
+                          variant="outline"
+                          size="sm"
+                        >
                           Apply
                         </Button>
                       </div>
-                      <p className="text-xs text-gray-500">Try &quot;welcome10&quot; for 10% off</p>
+                      {/* <p className="text-xs text-gray-500">Try &quot;welcome10&quot; for 10% off</p> */}
                     </div>
 
                     <Button
@@ -495,32 +579,42 @@ export default function PaymentPage() {
                       className="w-full bg-accent hover:bg-accent-light text-white text-lg font-semibold py-3"
                       disabled={isLoading}
                     >
-                      {isLoading ? 'Processing...' : `Pay ৳${finalAmount.toLocaleString()}`}
+                      {isLoading
+                        ? "Processing..."
+                        : `Pay ৳${finalAmount.toLocaleString()}`}
                     </Button>
 
-                    <div className="text-center text-xs text-gray-500 space-y-1">
+                    {/* <div className="text-center text-xs text-gray-500 space-y-1">
                       <div className="flex items-center justify-center space-x-1">
                         <Shield className="w-3 h-3" />
                         <span>Secure 256-bit SSL encryption</span>
                       </div>
                       <p>30-day money-back guarantee</p>
-                    </div>
+                    </div> */}
                   </CardContent>
                 </Card>
 
                 {/* What You'll Get */}
                 <Card className="border-gray-800 bg-[#11102767] text-gray-400">
                   <CardHeader>
-                    <CardTitle>What You&apos;ll Get</CardTitle>
+                    <CardTitle>কোর্স থেকে আপনি কি কি পাবেনঃ </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      {selectedCourse.courseFeatures && selectedCourse.courseFeatures.map((feature: any, index: number) => (
-                        <div key={index} className="flex items-start space-x-2">
-                          <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-sm text-gray-700">{feature.value}</span>
-                        </div>
-                      ))}
+                      {selectedCourse.courseFeatures &&
+                        selectedCourse.courseFeatures.map(
+                          (feature: any, index: number) => (
+                            <div
+                              key={index}
+                              className="flex items-start space-x-2"
+                            >
+                              <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-gray-700">
+                                {feature.value}
+                              </span>
+                            </div>
+                          )
+                        )}
                     </div>
                   </CardContent>
                 </Card>
