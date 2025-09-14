@@ -256,7 +256,7 @@ export const testimonials: Testimonial[] = [
     id: '1',
     name: 'Sadia Ashra',
     role: 'N/A',
-    image: 'https://scontent.fcgp36-1.fna.fbcdn.net/v/t39.30808-1/459861866_828083206150976_3652064759255190968_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=101&ccb=1-7&_nc_sid=e99d92&_nc_ohc=KolphMLfeiIQ7kNvwEM6UZy&_nc_oc=AdnUdDL89LvxuQGXcrcO2kgQkAPFmKtjjpWcDmL3Xw7jKsf4v-aA1V0uuvxXGeUpwBM&_nc_zt=24&_nc_ht=scontent.fcgp36-1.fna&_nc_gid=VcFtNzxGe_MhDRnCXpvdvg&oh=00_AfaJ1xgr_98XnSrc65I_Y_OokGSerDQ44go5TX3unbaluQ&oe=68C99584',
+    image: 'https://i.ibb.co.com/fdP705B6/459861866-828083206150976-3652064759255190968-n.jpg',
     content: '১৪ দিনের ওয়েব ডিজাইন বুটক্যাম্পে জয়েন করাই হয়েছিল আগের ফ্রী পাইথন ক্লাসগুলো থেকে। পাইথনের মতোই ওয়েব ডিজাইনের ক্লাস গুলোও খুবই স্মুথ ছিল। Md Ha San ভাই HTML, CSS  এবং Ettisaf Rup ভাই JS ও গিটের ক্লাসগুলো খুব সহজভাবে আমাদের বুঝিয়ে দিয়েছেন। Tahsin Ahmad ভাইয়ের ভাইব কোডিং ক্লাস সহ সকল মেন্টরদের সার্বক্ষণিক মেন্টরশিপ অনেক হেল্পফুল ছিল ।ভবিষ্যতে এই সেক্টরে থাকলে এইগুলো নিঃসন্দেহে অনেক সাহায্য করবে। ধন্যবাদ।',
     rating: 5
   },
@@ -264,7 +264,7 @@ export const testimonials: Testimonial[] = [
     id: '2',
     name: 'Saker Ahmed Hridoy',
     role: 'Founder at NST BIKER',
-    image: 'https://scontent.fcgp36-1.fna.fbcdn.net/v/t39.30808-6/542753017_3194166497453382_6329904304193556114_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=DYfPA3wML5UQ7kNvwFwodJE&_nc_oc=AdkgPb6QXuOscq7fOlshD_gNdOnDWPU0xnFCD61_D8GdJ27-ioHIO2aLHfzosg5L8Lc&_nc_zt=23&_nc_ht=scontent.fcgp36-1.fna&_nc_gid=tNFnBZTkyEpjfbumDOwvjg&oh=00_AfZlCWWFsSn_3xnbFa83o-8s_OQp4SBzFZmu1ooxoKzOKQ&oe=68C98DD5',
+    image: 'https://i.ibb.co.com/M5541Rz1/546472717-3208857839317581-3952137094712850883-n.jpg',
     content: 'আমি Saker Ahmed Hridoy সম্প্রতি Loop Nest-এর ১৫ দিনের HTML5, CSS3 এবং JavaScript বুটক্যাম্পে অংশগ্রহণ করেছি, এবং অভিজ্ঞতাটি ছিল সত্যিই চমৎকার। HTML ও CSS এর ক্লাস নিয়েছেন হাসান ভাই, যিনি খুব সহজ ও বাস্তব উদাহরণ দিয়ে প্রতিটি টপিক সুন্দরভাবে বুঝিয়েছেন। তার শেখানোর স্টাইল ছিল গঠনমূলক এবং শিক্ষার্থীবান্ধব। JavaScript এর ক্লাস নিয়েছেন রুপ ভাই, যিনি মাত্র তিনটি লাইভ ক্লাসে খুব স্পষ্টভাবে এবং ধাপে ধাপে JavaScript এর বেসিক কনসেপ্টগুলো আমাদেরকে শিখিয়েছেন। নতুনদের জন্য এই ক্লাসগুলো বেশ উপকারী ছিল। তবে আমার মনে হয়েছে, যদি রেকর্ডেড ক্লাসের পরিবর্তে প্রতিটি ক্লাসই লাইভ হত, তাহলে ইন্টার‍অ্যাকশন আরও বাড়ত এবং শেখার অভিজ্ঞতাটিও আরও সমৃদ্ধ হতো। এছাড়া তাহসিন ভাইয়ের "বুলেট ভাইব কোডিং" এবং AI ব্যাখ্যা ছিল একেবারে ফ্রিহিটের মতো — সহজ, গতিময় ও আনন্দদায়ক। তার শেখানোর স্টাইল কোডিংকে যেন আরও জীবন্ত করে তুলেছিল। সব মিলিয়ে, এই বুটক্যাম্পটি ওয়েব ডেভেলপমেন্ট শেখার একটি দারুণ শুরু ছিল। Loop Nest এবং মেন্টরদের প্রতি কৃতজ্ঞতা জানাই এমন একটি শিক্ষামূলক অভিজ্ঞতা দেওয়ার জন্য। বিশেষভাবে প্রভাবিত হয়েছি রুপ ভাইয়ের ক্লাসগুলোতে। মিস করবো রুপ ভাই। আপনার নাম্বার সেভ করে রেখেছি যেকোন দিন যেকোন সময় প্রয়োজনে অপ্রয়োজনে আপনার কথা মনে হলেই নক দিবো ইন-শা-আল্লাহ।',
     rating: 5
   },
@@ -272,7 +272,7 @@ export const testimonials: Testimonial[] = [
     id: '3',
     name: 'Dip Paul  (দ্বীপ)',
     role: 'N/A',
-    image: 'https://scontent.fcgp40-1.fna.fbcdn.net/v/t39.30808-1/529311459_2979063882280188_6162635582155627403_n.jpg?stp=c0.135.960.960a_dst-jpg_s160x160_tt6&_nc_cat=111&ccb=1-7&_nc_sid=1d2534&_nc_ohc=wKxH8UJSbWoQ7kNvwFHU97Z&_nc_oc=Adl5ux299FKgK7XaJK5HLqoPFEClSRjOITc_3qq1Px-RDY5CKX27TR3bX0a0YailgsI&_nc_zt=24&_nc_ht=scontent.fcgp40-1.fna&_nc_gid=qvp4rMC_eBi-3vBLIRdUrA&oh=00_AfbUjimU2h7-jMMHoCRADz58SoSzoGuvv5EdnIuN-HvwFg&oe=68C98837',
+    image: 'https://i.ibb.co.com/P3JqGnG/Whats-App-Image-2025-09-13-at-12-11-28-PM.jpg',
     content: 'ওয়েব ডেভেলপমেন্টের ১৫ বেসিক কোর্স করেছিলাম। খুঁটিনাটিঅনেক কিছুই কভার করেছি এই ১৫ দিনের কোর্সে। তাহসিন ভাই, হাসান ভাই , রূপ ভাই এবং সর্বোপরি লুপনেস্টের জন্য শুভকামনা রইলো। Loop Nest এবং মেন্টরদের প্রতি কৃতজ্ঞতা জানাই',
     rating: 5
   },
@@ -280,7 +280,7 @@ export const testimonials: Testimonial[] = [
     id: '4',
     name: 'Sazzad Redefined ',
     role: 'N/A',
-       image: 'https://scontent.fcgp36-1.fna.fbcdn.net/v/t39.30808-6/544896049_122173675652465831_9068802048151450015_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zyHi1LZgyqcQ7kNvwGc-bhi&_nc_oc=AdmqUQCxoVZ1Ovt7GxHon26l-iAEILO6Cj94SfoscaqUnNl5lRJmNyKvVjmPZXC-M3M&_nc_zt=23&_nc_ht=scontent.fcgp36-1.fna&_nc_gid=KEqFIAibUIUNYAxDMalMUg&oh=00_AfZE6TgyjTuH7m-Z2IaHcWx7GaLOZzu6bR3snwZ25PPxiw&oe=68C9B1AC',
+       image: 'https://i.ibb.co.com/prj1zrBf/544896049-122173675652465831-9068802048151450015-n.jpg',
     content: "As a non-technical background though I was very sick during the course I tried my best to do & found very easy & explaining all the things of Our course. The HTML, CSS, JS part has been very interesting to me. Rest things are yet to cope up as can't concentrate fully due to illness (dengu patient).",
     rating: 5
   },

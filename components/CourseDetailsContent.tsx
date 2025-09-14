@@ -128,12 +128,12 @@ export default function CourseDetailsContent({
                                   height={500}
                                   className=" w-full object-cover rounded-lg"
                                 />
-                                <button
+                                {/* <button
                                   // onClick={() => setShowVideo(true)}
                                   className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
                                 >
                                   <Play className="w-16 h-16 text-white" />
-                                </button>
+                                </button> */}
                               </div>
                             </DialogTrigger>
 
