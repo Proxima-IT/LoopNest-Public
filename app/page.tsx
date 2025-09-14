@@ -34,7 +34,7 @@ export default function HomePage() {
     // course api call
      axios.get(`${process.env.NEXT_PUBLIC_BASEURL}course?page=1&limit=10`)
     .then((result) => {
-      console.log(result?.data?.data?.courses)
+      console.log(result?.data)
       setCourses(result?.data?.data?.courses || []);
     })
     .catch((err) => {

@@ -303,18 +303,21 @@ console.log(err)
               </CardHeader>
               <CardContent className="prose max-w-none">
                 <p className="text-gray-400 leading-relaxed mb-4">
-                  This comprehensive course is specifically designed for
-                  students and professionals in Bangladesh who want to master
-                  modern web development technologies. Our curriculum covers
-                  everything from the basics to advanced concepts, ensuring
-                  you&apos;re job-ready by the end of the program.
+                 Creative Design Mastery (Batch-01) একটি লাইভ কোর্স, যেখানে আপনি একেবারে বেসিক থেকে শুরু করে প্রফেশনাল লেভেলের ডিজাইন শেখার সুযোগ পাবেন। এই কোর্সে শুধু সফটওয়্যার শেখানো হবে না, বরং আপনাকে শেখানো হবে কিভাবে ডিজাইনকে ক্যারিয়ার বা আয়ের উৎসে রূপান্তর করবেন।
                 </p>
+
+                <p className="text-gray-300 leading-relaxed mb-2">কোর্সে থাকছেঃ </p>
+              
+                  <ul className="text-gray-400 leading-relaxed mb-4">
+                    <li>✅ Photoshop Basics থেকে Advanced Design – লেয়ার, কালার থিওরি, টাইপোগ্রাফি, কম্পোজিশন</li>
+                    <li>✅ AI-পাওয়ারড ডিজাইন টেকনিকস – নতুন আইডিয়া, প্রোডাক্ট কনসেপ্ট ও ক্রিয়েটিভ এসেট জেনারেশন</li>
+                    <li>✅ Portfolio & Branding – নিজের ডিজাইন আইডেন্টিটি তৈরি ও পোর্টফোলিও সাজানো</li>
+                    <li>✅ Print & Digital Design – পোস্টার, ব্রোশিওর, সোশ্যাল মিডিয়া ব্যানার, ক্যাম্পেইন ডিজাইন</li>
+                    <li>
+✅ Freelancing & Career Growth Roadmap – ক্লায়েন্টের সাথে কানেক্ট হওয়া, LinkedIn এ গ্রোথ, আয়ের উৎস তৈরি ইত্যাদি। </li>
+                  </ul>
                 <p className="text-gray-400 leading-relaxed">
-                  With hands-on projects, real-world case studies, and direct
-                  mentorship from industry experts, you&apos;ll gain practical
-                  experience that employers value. Our focus on the Bangladeshi
-                  tech market ensures you learn the most relevant skills for
-                  local opportunities.
+                ২০টি ক্লাসে আপনি পাবেন ২৫টির বেশি হ্যান্ডসঅন প্রজেক্ট এবং ২০টির বেশি অ্যাসাইনমেন্ট, যা আপনাকে বাস্তব অভিজ্ঞতা দেবে। কোর্স শেষে আপনার হাতে থাকবে ফাইনাল ব্র্যান্ড কিট ও পূর্ণাঙ্গ পোর্টফোলিও, যা দিয়ে আপনি সহজেই ফ্রিল্যান্সিং শুরু করতে পারবেন অথবা ডিজাইন ইন্ডাস্ট্রিতে প্রবেশ করতে পারবেন।আর পুরো কোর্সটা ডিজাইন করা হয়েছে প্রজেক্ট বেইজড লার্নিং এর ধাঁচে, যাতে করে আপনি প্রজেক্ট করতে করতে শিখতে পারেন।
                 </p>
               </CardContent>
             </Card>
@@ -485,7 +488,7 @@ console.log(err)
             {/* Assignments & Projects */}
             <div className="space-y-6">
               {/* Assignments */}
-              <Card className=" bg-transparent border-[1px] border-gray-800">
+              {/* <Card className=" bg-transparent border-[1px] border-gray-800">
                 <CardHeader>
                   <CardTitle className="flex items-center text-white">
                     <ClipboardList className="w-5 h-5 mr-2 text-accent" />
@@ -508,7 +511,7 @@ console.log(err)
                     )}
                   </ul>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               {/* Projects */}
               <Card className=" bg-transparent border-[1px] border-gray-800">
