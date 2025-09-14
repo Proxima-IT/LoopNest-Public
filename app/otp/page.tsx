@@ -166,9 +166,9 @@ export default function OTPPage() {
               </div>
 
               <div className="text-center">
-                <p className="text-xs text-gray-500">
+                {/* <p className="text-xs text-gray-500">
                   For testing purposes, use OTP: 123456
-                </p>
+                </p> */}
               </div>
             </CardContent>
           </Card>

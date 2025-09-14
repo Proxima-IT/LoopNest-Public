@@ -104,12 +104,13 @@ export default function Navbar({ data, role }: any) {
                     Dashboard
                   </Link>
                 ) : (
-                  <Link
-                    href="/student-dashboard"
-                    className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
-                  >
-                    Dashboard
-                  </Link>
+                  ""
+                  // <Link
+                  //   href="/student-dashboard"
+                  //   className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+                  // >
+                  //   Dashboard
+                  // </Link>
                 )}
               </>
             )}
@@ -215,12 +216,13 @@ export default function Navbar({ data, role }: any) {
                       Dashboard
                     </Link>
                   ) : (
-                    <Link
-                      href="/student-dashboard"
-                      className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
-                    >
-                      Dashboard
-                    </Link>
+                    ""
+                    // <Link
+                    //   href="/student-dashboard"
+                    //   className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+                    // >
+                    //   Dashboard
+                    // </Link>
                   )}
                 </>
               )}

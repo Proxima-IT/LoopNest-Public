@@ -22,6 +22,7 @@ import { courses } from "@/utils/data";
 import { isLoggedIn } from "@/utils/auth";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function PaymentPage() {
   const [selectedCourse, setSelectedCourse] = useState(courses[0]); // Mock selected course
@@ -169,14 +170,26 @@ export default function PaymentPage() {
       );
 
       if (response.data.success) {
-        alert("Payment successful! You are now enrolled in the course.");
+        toast.success(
+          "Payment successful! You are now enrolled in the course.",
+          {
+            position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+          }
+        );
+
         router.push("/student-dashboard");
       } else {
         alert("Payment failed: " + (response.data.message || "Unknown error"));
       }
     } catch (error) {
       console.error("Payment error:", error);
-      alert("Payment failed. Please try again.");
+      toast.error("Payment failed. Please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "dark",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -439,9 +452,12 @@ export default function PaymentPage() {
                     </div>
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <p className="text-sm text-green-800">
-                          <p>
-                          <strong>আমাদের বিকাশ/নগদ/রকেট নম্বর &quot;01904814714&quot;, এই নম্বরে সেন্ডমানী করুন এবং আপনার পেমেন্ট ইনফরমেশন দিয়ে পেমেন্ট সম্পূর্ণ করুন।
-wm</strong>
+                        <p>
+                          <strong>
+                            আমাদের বিকাশ/নগদ/রকেট নম্বর &quot;01904814714&quot;,
+                            এই নম্বরে সেন্ডমানী করুন এবং আপনার পেমেন্ট ইনফরমেশন
+                            দিয়ে পেমেন্ট সম্পূর্ণ করুন। wm
+                          </strong>
                         </p>
                       </p>
                     </div>
@@ -623,6 +639,7 @@ wm</strong>
           </div>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
