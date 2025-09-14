@@ -98,7 +98,7 @@ export default function Navbar({ data, role }: any) {
               <>
                 {currentUser?.role === "admin" ? (
                   <Link
-                    href="process.env.NEXT_ADMIN_DASHBOARD"
+                    href={`${process.env.NEXT_PUBLIC_ADMIN_DASHBOARD}`}
                     className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                   >
                     Dashboard
@@ -209,7 +209,7 @@ export default function Navbar({ data, role }: any) {
                 <>
                   {currentUser?.role === "admin" ? (
                     <Link
-                      href="process.env.NEXT_ADMIN_DASHBOARD"
+                      href={`${process.env.NEXT_PUBLIC_ADMIN_DASHBOARD}`}
                       className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
                     >
                       Dashboard
