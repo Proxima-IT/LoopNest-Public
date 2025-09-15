@@ -17,6 +17,8 @@ export default function Navbar({ data, role }: any) {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [position, setPosition] = useState<string>("bottom");
+  const [showDashBoard, setShowDashBoard] = useState<Boolean>(true);
+
   const router = useRouter();
   console.log(currentUser);
 
@@ -24,14 +26,15 @@ export default function Navbar({ data, role }: any) {
     setUserLoggedIn(isLoggedIn());
     setCurrentUser(getCurrentUser());
 
-    //  axios.get(`${process.env.NEXT_PUBLIC_BASEURL}payment/me?page=1&limit=10`,{withCredentials:true})
-    //          .then((result) => {
-    //           // console.log(result?.data?.student.status === 'accepted')
-    //           // setStudentData
-    //           console.log(result?.data?.data)
-    //          }).catch((err) => {
-    //           console.log(err)
-    //          });
+     axios.get(`${process.env.NEXT_PUBLIC_BASEURL}payment/me?page=1&limit=10`,{withCredentials:true})
+             .then((result) => {
+              // console.log(result?.data?.student.status === 'accepted')
+              // setStudentData
+              setShowDashBoard(result?.data?.data?.data[0].status)
+              console.log(result?.data?.data?.data[0].status)
+             }).catch((err) => {
+              console.log(err)
+             });
   }, []);
 
   
@@ -125,6 +128,16 @@ export default function Navbar({ data, role }: any) {
                 )}
               </>
             )}
+            
+            {currentUser?.role === "student" && showDashBoard && (
+  <Link
+    href="/student-dashboard"
+    className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+  >
+    Dashboard
+  </Link>
+)}
+
           </div>
 
           {/* Auth Buttons */}
@@ -237,7 +250,14 @@ export default function Navbar({ data, role }: any) {
                   )}
                 </>
               )}
-
+  {currentUser?.role === "student" && showDashBoard && (
+  <Link
+    href="/student-dashboard"
+    className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+  >
+    Dashboard
+  </Link>
+)}
               <Link
                 href="/contact"
                 className="block px-3 py-2 text-white hover:text-accent transition-colors duration-300"
