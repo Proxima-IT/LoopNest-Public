@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Menu, X, User as UserIcon, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { isLoggedIn, getCurrentUser, logout, User } from "@/utils/auth";
-import { Link as Navlink } from "react-scroll";
+// import { Link as Navlink } from "react-scroll";
 import Image from "next/image";
 import axios from "axios";
 import Marquee from "react-fast-marquee";
@@ -23,7 +23,18 @@ export default function Navbar({ data, role }: any) {
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
     setCurrentUser(getCurrentUser());
+
+    //  axios.get(`${process.env.NEXT_PUBLIC_BASEURL}payment/me?page=1&limit=10`,{withCredentials:true})
+    //          .then((result) => {
+    //           // console.log(result?.data?.student.status === 'accepted')
+    //           // setStudentData
+    //           console.log(result?.data?.data)
+    //          }).catch((err) => {
+    //           console.log(err)
+    //          });
   }, []);
+
+  
 
   const handleLogout = () => {
     console.log(process.env.NEXT_PUBLIC_BASEURL + "user/logout");
