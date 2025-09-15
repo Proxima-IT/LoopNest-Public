@@ -52,7 +52,6 @@ export default function Navbar({ data, role }: any) {
           autoClose: 3000,
           theme: "dark",
         });
-
         logout();
         setUserLoggedIn(false);
         setCurrentUser(null);
