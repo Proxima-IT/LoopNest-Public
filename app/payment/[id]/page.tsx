@@ -71,13 +71,21 @@ export default function PaymentPage() {
   const subtotal = selectedCourse?.price || 0;
   const finalAmount = subtotal - discount;
 
-  const applyCoupon = () => {
-    if (couponCode.toLowerCase() === "welcome10") {
-      setDiscount(subtotal * 0.1);
-    } else {
-      setDiscount(0);
-    }
-  };
+    const applyCoupon = () => {
+      // if (course && couponCode?.toLowerCase() === "welcome10") {
+      //   setDiscountedPrice(course?.price * 0.9);
+      // } else {
+      //   setDiscountedPrice(null);
+      // }
+      // console.log(couponCode,id)
+      // axios
+      //   .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{couponCode,courseId:id},{withCredentials:true})
+      //   .then((result) => {
+      //     console.log(result)
+      //   }).catch((err) => {
+      //     console.log(err)
+      //   });
+    };
 
   const handlePaymentMethodChange = (value: string) => {
     setPaymentMethod(value);

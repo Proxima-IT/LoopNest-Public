@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Menu, X, User as UserIcon, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { isLoggedIn, getCurrentUser, logout, User } from "@/utils/auth";
-import { Link as Navlink } from "react-scroll";
+// import { Link as Navlink } from "react-scroll";
 import Image from "next/image";
 import axios from "axios";
 import Marquee from "react-fast-marquee";
@@ -17,13 +17,27 @@ export default function Navbar({ data, role }: any) {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [position, setPosition] = useState<string>("bottom");
+  const [showDashBoard, setShowDashBoard] = useState<Boolean>(true);
+
   const router = useRouter();
   console.log(currentUser);
 
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
     setCurrentUser(getCurrentUser());
+
+     axios.get(`${process.env.NEXT_PUBLIC_BASEURL}payment/me?page=1&limit=10`,{withCredentials:true})
+             .then((result) => {
+              // console.log(result?.data?.student.status === 'accepted')
+              // setStudentData
+              setShowDashBoard(result?.data?.data?.data[0].status)
+              console.log(result?.data?.data?.data[0].status)
+             }).catch((err) => {
+              console.log(err)
+             });
   }, []);
+
+  
 
   const handleLogout = () => {
     console.log(process.env.NEXT_PUBLIC_BASEURL + "user/logout");
@@ -38,7 +52,6 @@ export default function Navbar({ data, role }: any) {
           autoClose: 3000,
           theme: "dark",
         });
-
         logout();
         setUserLoggedIn(false);
         setCurrentUser(null);
@@ -114,6 +127,16 @@ export default function Navbar({ data, role }: any) {
                 )}
               </>
             )}
+            
+            {currentUser?.role === "student" && showDashBoard && (
+  <Link
+    href="/student-dashboard"
+    className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+  >
+    Dashboard
+  </Link>
+)}
+
           </div>
 
           {/* Auth Buttons */}
@@ -226,7 +249,14 @@ export default function Navbar({ data, role }: any) {
                   )}
                 </>
               )}
-
+  {currentUser?.role === "student" && showDashBoard && (
+  <Link
+    href="/student-dashboard"
+    className="text-white hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+  >
+    Dashboard
+  </Link>
+)}
               <Link
                 href="/contact"
                 className="block px-3 py-2 text-white hover:text-accent transition-colors duration-300"

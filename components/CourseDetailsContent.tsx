@@ -51,7 +51,7 @@ export default function CourseDetailsContent({
 }: CourseDetailsContentProps) {
   const [course, setCourse] = useState<any>({});
   const router = useRouter();
-  const [couponCode, setCouponCode] = useState("");
+  const [cuponCode, setCuponCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
   // const [showVideo, setShowVideo] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -61,13 +61,14 @@ export default function CourseDetailsContent({
       .get(`${process.env.NEXT_PUBLIC_BASEURL}course/${id}`)
       .then((result) => {
         console.log(result?.data?.data);
+
         setCourse(result?.data?.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
-
+console.log(course)
   const handleEnrollNow = () => {
     if (userLoggedIn) {
       router.push(`/payment/${course?._id}`);
@@ -76,12 +77,22 @@ export default function CourseDetailsContent({
     }
   };
 
-  const applyCoupon = () => {
-    if (course && couponCode?.toLowerCase() === "welcome10") {
-      setDiscountedPrice(course?.price * 0.9);
-    } else {
-      setDiscountedPrice(null);
-    }
+  const applyCoupon = (e: any) => {
+    e.preventDefault()
+    // if (course && couponCode?.toLowerCase() === "welcome10") {
+    //   setDiscountedPrice(course?.price * 0.9);
+    // } else {
+    //   setDiscountedPrice(null);
+    // }
+    console.log(cuponCode,id)
+    axios
+      .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{cuponCode,courseId:id},{withCredentials:true})
+      .then((result) => {
+        console.log(result)
+      setDiscount(result?.data?.data?.discountAmount)
+      }).catch((err) => {
+        console.log(err)
+      });
   };
 
   return (
@@ -212,12 +223,12 @@ export default function CourseDetailsContent({
                     <div className="flex space-x-2">
                       <Input
                         placeholder="Enter coupon code"
-                        value={couponCode}
-                        onChange={(e) => setCouponCode(e.target.value)}
+                        value={cuponCode}
+                        onChange={(e) => setCuponCode(e.target.value)}
                         className="flex-1"
                       />
                       <Button
-                        disabled
+                        // disabled
                         onClick={applyCoupon}
                         variant="outline"
                         size="sm"
