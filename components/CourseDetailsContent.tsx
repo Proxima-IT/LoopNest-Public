@@ -79,6 +79,7 @@ console.log(course)
     }
   };
 
+  // coupon code
   const applyCoupon = (e: any) => {
     e.preventDefault()
     // if (course && couponCode?.toLowerCase() === "welcome10") {
@@ -106,6 +107,15 @@ console.log(course)
         });
       });
   };
+
+  // extarct video url
+  // function extractYouTubeID(url) {
+  //   // Regular expression to match most YouTube URL formats
+  //   const regExp =
+  //     /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+  //   const match = url.match(regExp);
+  //   return match ? match[1] : null;
+  // }
 
   return (
     <div className="pt-20 bg-[#010019e7]">
@@ -228,7 +238,7 @@ console.log(course)
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Coupon Input */}
-                  <div>
+                  {/* <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Have a coupon code?
                     </label>
@@ -249,10 +259,8 @@ console.log(course)
                         Apply
                       </Button>
                     </div>
-                    {/* <p className="text-xs text-gray-500 mt-1">
-                      Try &quot;welcome10&quot for 10% off
-                    </p> */}
-                  </div>
+                   
+                  </div> */}
 
                   <Button
                     onClick={handleEnrollNow}
