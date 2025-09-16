@@ -153,6 +153,7 @@ export default function PaymentPage() {
           paymentType: "mobile_banking",
           paymentMethod: mobileProvider,
           price: finalAmount,
+          cuponCode,
           transaction_id: transactionId,
           send_number: mobileNumber,
         };
@@ -162,6 +163,7 @@ export default function PaymentPage() {
           courseId: params.id,
           paymentType: "bank",
           paymentMethod: "bank",
+          cuponCode,
           price: finalAmount,
           account_name: accountName,
           bank_name: bankName,
@@ -172,6 +174,7 @@ export default function PaymentPage() {
         requestBody = {
           courseId: params.id,
           paymentType: "card",
+          cuponCode,
           paymentMethod: "card",
           price: finalAmount,
         };

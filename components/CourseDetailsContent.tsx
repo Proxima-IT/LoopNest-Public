@@ -56,6 +56,8 @@ export default function CourseDetailsContent({
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
   let code = cuponCode.toUpperCase()
   // const [showVideo, setShowVideo] = useState(false);
+  const videoId = extractYouTubeID(course.videoUrl);
+
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   useEffect(() => {
     setUserLoggedIn(isLoggedIn());
@@ -109,13 +111,16 @@ console.log(course)
   };
 
   // extarct video url
-  // function extractYouTubeID(url) {
-  //   // Regular expression to match most YouTube URL formats
-  //   const regExp =
-  //     /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
-  //   const match = url.match(regExp);
-  //   return match ? match[1] : null;
-  // }
+ function extractYouTubeID(url:any) {
+  if (!url) return null; // url undefined বা null হলে safe return
+
+  const regExp =
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+  const match = url.match(regExp);
+
+  return match ? match[1] : null;
+}
+
 
   return (
     <div className="pt-20 bg-[#010019e7]">
@@ -146,12 +151,12 @@ console.log(course)
               {/* Media Section */}
               <Card className="p-0 m-0 border-0">
                 <div className="relative w-full  mx-auto">
-                  <Carousel>
+                  {/* <Carousel>
                     <CarouselContent>
                       {Array.from({ length: 5 }).map((_, index) => (
                         <CarouselItem key={index}>
                           <Dialog>
-                            {/* dialog trigger */}
+                           
                             <DialogTrigger asChild>
                               <div className="relative aspect-video overflow-hidden w-full">
                                 <Image
@@ -161,16 +166,16 @@ console.log(course)
                                   height={500}
                                   className=" w-full object-cover rounded-lg"
                                 />
-                                {/* <button
-                                  // onClick={() => setShowVideo(true)}
+                                <button
+                                
                                   className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
                                 >
                                   <Play className="w-16 h-16 text-white" />
-                                </button> */}
+                                </button>
                               </div>
                             </DialogTrigger>
 
-                            {/* dialog content */}
+                           
                             <DialogContent>
                               <CardContent className="p-0">
                                 <div className="relative aspect-video overflow-hidden">
@@ -182,7 +187,7 @@ console.log(course)
                                     className=" w-full object-cover rounded-lg"
                                   />
                                   <button
-                                    // onClick={() => setShowVideo(true)}
+                                   
                                     className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all duration-300 rounded-lg"
                                   >
                                     <Play className="w-16 h-16 text-white" />
@@ -196,9 +201,92 @@ console.log(course)
                     </CarouselContent>
 
                     {/* ✅ Position arrows */}
-                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
+                    {/* <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
                     <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
-                  </Carousel>
+                  </Carousel> */} 
+
+                  <Carousel>
+  <CarouselContent>
+    {/* 🔹 প্রথম স্লাইড = ভিডিও */}
+    <CarouselItem>
+      <Dialog>
+        <DialogTrigger asChild>
+          <div className="relative aspect-video overflow-hidden w-full">
+            {/* Thumbnail */}
+            <Image
+              src={course?.imageUrl}
+              alt={course?.title}
+              width={600}
+              height={500}
+              className="w-full object-cover rounded-lg"
+            />
+            <button className="absolute inset-0 flex items-center justify-center 
+                               bg-black bg-opacity-40 hover:bg-opacity-60 
+                               transition-all duration-300 rounded-lg">
+              <Play className="w-16 h-16 text-white" />
+            </button>
+          </div>
+        </DialogTrigger>
+
+        <DialogContent>
+          <CardContent className="p-0">
+            <div className="relative aspect-video overflow-hidden w-full">
+            <iframe
+  className="w-full h-full rounded-lg"
+  src={
+    videoId
+      ? `https://www.youtube.com/embed/${videoId}?autoplay=1`
+      : `https://www.youtube.com/embed/o_ynw4cdMwI?autoplay=1` // fallback video
+  }
+  frameBorder="0"
+  allow="autoplay; encrypted-media"
+  allowFullScreen
+  title="Course Intro Video"
+/>
+            </div>
+          </CardContent>
+        </DialogContent>
+      </Dialog>
+    </CarouselItem>
+
+    {/* 🔹 দ্বিতীয় স্লাইড = ইমেজ */}
+    <CarouselItem>
+      <Dialog>
+        <DialogTrigger asChild>
+          <div className="relative aspect-video overflow-hidden w-full">
+            <Image
+              src={course?.imageUrl}
+              alt="Course Preview"
+              width={600}
+              height={500}
+              className="w-full object-cover rounded-lg"
+            />
+          </div>
+        </DialogTrigger>
+
+        <DialogContent>
+          <CardContent className="p-0">
+            <div className="relative aspect-video overflow-hidden w-full">
+              <Image
+                src={course?.imageUrl}
+                alt="Course Preview"
+                width={600}
+                height={500}
+                className="w-full object-cover rounded-lg"
+              />
+            </div>
+          </CardContent>
+        </DialogContent>
+      </Dialog>
+    </CarouselItem>
+  </CarouselContent>
+
+  <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow-md disabled:opacity-50 disabled:pointer-events-auto" />
+                 
+
+</Carousel>
+
                   {/* )} */}
                 </div>
               </Card>

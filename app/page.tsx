@@ -350,7 +350,7 @@ Creative Design Mastery
                     {post.excerpt}
                   </p>
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`${post.slug}`}
                     className="inline-flex items-center text-accent hover:text-accent-light font-medium transition-colors duration-300"
                   >
                     Read More
