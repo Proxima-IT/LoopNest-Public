@@ -41,6 +41,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface CourseDetailsContentProps {
   id: string;
@@ -53,6 +54,7 @@ export default function CourseDetailsContent({
   const router = useRouter();
   const [cuponCode, setCuponCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
+  let code = cuponCode.toUpperCase()
   // const [showVideo, setShowVideo] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   useEffect(() => {
@@ -86,12 +88,22 @@ console.log(course)
     // }
     console.log(cuponCode,id)
     axios
-      .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{cuponCode,courseId:id},{withCredentials:true})
+      .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{cuponCode:code,courseId:id},{withCredentials:true})
       .then((result) => {
         console.log(result)
-      setDiscount(result?.data?.data?.discountAmount)
+        toast.success("token successfully apply", {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+      setDiscountedPrice(result?.data?.data?.discountAmount)
       }).catch((err) => {
-        console.log(err)
+        console.log(err?.response?.data?.message)
+        toast.error(err?.response?.data?.message, {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
       });
   };
 
@@ -385,7 +397,8 @@ console.log(course)
             <Card className="bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
-                  What You&apos;ll Learn
+                  {/* What You&apos;ll Learn */}
+                  কোর্স থেকে আপনি কি কি শিখবেনঃ 
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -418,7 +431,7 @@ console.log(course)
             <Card className=" bg-transparent border-[1px] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-300">
-                  Who This Course Is For
+                  কোর্সটি কাদের জন্যেঃ 
                 </CardTitle>
               </CardHeader>
               <CardContent>

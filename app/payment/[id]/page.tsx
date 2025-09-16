@@ -28,7 +28,8 @@ export default function PaymentPage() {
   const [selectedCourse, setSelectedCourse] = useState(courses[0]); // Mock selected course
   const [paymentMethod, setPaymentMethod] = useState("mobile");
   const [mobileProvider, setMobileProvider] = useState("bkash");
-  const [couponCode, setCouponCode] = useState("");
+  const [cuponCode, setCuponCode] = useState("");
+  let code = cuponCode.toUpperCase()
   const [discount, setDiscount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -71,22 +72,34 @@ export default function PaymentPage() {
   const subtotal = selectedCourse?.price || 0;
   const finalAmount = subtotal - discount;
 
-    const applyCoupon = () => {
-      // if (course && couponCode?.toLowerCase() === "welcome10") {
-      //   setDiscountedPrice(course?.price * 0.9);
-      // } else {
-      //   setDiscountedPrice(null);
-      // }
-      // console.log(couponCode,id)
-      // axios
-      //   .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{couponCode,courseId:id},{withCredentials:true})
-      //   .then((result) => {
-      //     console.log(result)
-      //   }).catch((err) => {
-      //     console.log(err)
-      //   });
-    };
-
+   const applyCoupon = (e: any) => {
+    e.preventDefault()
+    // if (course && couponCode?.toLowerCase() === "welcome10") {
+    //   setDiscountedPrice(course?.price * 0.9);
+    // } else {
+    //   setDiscountedPrice(null);
+    // }
+    console.log(cuponCode,params.id)
+    axios
+      .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{cuponCode:code,courseId:params.id},{withCredentials:true})
+      .then((result) => {
+        console.log(result)
+        toast.success("token successfully apply", {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+              setDiscount(subtotal * 0.1);
+              console.log(result?.data?.data?.discountAmount)
+      }).catch((err) => {
+        console.log(err?.response?.data?.message)
+        toast.error(err?.response?.data?.message, {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+      });
+  };
   const handlePaymentMethodChange = (value: string) => {
     setPaymentMethod(value);
     if (value !== "mobile") {
@@ -584,8 +597,8 @@ export default function PaymentPage() {
                         <Input
                           id="coupon"
                           placeholder="Enter coupon"
-                          value={couponCode}
-                          onChange={(e) => setCouponCode(e.target.value)}
+                          value={cuponCode}
+                          onChange={(e) => setCuponCode(e.target.value)}
                         />
                         <Button
                           onClick={applyCoupon}

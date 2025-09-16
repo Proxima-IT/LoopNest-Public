@@ -2,6 +2,7 @@ import DataProvider from '@/providers/DataProvider';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -38,7 +39,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}><DataProvider>{children}</DataProvider></body>
+      <body className={poppins.className}><DataProvider>
+        {children}
+        <ToastContainer></ToastContainer>
+        </DataProvider></body>
     </html>
   );
 }
