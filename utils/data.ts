@@ -290,30 +290,30 @@ export const testimonials: Testimonial[] = [
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: '10 Essential Skills Every Developer Should Master in 2024',
-    excerpt: 'Discover the most in-demand programming skills and technologies that will boost your career in the current tech landscape.',
+    title: 'এ.আই এর গল্প',
+    excerpt: 'একসময় যা ছিল কল্পবিজ্ঞানের গহীনে লুকানো এক স্বপ্ন, আজ তা আমাদের দৈনন্দিন জীবনের অবিচ্ছেদ্য অংশ হয়ে উঠেছে। আর সেটা হলো কৃত্রিম বুদ্ধিমত্তা (Artificial Intelligence), সংক্ষেপে এআই (AI)। রাতের আকাশে তারার মেলার মতো অসংখ্য সম্ভাবনা নিয়ে এআই আজ আমাদের সামনে। কিন্তু কী এই এআই? কীভাবে তা কাজ করে? আর কীভাবে আপনি হয়ে উঠবেন একজন এআই ইঞ্জিনিয়ার? চলুন, গল্পের মাধ্যমে জেনে নিই এআই এর এই চমকপ্রদ দুনিয়া সম্পর্কে',
     image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600',
     readTime: '5 min read',
     publishDate: '2024-01-15',
-    slug: 'essential-developer-skills-2024'
+    slug: 'https://www.linkedin.com/pulse/%E0%A6%8F%E0%A6%86%E0%A6%87-%E0%A6%8F%E0%A6%B0-%E0%A6%97%E0%A6%B2%E0%A6%AA-tahsin-ahmad-oyaqc?utm_source=share&utm_medium=member_android&utm_campaign=share_via'
   },
   {
     id: '2',
-    title: 'The Future of Web Development: Trends to Watch',
-    excerpt: 'Explore emerging trends in web development including AI integration, serverless architecture, and new JavaScript frameworks.',
+    title: 'মেশিন লার্নিং (ML): কৃত্রিম বুদ্ধিমত্তার প্রথম পাঠ',
+    excerpt: 'কল্পনা করুন আপনি একজন প্রোগ্রামার।আপনি প্রতিদিন প্রবলেম দেখেন, সলিউশন দেখেন, সমাধান করেন, ভুল করেন, আবার ঠিক করেন। একসময় আপনি এতটাই ভালো প্রোগ্রামার হয়ে উঠলেন যে নতুন প্রশ্ন দেখলেই আপনি উত্তরটা অনুমান করতে পারেন। আর এটাই মেশিন লার্নিং।Machine Learning হলো এমন একটি পদ্ধতি, যেখানে একটি মেশিন (কম্পিউটার) নিজেই অভিজ্ঞতা (data) থেকে শেখে, এবং ভবিষ্যতে নতুন পরিস্থিতিতে সিদ্ধান্ত নিতে পারে। ধরা যাক, আপনি একটি মেশিনকে হাজার হাজার ফলের ছবি দেখালেন। যেমনঃ আপেল, কলা, আম, কমলা। প্রথমে সে কিছুই বোঝে না। কিন্তু সময়ের সাথে সাথে, আপনি তাকে শেখান কোনটা আপেল, কোনটা কলা। ধীরে ধীরে সে শিখে ফেলে। এরপর আপনি যখন নতুন একটি ফলের ছবি দেন, তখন সে বলে দেয়: "এটা একটা আপেল/আম“ আর এই ভবিষ্যদ্বাণী করার ক্ষমতাটাই হলো Machine Learning।',
     image: 'https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=600',
     readTime: '7 min read',
     publishDate: '2024-01-10',
-    slug: 'future-web-development-trends'
+    slug: 'https://www.linkedin.com/pulse/%E0%A6%AE%E0%A6%B6%E0%A6%A8-%E0%A6%B2%E0%A6%B0%E0%A6%A8-ml-%E0%A6%95%E0%A6%A4%E0%A6%B0%E0%A6%AE-%E0%A6%AC%E0%A6%A6%E0%A6%A7%E0%A6%AE%E0%A6%A4%E0%A6%A4%E0%A6%B0-%E0%A6%AA%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A6%A0-tahsin-ahmad-ecx5c?utm_source=share&utm_medium=member_android&utm_campaign=share_via'
   },
   {
     id: '3',
-    title: 'How to Build a Successful Career in Tech',
-    excerpt: 'A comprehensive guide to starting and advancing your career in the technology industry, with tips from industry experts.',
+    title: 'জেনারেটিভ এআই (Generative AI)',
+    excerpt: "কল্পনা করুন, একটি মেশিন নিজে থেকেই কবিতা লিখছে, ছবি আঁকছে, গান তৈরি করছে, এমনকি নতুন গল্পও শোনাচ্ছে! এটি কেবল আদেশ পালন করছে না, বরং আপনার কল্পনাকেও ছাড়িয়ে যাচ্ছে। আর এই জাদুকরি প্রযুক্তিটির নামই হলো জেনারেটিভ এআই (Generative AI) বা ছোট করে GenAI ; সহজ কথায়, জেনারেটিভ এআই হলো কৃত্রিম বুদ্ধিমত্তার এমন একটি শাখা যা নতুন, মৌলিক ডেটা তৈরি করতে পারে, যা আগে থেকে বিদ্যমান ডেটার সাথে সাদৃশ্যপূর্ণ কিন্তু হুবহু একই নয়। এটি কেবল শেখা বা ভবিষ্যদ্বাণী করাই নয়, বরং 'সৃষ্টি' করাই এর মূল লক্ষ্য। যদি মেশিন লার্নিং কোনো ডেটা বিশ্লেষণ করে প্যাটার্ন খুঁজে বের করে, তবে জেনারেটিভ এআই সেই প্যাটার্নগুলো ব্যবহার করে সম্পূর্ণ নতুন ডেটা তৈরি করে, যা মানুষের তৈরি করা কিছুর মতোই প্রাকৃতিক ও বিশ্বাসযোগ্য মনে হয়।",
     image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600',
     readTime: '6 min read',
     publishDate: '2024-01-05',
-    slug: 'successful-tech-career-guide'
+    slug: 'https://www.linkedin.com/pulse/%E0%A6%9C%E0%A6%A8%E0%A6%B0%E0%A6%9F%E0%A6%AD-%E0%A6%8F%E0%A6%86%E0%A6%87-generative-ai-tahsin-ahmad-dgbdc?utm_source=share&utm_medium=member_android&utm_campaign=share_via'
   }
 ];
 
