@@ -53,7 +53,7 @@ export default function PaymentPage() {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASEURL}course/${params.id}`
         );
-        console.log("Course data:", response.data);
+        // console.log("Course data:", response.data);
         if (response.data.success && response.data.data) {
           setSelectedCourse(response.data.data);
         } else {
@@ -70,27 +70,35 @@ export default function PaymentPage() {
   }, [params.id]);
 
   const subtotal = selectedCourse?.price || 0;
-  const finalAmount = subtotal - discount;
+  let finalAmount = subtotal - discount;
+  //  finalAmount = subtotal - (subtotal * discount / 100);
 
    const applyCoupon = (e: any) => {
     e.preventDefault()
-    // if (course && couponCode?.toLowerCase() === "welcome10") {
-    //   setDiscountedPrice(course?.price * 0.9);
-    // } else {
-    //   setDiscountedPrice(null);
-    // }
-    console.log(cuponCode,params.id)
+    // post api
     axios
       .post(`${process.env.NEXT_PUBLIC_BASEURL}coupon/use`,{cuponCode:code,courseId:params.id},{withCredentials:true})
       .then((result) => {
-        console.log(result)
-        toast.success("token successfully apply", {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "dark",
-        });
-              setDiscount(subtotal * 0.1);
-              console.log(result?.data?.data?.discountAmount)
+        if (result?.data?.data?.discountType==="amount") {
+          console.log(result?.data?.data?.discountAmount)
+           setDiscount(result?.data?.data?.discountAmount);
+           toast.success("token successfully apply", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
+         
+          }else if(result?.data?.data?.discountType==="percentage"){
+          setDiscount(result?.data?.data?.discountAmount);
+          toast.success("token successfully apply", {
+            position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+          });
+
+        }
+             
+              console.log(result?.data?.data?.discountValue)
       }).catch((err) => {
         console.log(err?.response?.data?.message)
         toast.error(err?.response?.data?.message, {
@@ -100,6 +108,8 @@ export default function PaymentPage() {
         });
       });
   };
+
+  
   const handlePaymentMethodChange = (value: string) => {
     setPaymentMethod(value);
     if (value !== "mobile") {
@@ -115,28 +125,53 @@ export default function PaymentPage() {
     // Validate required fields based on payment method
     if (paymentMethod === "mobile") {
       if (!mobileProvider) {
-        alert("Please select a mobile banking provider");
+       
+         toast.error("Please select a mobile banking provider", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
         return;
       }
       if (!mobileNumber.trim()) {
-        alert("Please enter your mobile number");
+         toast.error("Please enter your mobile number", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
         return;
       }
       if (!transactionId.trim()) {
-        alert("Please enter your transaction ID");
+         toast.error("Please enter your transaction ID", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
         return;
       }
     } else if (paymentMethod === "bank") {
       if (!accountName.trim()) {
-        alert("Please enter your account name");
+         toast.error("Please enter your account name", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
         return;
       }
       if (!accountNumber.trim()) {
-        alert("Please enter your account number");
+         toast.error("Please enter your account number", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
         return;
       }
       if (!bankName.trim()) {
-        alert("Please enter your bank name");
+         toast.error("Please enter your bank name", {
+             position: "top-center",
+             autoClose: 3000,
+             theme: "dark",
+           });
         return;
       }
     }
